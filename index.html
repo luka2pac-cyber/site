@@ -116,7 +116,7 @@
   .icon-btn svg{width:17px;height:17px;stroke:var(--ink);fill:none;stroke-width:1.7}
 
   /* ---------- brands ---------- */
-  .brands{padding-block:56px 48px;overflow:hidden}
+  .brands{padding-block:48px 40px;overflow:hidden}
   .brands .center{text-align:center;margin-bottom:22px}
   .brands-viewport{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
   .brands-track{display:flex;align-items:center;width:max-content;animation:scroll 50s linear infinite}
@@ -149,28 +149,58 @@
   .why-card p{color:#cfccc7;font-size:.88rem;line-height:1.45}
 
   /* palestra */
-  .areas{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
-  @media (max-width:760px){.areas{grid-template-columns:1fr}}
-  .area{background:var(--bg-3);padding:24px 26px;display:flex;justify-content:space-between;gap:20px;align-items:center}
-  .area h3{font-size:1.8rem;margin-bottom:6px}
-  .area p{color:var(--muted)}
-  .signs{display:flex;gap:6px;flex:none}
-  .signs img{width:52px;height:52px;display:block}
-  @media (max-width:420px){.area{flex-direction:column;align-items:flex-start}}
-
-  .photos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
-  @media (max-width:640px){.photos{grid-template-columns:1fr}}
-  .photos button{display:block;padding:0;border:0;background:var(--bg-3);cursor:zoom-in;position:relative}
-  .photos img{display:block;width:100%;height:auto;aspect-ratio:4/3;transition:filter .3s}
-  .photos button:hover img{filter:brightness(1.08)}
-  .photos span{position:absolute;left:0;bottom:0;padding:8px 12px;font-family:var(--display);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.95rem;color:#fff;background:linear-gradient(0deg,rgba(0,0,0,.7),transparent);width:100%;text-align:left}
+  .zones-head2{margin-bottom:28px;text-align:center}
+  .sec-center{text-align:center}
+  .sec-center .title{margin-inline:auto}
+  .zones-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+  .zcard{grid-column:span 2;background:var(--bg-3);display:flex;flex-direction:column}
+  .zcard.big{grid-column:span 3}
+  @media (max-width:980px){.zones-grid{grid-template-columns:1fr 1fr}.zcard,.zcard.big{grid-column:span 1}.zcard:last-child:nth-child(odd){grid-column:span 2}}
+  @media (max-width:640px){.zones-grid{grid-template-columns:1fr}.zcard:last-child:nth-child(odd){grid-column:auto}}
+  .zpic{position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:0;background:#000;overflow:hidden}
+  button.zpic{cursor:zoom-in}
+  .zpic > img.photo{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  button.zpic:hover > img.photo{transform:scale(1.03)}
+  .zsigns{position:absolute;top:10px;left:10px;display:flex;gap:4px}
+  .zsigns img{width:46px;height:46px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+  .zpic.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:repeating-linear-gradient(135deg,#141414 0 12px,#101010 12px 24px)}
+  .zpic.empty .zsigns{position:static}
+  .zpic.empty .zsigns img{width:84px;height:84px}
+  .zpic.empty small{font-family:var(--display);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .zbody{padding:18px 20px 22px}
+  .zbody h3{font-size:1.55rem;margin-bottom:4px}
+  .zbody p{color:var(--muted);font-size:.97rem}
 
   .lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:20px}
   .lightbox img{max-width:100%;max-height:100%;object-fit:contain}
   .lightbox button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:14px;font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;background:#000;color:#fff;border:1px solid var(--line-2);padding:8px 14px;cursor:pointer}
 
+  /* activities row */
+  .acts3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+  @media (max-width:980px){.acts3{grid-template-columns:1fr 1fr}.act:last-child{grid-column:span 2}}
+  @media (max-width:640px){.acts3{grid-template-columns:1fr}.act:last-child{grid-column:auto}}
+  .act{background:var(--bg-3);display:flex;flex-direction:column}
+  .act-pic{display:block;width:100%;aspect-ratio:16/10;padding:0;border:0;background:#000;overflow:hidden;cursor:zoom-in;position:relative}
+  .act-pic img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .act-pic:hover img{transform:scale(1.03)}
+  .act-pic .flyer{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.75);color:#fff;font-family:var(--display);font-weight:600;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px}
+  .act-pic.logo{cursor:default;display:flex;align-items:center;justify-content:center}
+  .act-pic.logo img{width:auto;height:84%;object-fit:contain}
+  .act-pic.logo:hover img{transform:none}
+  .act-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .act-body h3{font-size:1.9rem;text-align:center}
+  .act-body .tag{text-align:center;font-family:var(--display);font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;margin-top:-6px}
+  .act-body p{color:#cfccc7;font-size:.97rem}
+  .times{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+  .times li{display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+  .times li b{font-weight:600}
+  .times .ic{color:var(--red)}
+  .notes{display:flex;flex-wrap:wrap;gap:6px}
+  .notes span{border:1px solid var(--line-2);padding:2px 9px;font-size:.85rem;color:var(--muted)}
+  .act-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+
   /* schedule */
-  .sched-top{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+  .sched-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;margin-bottom:24px}
   .filters{display:flex;gap:8px;flex-wrap:wrap}
   .filters button{font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 18px;background:transparent;color:var(--ink);border:1px solid var(--line-2);cursor:pointer}
   .filters button[aria-pressed="true"]{background:var(--ink);color:#000;border-color:var(--ink)}
@@ -220,7 +250,9 @@
   /* footer */
   footer{background:#000;border-top:1px solid var(--line);padding-block:40px 24px}
   .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-  .foot-logo{display:block;height:84px;width:auto}
+  .maps-ic{display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;background:#fff;border-radius:50%}
+  .maps-ic img{width:18px;height:18px;display:block}
+  .sched-more{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   .foot p{color:var(--muted);font-size:.95rem}
   .legal{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .legal a{text-decoration:none}
@@ -244,7 +276,7 @@
     <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav class="menu" id="menu">
       <a href="#palestra">La palestra</a>
-      <a href="#corsi">Corsi</a>
+      <a href="#attivita">Corsi</a>
       <a href="#pole-dance">Pole dance</a>
       <a href="#info">Contatti</a>
       <a class="btn btn-red callLink" href="#"><svg class="ic"><use href="#i-phone"/></svg>Chiamaci</a>
@@ -277,7 +309,7 @@
         <h2><svg class="ic"><use href="#i-pin"/></svg>Dove siamo</h2>
         <div class="big" data-cfg="street"></div>
         <div class="sub"><span data-cfg="city"></span><br>Parcheggio gratuito</div>
-        <div class="acts"><a class="btn btn-line btn-sm mapLink" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-map"/></svg>Apri in Google Maps</a></div>
+        <div class="acts"><a class="btn btn-line btn-sm mapLink" href="#" target="_blank" rel="noopener"><span class="maps-ic"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="#EE1C25" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.6" fill="#fff"/></svg></span>Apri in Google Maps</a></div>
       </div>
       <div class="ki">
         <h2><svg class="ic"><use href="#i-phone"/></svg>Contatti</h2>
@@ -296,7 +328,6 @@
   </div>
 
   <div class="brands">
-    <div class="wrap center"><span class="eyebrow" style="margin:0">Le nostre attrezzature</span></div>
     <div class="brands-viewport"><div class="brands-track" id="brands"></div></div>
   </div>
 
@@ -315,34 +346,61 @@
 
   <section class="alt" id="palestra">
     <div class="wrap">
-      <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">La palestra</h2>
-      <div class="areas" style="margin-top:0">
-        <div class="area">
-          <div>
-            <h3>Sala pesi</h3>
-            <p>Gabbie, bilancieri, manubri e macchine Panatta, Hammer Strength e Gymleco. Zone dedicate a gambe, glutei, panca, dorso e spalle.</p>
-          </div>
-          <div class="signs"><img data-img="zLegz" alt="Zona gambe"><img data-img="zGlutei" alt="Angolo glutei"><img data-img="zPanca" alt="Zona panca"></div>
-        </div>
-        <div class="area">
-          <div>
-            <h3>Area cardio</h3>
-            <p>Tapis roulant, ellittiche e cyclette Technogym e Matrix.</p>
-          </div>
-          <div class="signs"><img data-img="zCardio" alt="Zona cardio"></div>
-        </div>
+      <div class="zones-head2">
+        <h2 class="title">La nostra palestra</h2>
       </div>
-      <div class="photos" id="photos"></div>
+      <div class="zones-grid" id="zonesGrid"></div>
     </div>
   </section>
 
-  <section id="corsi">
+  <section id="attivita">
+    <div class="wrap">
+      <div class="sec-center">
+        <h2 class="title">Pilates, SBT e pole dance</h2>
+      </div>
+      <div class="acts3">
+        <article class="act" id="pilates">
+          <button type="button" class="act-pic" data-flyer="volPilates" aria-label="Apri il volantino Pilates"><img data-img="cardPilates" alt="Pilates Class" loading="lazy"><span class="flyer">Volantino</span></button>
+          <div class="act-body">
+            <h3>Pilates</h3>
+            <span class="tag">Muoviti. Respira. Ritrova te stessa.</span>
+            <p>Rinforza il corpo, migliora la postura e ritrova equilibrio e benessere. Il venerdì <b>Pilates Flow</b>, tra Pilates e Yoga, con campana tibetana finale.</p>
+            <ul class="times" data-times="Pilates|Pilates Flow"></ul>
+            <div class="notes"><span>Tutti i livelli</span><span>Minimo 4 persone</span><span data-who="Pilates"></span></div>
+          </div>
+        </article>
+        <article class="act" id="sbt">
+          <button type="button" class="act-pic" data-flyer="volSbt" aria-label="Apri il volantino SBT"><img data-img="cardSbt" alt="SBT — Scolpisci, brucia, tonifica" loading="lazy"><span class="flyer">Volantino</span></button>
+          <div class="act-body">
+            <h3>SBT</h3>
+            <span class="tag">Scolpisci · Brucia · Tonifica</span>
+            <p>Esercizi mirati per ridefinire il corpo, aumentare il consumo calorico e l&rsquo;energia. Un corpo pi&ugrave; forte, elastico e in forma.</p>
+            <ul class="times" data-times="SBT"></ul>
+            <div class="notes"><span>Tutti i livelli</span><span data-who="SBT"></span></div>
+          </div>
+        </article>
+        <article class="act" id="pole-dance">
+          <div class="act-pic logo"><img data-img="pole" alt="Sport &amp; Fit Pole Dance Studio" loading="lazy"></div>
+          <div class="act-body">
+            <h3>Pole dance</h3>
+            <span class="tag">Pole Dance Studio</span>
+            <p>Lo studio di pole dance all&rsquo;interno della palestra: lezioni in piccoli gruppi, dal livello base alla preparazione alle gare.</p>
+            <ul class="times"><li><svg class="ic"><use href="#i-cal"/></svg><span id="poleDays"></span></li></ul>
+            <div class="notes"><span id="poleWho"></span></div>
+            <div class="act-btns">
+              <a class="btn btn-red btn-sm prenotaPole" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cal"/></svg>Prenota</a>
+              <a class="btn btn-line btn-sm" href="pole-dance.html">Più info</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="corsi">
     <div class="wrap">
       <div class="sched-top">
-        <div>
-          <span class="eyebrow">Corsi</span>
-          <h2 class="title">Orario dei corsi</h2>
-        </div>
+        <h2 class="title">Orario settimanale</h2>
         <div class="filters" role="group" aria-label="Filtra i corsi">
           <button type="button" data-f="all" aria-pressed="true">Tutti</button>
           <button type="button" data-f="corsi" aria-pressed="false">Corsi</button>
@@ -353,35 +411,18 @@
       <div class="week" id="week"></div>
       <div class="sched-foot">
         <span><span class="legend">Pole dance</span>* Sabato a settimane alterne.</span>
-        <a class="link" data-img-link="orario" href="#" target="_blank" rel="noopener">Orario in formato immagine</a>
+        <span class="sched-more"><a class="link" data-img-link="orario" href="#" target="_blank" rel="noopener">Orario in formato immagine</a></span>
       </div>
 
     </div>
   </section>
 
-  <section class="alt" id="pole-dance">
-    <div class="wrap pole-grid">
-      <div class="pole-panel"><img data-img="pole" alt="Sport &amp; Fit Pole Dance Studio" loading="lazy"></div>
-      <div>
-        <span class="eyebrow">Pole Dance Studio</span>
-        <h2 class="title">Pole dance a Gorizia</h2>
-        <p class="intro">Uno studio dedicato alla pole dance, all&rsquo;interno della palestra. Lezioni in piccoli gruppi, dal livello base alla preparazione alle gare.</p>
-        <ul class="pole-chips" id="poleChips"></ul>
-        <p class="pole-meta" id="poleMeta"></p>
-        <div class="pole-acts">
-          <a class="btn btn-red" data-link="poleDance" href="#" target="_top"><svg class="ic"><use href="#i-cal"/></svg>Prenota una lezione</a>
-          <a class="btn btn-line" href="#corsi" id="polePlan">Vedi gli orari</a>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 <div class="lightbox" id="lightbox" hidden><button type="button" id="lbClose">Chiudi</button><img id="lbImg" alt=""></div>
 
 <footer>
   <div class="wrap">
     <div class="foot">
-      <img class="foot-logo" data-img="logo" alt="Sport&amp;Fit Gym">
       <p>ASD Sport &amp; Fit Gorizia &middot; affiliata CSEN<br><span data-cfg="street"></span>, <span data-cfg="city"></span></p>
     </div>
     <div class="legal">
@@ -391,6 +432,7 @@
   </div>
 </footer>
 
+<script src="sportfit.js"></script>
 <script>
 /* ============================================================
    CONFIG — uredi samo ta del za spremembo vsebine strani.
@@ -404,19 +446,9 @@ const CONFIG = {
   // Pannello di prova (solo per la pagina di test)
   testPanel: false,
   heroText: "Palestra nel centro di Gorizia · dal 2009",
-  street: "Corso Italia 187/189",
-  city: "34170 Gorizia",
-  phone1: "+39 333 835 7446",
-  phone2: "+386 40 370 360",
-  email: "info@sport-fit.org",
-  instagram: "https://www.instagram.com/sportfitgymgorizia/",
-  facebook: "https://www.facebook.com/palestrasportfit",
-  // 0 = domenica ... 6 = sabato; null = chiuso
-  schedule: {1:["06:00","22:00"],2:["06:00","22:00"],3:["06:00","22:00"],4:["06:00","22:00"],5:["06:00","22:00"],6:["08:00","14:00"],0:null},
-  // Povezave na obstoječe WordPress podstrani — preveri prave naslove
-  links: {
-    poleDance: "https://www.sport-fit.org/pole-dance/"
-  },
+  // Contatti, orari e corsi sono nel file sportfit.js (condiviso da tutte le pagine)
+  street: SF.via, city: SF.citta, phone1: SF.telefono1, phone2: SF.telefono2, email: SF.email,
+  instagram: SF.instagram, facebook: SF.facebook, schedule: SF.apertura,
   images: {
     logo:      "logo-sportfit.png",
     logoWhite: "logo-sportfit-white.png",
@@ -428,33 +460,24 @@ const CONFIG = {
     zPanca:    "zona-panca.png",
     zCardio:   "zona-cardio.png",
     heritage:  "heritage.jpg",
-    orario:    "orario-corsi.jpg"
+    orario:    "orario-corsi.jpg",
+    cardPilates: "foto-card-pilates.jpg",
+    cardSbt:   "foto-card-sbt.jpg",
+    volPilates: "volantino-pilates.jpg",
+    volSbt:    "volantino-sbt.jpg"
   },
-  // Foto della palestra (intere, senza ritaglio)
-  photos: [
-    {src:"foto-sala-1.jpg", label:"Sala pesi"},
-    {src:"foto-sala-2.jpg", label:"Zona rack e panca"},
-    {src:"foto-sala-3.jpg", label:"Macchine e cavi"},
-    {src:"foto-cardio.jpg", label:"Area cardio"}
-  ],
-  // Orario corsi — d: 1 = lunedì ... 6 = sabato; type: "corsi" oppure "pole"
-  orario: [
-    {d:1, t:"18:30", n:"SBT",                         who:"Natascha", type:"corsi"},
-    {d:1, t:"20:00", n:"Pole Base",                   who:"Gordana",  type:"pole"},
-    {d:2, t:"09:00", n:"Pilates",                     who:"Nadia",    type:"corsi"},
-    {d:2, t:"18:30", n:"Exotic + Choreo",             who:"Gordana",  type:"pole"},
-    {d:2, t:"19:30", n:"Static Combo",                who:"Selena",   type:"pole"},
-    {d:2, t:"20:30", n:"Static Combo",                who:"Selena",   type:"pole"},
-    {d:3, t:"18:30", n:"SBT",                         who:"Natascha", type:"corsi"},
-    {d:3, t:"19:45", n:"Pole Tecnica",                who:"Selena",   type:"pole"},
-    {d:3, t:"20:45", n:"Mobility",                    who:"Selena",   type:"corsi"},
-    {d:4, t:"09:00", n:"Pilates",                     who:"Nadia",    type:"corsi"},
-    {d:4, t:"18:30", n:"Pole Base",                   who:"Gordana",  type:"pole"},
-    {d:4, t:"19:30", n:"Spin Combo",                  who:"Gordana",  type:"pole"},
-    {d:4, t:"20:30", n:"Spin Combo",                  who:"Selena",   type:"pole"},
-    {d:5, t:"09:00", n:"Pilates Flow",                who:"Nadia",    type:"corsi"},
-    {d:5, t:"18:30", n:"Prep Gare",                   who:"Selena",   type:"pole"},
-    {d:6, t:"11:00", n:"Selenetica / Free Training*", who:"Selena",   type:"corsi"}
+  // Zone della sala: foto = file della foto (se manca, appare "Foto in arrivo"); cartelli = zone con cartello
+  zones: [
+    {name:"Zona gambe e glutei",        foto:"foto-gambe.jpg",      cartelli:["zLegz","zGlutei"], big:true,
+     text:"Rack per lo squat, pressa e macchine dedicate a gambe e glutei."},
+    {name:"Area cardio",                foto:"foto-cardio.jpg",     cartelli:["zCardio"], big:true,
+     text:"Tapis roulant, ellittiche e cyclette Technogym e Matrix."},
+    {name:"Zona manubri",               foto:"foto-manubri.jpg",    cartelli:[],
+     text:"Manubri e panche regolabili per il lavoro con i pesi liberi."},
+    {name:"Zona panche",                foto:"foto-panche.jpg",     cartelli:["zPanca"],
+     text:"Panche piane e inclinate, rack e bilancieri per la distensione."},
+    {name:"Macchine isotoniche e cavi", foto:"foto-isotoniche.jpg", cartelli:[],
+     text:"Macchine Panatta, Hammer Strength e Gymleco, stazioni ai cavi e accessori."}
   ],
   // Loghi delle attrezzature: h = altezza in px (i marchi principali più grandi)
   brands: [
@@ -477,8 +500,7 @@ const CONFIG = {
   const tel = v => "tel:" + v.replace(/[^0-9+]/g,"");
 
   $$('[data-cfg]').forEach(el => { const v = CONFIG[el.dataset.cfg]; if (v !== undefined) el.textContent = v; });
-  $$('[data-link]').forEach(el => { el.href = CONFIG.links[el.dataset.link] || "#"; });
-  $$('img[data-img]').forEach(el => { const s = CONFIG.images[el.dataset.img]; if (s) el.src = s; });
+    $$('img[data-img]').forEach(el => { const s = CONFIG.images[el.dataset.img]; if (s) el.src = s; });
   $$('[data-img-link]').forEach(a => a.href = CONFIG.images[a.dataset.imgLink]);
   const heroLogo = $('#heroLogo');
   const setLogo = (kind, op) => { heroLogo.src = kind === 'white' ? CONFIG.images.logoWhite : CONFIG.images.logo; heroLogo.style.opacity = op; };
@@ -530,31 +552,24 @@ const CONFIG = {
     st.textContent = next ? "Chiuso · apre " + (n===wd ? "alle " : days[n] + " alle ") + next[0] : "Chiuso";
   }
 
-  // photos + lightbox
-  $('#photos').innerHTML = CONFIG.photos.map(ph => '<button type="button" data-src="'+ph.src+'" aria-label="Ingrandisci: '+ph.label+'"><img src="'+ph.src+'" alt="'+ph.label+'" loading="lazy" width="1400" height="1050"><span>'+ph.label+'</span></button>').join('');
+  // zones + lightbox
+  const signs = keys => keys.length ? '<span class="zsigns">' + keys.map(k => '<img src="'+CONFIG.images[k]+'" alt="">').join('') + '</span>' : '';
+  const emptyPic = z => '<div class="zpic empty">' + signs(z.cartelli) + '<small>Foto in arrivo</small></div>';
+  $('#zonesGrid').innerHTML = CONFIG.zones.map((z,i) =>
+    '<article class="zcard'+(z.big?' big':'')+'">' +
+      (z.foto ? '<button type="button" class="zpic" data-src="'+z.foto+'" data-i="'+i+'" aria-label="Ingrandisci: '+z.name+'"><img class="photo" src="'+z.foto+'" alt="'+z.name+'" loading="lazy">' + signs(z.cartelli) + '</button>' : emptyPic(z)) +
+      '<div class="zbody"><h3>'+z.name+'</h3><p>'+z.text+'</p></div></article>').join('');
+  $$('#zonesGrid button.zpic').forEach(btn => {
+    btn.querySelector('img.photo').addEventListener('error', () => { btn.outerHTML = emptyPic(CONFIG.zones[+btn.dataset.i]); });
+  });
   const lb = $('#lightbox'), lbImg = $('#lbImg');
   const closeLb = () => { lb.hidden = true; lbImg.src = ''; };
-  $$('#photos button').forEach(b => b.addEventListener('click', () => { lbImg.src = b.dataset.src; lbImg.alt = b.querySelector('img').alt; lb.hidden = false; }));
+  $('#zonesGrid').addEventListener('click', e => { const b = e.target.closest('button.zpic'); if (!b) return; lbImg.src = b.dataset.src; lbImg.alt = b.querySelector('img.photo').alt; lb.hidden = false; });
   lb.addEventListener('click', e => { if (e.target !== lbImg) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
 
-  // schedule
-  const dn = ["","Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato"];
-  const O = CONFIG.orario.slice().sort((a,b) => a.d-b.d || a.t.localeCompare(b.t));
-  let html = '';
-  for (let d = 1; d <= 6; d++) {
-    html += '<div class="day'+(d===wd?' today':'')+'"><h3>'+dn[d]+'</h3><ul>' +
-      O.filter(c => c.d === d).map(c => '<li class="cls cls-'+c.type+'" data-type="'+c.type+'"><span class="t tab">'+c.t+'</span><span class="nm">'+c.n+'</span><span class="who">'+c.who+'</span></li>').join('') +
-      '<li class="empty" hidden>Nessun corso</li></ul></div>';
-  }
-  $('#week').innerHTML = html;
-  // mobile: one day at a time
-  const sel = (wd >= 1 && wd <= 6) ? wd : 1;
-  $('#daytabs').innerHTML = [1,2,3,4,5,6].map(d => '<button type="button" data-d="'+d+'" aria-pressed="'+(d===sel)+'">'+dn[d].slice(0,3)+'</button>').join('');
-  const days6 = $$('#week .day');
-  const pickDay = d => { days6.forEach((el,i) => el.classList.toggle('sel', i+1 === d)); $$('#daytabs button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.d === d)); };
-  $$('#daytabs button').forEach(b => b.addEventListener('click', () => pickDay(+b.dataset.d)));
-  pickDay(sel);
+  // schedule (shared renderer in sportfit.js)
+  SF.settimana($('#week'), $('#daytabs'), null);
   const applyFilter = f => {
     $$('.filters button').forEach(b => b.setAttribute('aria-pressed', b.dataset.f === f));
     $$('#week .day').forEach(day => {
@@ -566,11 +581,18 @@ const CONFIG = {
   $$('.filters button').forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.f)));
   applyFilter('all');
 
-  // pole dance: lesson types and instructors from the schedule
-  const poles = O.filter(c => c.type === 'pole');
-  $('#poleChips').innerHTML = [...new Set(poles.map(c => c.n))].map(n => '<li>'+n+'</li>').join('');
-  $('#poleMeta').textContent = 'Istruttrici: ' + [...new Set(poles.map(c => c.who))].join(' e ') + '.';
-  $('#polePlan').addEventListener('click', () => applyFilter('pole'));
+  // activities row
+  $$('.times[data-times]').forEach(ul => {
+    ul.innerHTML = ul.dataset.times.split('|').flatMap(n => SF.quando(n).map(q => '<li><svg class="ic"><use href="#i-cal"/></svg>' + (ul.dataset.times.includes('|') ? '<b>'+n+'</b> ' : '') + q + '</li>')).join('');
+  });
+  $$('[data-who]').forEach(el => el.textContent = 'Con ' + SF.chi(el.dataset.who));
+  const poleNames = Object.keys(SF.lezioni('pole'));
+  const poleDaysSet = [...new Set(SF.ordinato().filter(c => c.type === 'pole').map(c => c.d))];
+  $('#poleDays').textContent = poleDaysSet.length + ' giorni a settimana · ' + poleNames.length + ' tipi di lezione';
+  $('#poleWho').textContent = 'Con ' + [...new Set(SF.orario.filter(c => c.type === 'pole').map(c => c.who))].join(' e ');
+  $$('.prenotaPole').forEach(a => a.href = SF.prenotaPole);
+  if (SF.iconaMappe) $$('.maps-ic').forEach(el => el.innerHTML = '<img src="'+SF.iconaMappe+'" alt="">');
+  $$('.act-pic[data-flyer]').forEach(b => b.addEventListener('click', () => { lbImg.src = CONFIG.images[b.dataset.flyer]; lbImg.alt = b.querySelector('img').alt; lb.hidden = false; }));
 
   // brands
   const b = CONFIG.brands;
