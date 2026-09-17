@@ -88,6 +88,13 @@
   .hero-c{width:100%;padding-block:48px 110px;display:flex;flex-direction:column;align-items:center}
   .hero-logo{width:min(520px,80vw);height:auto;display:block;transition:opacity .2s;filter:drop-shadow(0 14px 40px rgba(0,0,0,.6))}
   .hero-sub{margin-top:20px;font-family:var(--head);font-weight:400;font-size:clamp(.72rem,1.4vw,.9rem);letter-spacing:.08em;line-height:1.5;text-transform:uppercase;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+  .grate{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:5px 12px;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;font-family:var(--display);font-weight:600;letter-spacing:.04em;font-size:.95rem;line-height:1.2;transition:border-color .15s}
+  .grate:hover{border-color:#fff}
+  .grate b{font-weight:700;font-size:1.05rem}
+  .gstars{position:relative;display:inline-block;font-size:1.05rem;line-height:1;letter-spacing:1px;color:rgba(255,255,255,.28)}
+  .gstars::before,.gfill::before{content:"\2605\2605\2605\2605\2605"}
+  .gfill{position:absolute;top:0;left:0;bottom:0;overflow:hidden;white-space:nowrap;color:#FBBC04}
+  .hero-sub .leaf{display:inline-block;width:1.35em;height:1.35em;vertical-align:-.3em;margin-left:.2em;filter:drop-shadow(0 1px 4px rgba(0,0,0,.6))}
   .hero .cta{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:400px;margin-top:22px}
   .hero .cta .btn{font-size:1.2rem;padding:4px 10px;gap:8px;min-height:38px;box-shadow:0 6px 18px rgba(0,0,0,.45);transition:transform .15s,box-shadow .15s,background .15s,color .15s,border-color .15s}
   .hero .cta .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.55)}
@@ -362,7 +369,8 @@
     <div class="wrap hero-c">
       <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" data-en="Sport&amp;Fit, gym in Gorizia" data-sl="Sport&amp;Fit, fitnes v Gorici">Sport&amp;Fit, palestra a Gorizia</h1>
       <img class="hero-logo" id="heroLogo" alt="Sport&amp;Fit Gym">
-      <p class="hero-sub" data-cfg="heroText"></p>
+      <p class="hero-sub" id="heroSub"></p>
+      <a class="grate" id="gRate" href="#" target="_blank" rel="noopener" hidden><span class="gstars" aria-hidden="true"><span class="gfill" id="gFill"></span></span><b id="gVal"></b><span id="gTxt"></span></a>
       <div class="cta" id="heroBtns" data-v="5">
         <a class="btn hb" href="#palestra"><svg class="ic"><use href="#i-dumbbell"/></svg><span data-en="The gym" data-sl="Fitnes">La palestra</span></a>
         <a class="btn hb" href="#attivita"><svg class="ic ic-w"><use href="#i-pilates"/></svg><span data-en="Our classes" data-sl="Naše vadbe">I nostri corsi</span></a>
@@ -411,8 +419,8 @@
     <div class="wrap why-row">
       <h2 data-en="Why<br>Sport&amp;Fit" data-sl="Zakaj<br>Sport&amp;Fit">Perch&eacute;<br>Sport&amp;Fit</h2>
       <div class="why-grid">
-        <div class="why-card"><h3 data-en="Experience and convenience" data-sl="Izkušnje in udobje">Esperienza e comodit&agrave;</h3><p data-en="On Corso Italia since 2009: &lt;span data-cfg=&quot;sqm&quot;&gt;&lt;/span&gt; m&sup2; in the centre of Gorizia, open 6am to 10pm with free parking." data-sl="Od leta 2009 na Corso Italia: &lt;span data-cfg=&quot;sqm&quot;&gt;&lt;/span&gt; m&sup2; v središču Gorice, odprto od 6. do 22. ure, z brezplačnim parkiranjem.">Dal 2009 in Corso Italia: <span data-cfg="sqm"></span> m&sup2; nel centro di Gorizia, aperti dalle 6 alle 22 con parcheggio gratuito.</p></div>
-        <div class="why-card"><h3 data-en="Equipment" data-sl="Oprema">Attrezzature</h3><p data-en="Panatta, Hammer Strength, Gymleco and Life Fitness." data-sl="Panatta, Hammer Strength, Gymleco in Life Fitness.">Panatta, Hammer Strength, Gymleco e Life Fitness.</p></div>
+        <div class="why-card"><h3 data-en="Experience and convenience" data-sl="Izkušnje in udobje">Esperienza e comodit&agrave;</h3><p data-en="&lt;span data-cfg=&quot;sqm&quot;&gt;&lt;/span&gt; m&sup2; in the centre of Gorizia, with free parking." data-sl="&lt;span data-cfg=&quot;sqm&quot;&gt;&lt;/span&gt; m&sup2; v središču Gorice, z brezplačnim parkiriščem."><span data-cfg="sqm"></span> m&sup2; nel centro di Gorizia, con parcheggio gratuito.</p></div>
+        <div class="why-card"><h3 data-en="Equipment" data-sl="Oprema">Attrezzature</h3><p data-en="Premium equipment, chosen for beginners and advanced athletes." data-sl="Vrhunska oprema, izbrana za začetnike in napredne.">Attrezzature premium, scelte per principianti e avanzati.</p></div>
         <div class="why-card"><h3 data-en="Trainers" data-sl="Trenerji">Istruttori</h3><p data-en="Qualified trainers and personalised programmes." data-sl="Usposobljeni trenerji in programi po meri.">Istruttori qualificati e programmi personalizzati.</p></div>
         <div class="why-card"><h3 data-en="Community" data-sl="Skupnost">Comunit&agrave;</h3><p data-en="A strong, close-knit community: we train together, support each other and keep each other motivated." data-sl="Močna in povezana skupnost: skupaj treniramo, se podpiramo in drug drugega motiviramo.">Una community forte e unita: ci si allena insieme, ci si sostiene e ci si motiva a vicenda.</p></div>
       </div>
@@ -522,6 +530,8 @@ window.SF = {
   instagram: "https://www.instagram.com/sportfitgymgorizia/",
   facebook: "https://www.facebook.com/palestrasportfit",
   prenotaPole: "https://sport-fit-pole-dance-studio.reservio.com/",
+  // Valutazione Google (stelle) mostrata sotto il logo; null = nascosta
+  googleRating: 4.8,
   // WhatsApp: numero con prefisso, senza + e senza spazi; messaggio iniziale già scritto
   whatsapp: "393338357446",
   whatsappMessaggio: "Ciao Sport&Fit, vorrei avere informazioni.",
@@ -717,7 +727,8 @@ const CONFIG = {
   heroLogoOpacity: 0.7,
   // Pannello di prova (solo per la pagina di test)
   testPanel: false,
-  heroText: SF.t("Palestra nel centro di Gorizia · dal 2009", "Gym in the centre of Gorizia · since 2009", "Fitnes v središču Gorice · od leta 2009"),
+  // Testo sotto il logo: {foglia} = foglia verde
+  heroText: SF.t("La palestra con l'anima{foglia} – dal 2009", "The gym with a soul{foglia} – since 2009", "Fitnes z dušo{foglia} – od leta 2009"),
   // Contatti, orari e corsi sono nel file sportfit.js (condiviso da tutte le pagine)
   street: SF.via, city: SF.citta, phone1: SF.telefono1, phone2: SF.telefono2, email: SF.email,
   instagram: SF.instagram, facebook: SF.facebook, schedule: SF.apertura,
@@ -791,6 +802,7 @@ const CONFIG = {
   SF.applyLang();
 
   $$('[data-cfg]').forEach(el => { const v = CONFIG[el.dataset.cfg]; if (v !== undefined) el.textContent = v; });
+  { const hs = $('#heroSub'); hs.textContent = CONFIG.heroText; hs.innerHTML = hs.innerHTML.replace('{foglia}', '<svg class="leaf" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20C4 10 10 4.5 21 3.5 20.5 14 15 20 4 20z" fill="#6CC04A"/><path d="M4.6 19.4 16.5 8M9 14.9l-.3-3.6M11.9 12.1l-.2-3.3M9 14.9l3.6.2M11.9 12.1l3.4.1" stroke="#2E7D32" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>'); }
     $$('img[data-img]').forEach(el => { const s = CONFIG.images[el.dataset.img]; if (s) el.src = s; });
   $$('[data-img-link]').forEach(a => a.href = CONFIG.images[a.dataset.imgLink]);
   const heroLogo = $('#heroLogo');
@@ -824,6 +836,16 @@ const CONFIG = {
   $('#kIg').href = CONFIG.instagram;
   $('#kFb').href = CONFIG.facebook;
   $$('.waLink').forEach(a => a.href = SF.wa());
+  // Google rating
+  if (SF.googleRating) {
+    const r = SF.googleRating, v = r.toFixed(1), g = $('#gRate');
+    $('#gVal').textContent = SF.en ? v : v.replace('.', ',');
+    $('#gTxt').textContent = t(' su Google', ' on Google', ' na Googlu');
+    $('#gFill').style.width = (r / 5 * 100) + '%';
+    g.href = SF.mappe();
+    g.setAttribute('aria-label', t('Valutazione Google ', 'Google rating ', 'Ocena na Googlu ') + $('#gVal').textContent + '/5');
+    g.hidden = false;
+  }
 
   // opening hours + open now (Gorizia time)
   const days = t(["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"], ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], ["v nedeljo","v ponedeljek","v torek","v sredo","v četrtek","v petek","v soboto"]);
@@ -832,7 +854,7 @@ const CONFIG = {
   const hm = parts.find(p=>p.type==='hour').value.replace('24','00') + ":" + parts.find(p=>p.type==='minute').value;
   const S = CONFIG.schedule;
   const fmt = d => S[d] ? S[d].join(" – ") : t("Chiuso","Closed","Zaprto");
-  const groups = [{l:t("Lunedì – venerdì","Monday – Friday","Ponedeljek – petek"),d:[1,2,3,4,5]},{l:t("Sabato","Saturday","Sobota"),d:[6]},{l:t("Domenica","Sunday","Nedelja"),d:[0]}];
+  const groups = [{l:t("Lunedì – venerdì","Monday – Friday","Ponedeljek – petek"),d:[1,2,3,4,5]},{l:t("Sabato","Saturday","Sobota"),d:[6]},{l:t("Domenica e festivi","Sunday & holidays","Nedelja in prazniki"),d:[0]}];
   $('#hoursRows').innerHTML = groups.map(g => '<div class="hrow'+(g.d.includes(wd)?' today':'')+'"><span>'+g.l+'</span><span class="tab">'+fmt(g.d[0])+'</span></div>').join('');
   const today = S[wd], box = $('#kiHours'), st = $('#statusText');
   if (today && hm >= today[0] && hm < today[1]) {
