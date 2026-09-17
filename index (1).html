@@ -488,7 +488,204 @@
   </div>
 </footer>
 
-<script src="sportfit.js"></script>
+<script>
+/* ============================================================
+   SPORT&FIT — dati condivisi da tutte le pagine
+   (index.html, corsi.html, pole-dance.html)
+   Modifica qui orari, contatti e corsi: le pagine si aggiornano da sole.
+   ============================================================ */
+window.SF = {
+  via: "Corso Italia 187/189",
+  citta: "34170 Gorizia",
+  telefono1: "+39 333 835 7446",
+  telefono2: "+386 40 370 360",
+  email: "info@sport-fit.org",
+  instagram: "https://www.instagram.com/sportfitgymgorizia/",
+  facebook: "https://www.facebook.com/palestrasportfit",
+  prenotaPole: "https://sport-fit-pole-dance-studio.reservio.com/",
+  // WhatsApp: numero con prefisso, senza + e senza spazi; messaggio iniziale già scritto
+  whatsapp: "393338357446",
+  whatsappMessaggio: "Ciao Sport&Fit, vorrei avere informazioni.",
+
+  // Orari di apertura — 0 = domenica ... 6 = sabato; null = chiuso
+  apertura: {1:["06:00","22:00"],2:["06:00","22:00"],3:["06:00","22:00"],4:["06:00","22:00"],5:["06:00","22:00"],6:["08:00","14:00"],0:null},
+
+  // Orario corsi — d: 1 = lunedì ... 6 = sabato; type: "corsi" oppure "pole"
+  orario: [
+    {d:1, t:"18:30", n:"SBT",                         who:"Natasha" , type:"corsi"},
+    {d:1, t:"20:00", n:"Pole Base",                   who:"Gordana",  type:"pole"},
+    {d:2, t:"09:00", n:"Pilates",                     who:"Nadia",    type:"corsi"},
+    {d:2, t:"18:30", n:"Exotic + Choreo",             who:"Gordana",  type:"pole"},
+    {d:2, t:"19:30", n:"Static Combo",                who:"Selena",   type:"pole"},
+    {d:2, t:"20:30", n:"Static Combo",                who:"Selena",   type:"pole"},
+    {d:3, t:"18:30", n:"SBT",                         who:"Natasha" , type:"corsi"},
+    {d:3, t:"19:45", n:"Pole Tecnica",                who:"Selena",   type:"pole"},
+    {d:3, t:"20:45", n:"Mobility",                    who:"Selena",   type:"pole"},
+    {d:4, t:"09:00", n:"Pilates",                     who:"Nadia",    type:"corsi"},
+    {d:4, t:"18:30", n:"Pole Base",                   who:"Gordana",  type:"pole"},
+    {d:4, t:"19:30", n:"Spin Combo",                  who:"Gordana",  type:"pole"},
+    {d:4, t:"20:30", n:"Spin Combo",                  who:"Selena",   type:"pole"},
+    {d:5, t:"09:00", n:"Pilates Flow",                who:"Nadia",    type:"corsi"},
+    {d:5, t:"18:30", n:"Prep Gare",                   who:"Selena",   type:"pole"},
+    {d:6, t:"11:00", n:"Selenetica / Free Training*", who:"Selena",   type:"pole"}
+  ],
+
+  // Pole Dance Studio — schede dei corsi (pagina pole-dance.html)
+  // foto = immagine rotonda; orario = nomi delle lezioni nell'orario qui sopra; testoEN / testoSL = testo in inglese / sloveno
+  poleCorsi: [
+    {nome:"Pole Intro",   foto:"pole-intro.png",        orario:["Pole Base"],
+     testo:"Il corso ideale per chi vuole cominciare a muovere i primi passi in questa disciplina sportiva. Tra una piroetta e un volteggio, imparerete a padroneggiare le basi della pole dance focalizzandovi su tecnica e pulizia dei movimenti, al ritmo del divertimento.",
+     testoEN:"The ideal class for anyone who wants to take their first steps in this sport. Between spins and swings, you will master the basics of pole dance, focusing on technique and clean movement, and having fun along the way.",
+     testoSL:"Idealna vadba za vse, ki želijo narediti prve korake v tem športu. Med obrati in zamahi boste osvojili osnove pole dancea s poudarkom na tehniki in čistem gibanju, ob tem pa se boste tudi zabavali."},
+    {nome:"Spin Combo",   foto:"pole-spin-combo.png",   orario:["Spin Combo"],
+     testo:"Il corso di pole dance incentrato su combinazioni di elementi al palo girevole. Ogni lezione si concentra su diversi movimenti di base su cui viene costruita una combinazione armoniosa. Livello OPEN e livello INTERMEDIO.",
+     testoEN:"A pole dance class focused on combinations on the spinning pole. Each lesson works on different basic moves, which are then built into a smooth combination. OPEN and INTERMEDIATE levels.",
+     testoSL:"Vadba pole dancea, osredotočena na kombinacije elementov na vrtljivem drogu. Vsaka ura je posvečena različnim osnovnim gibom, iz katerih sestavimo tekočo kombinacijo. Nivo OPEN in SREDNJI nivo."},
+    {nome:"Static Combo", foto:"pole-static-combo.png", orario:["Static Combo"],
+     testo:"Il corso di pole dance incentrato su combinazioni di elementi al palo statico. A ogni lezione imparerete nuove figure e nuove transizioni che vi permetteranno di sviluppare forza e resistenza. Livello OPEN e livello INTERMEDIO.",
+     testoEN:"A pole dance class focused on combinations on the static pole. In every lesson you will learn new figures and transitions that build strength and endurance. OPEN and INTERMEDIATE levels.",
+     testoSL:"Vadba pole dancea, osredotočena na kombinacije elementov na statičnem drogu. Na vsaki uri se boste naučili novih figur in prehodov, ki razvijajo moč in vzdržljivost. Nivo OPEN in SREDNJI nivo."},
+    {nome:"Pole Tecnica", foto:"pole-tecnica.png",      orario:["Pole Tecnica"],
+     testo:"Il corso di potenziamento delle figure classiche della Pole Dance, in cui analizziamo la tecnica per eseguire correttamente i trick base, con esercizi propedeutici adatti a tutti i livelli, varianti delle figure e suggerimenti per migliorare.",
+     testoEN:"A class to strengthen the classic pole dance figures. We analyse the technique for performing the basic tricks correctly, with preparatory exercises for all levels, variations of the figures and tips to improve.",
+     testoSL:"Vadba za utrjevanje klasičnih figur pole dancea. Analiziramo tehniko za pravilno izvedbo osnovnih trikov, s pripravljalnimi vajami za vse nivoje, različicami figur in nasveti za napredek."},
+    {nome:"Spin Tecnica", foto:"pole-spin-tecnica.png", orario:[],
+     testo:"Il corso si concentra sulle tecniche di base necessarie per perfezionare le transizioni al palo spinning: impareremo a lavorare con angoli, leve e distribuzione del corpo per rendere le combinazioni al palo fluide ed eleganti. Adatto a tutti i livelli.",
+     testoEN:"This class focuses on the basic techniques needed to perfect transitions on the spinning pole: you will learn to work with angles, leverage and body position to make your combinations fluid and elegant. Suitable for all levels.",
+     testoSL:"Vadba se osredotoča na osnovne tehnike za izpopolnjevanje prehodov na vrtljivem drogu: naučili se boste delati s koti, vzvodi in razporeditvijo telesa, da bodo kombinacije tekoče in elegantne. Primerno za vse nivoje."},
+    {nome:"Selenetica",   foto:"pole-selenetica.png",   orario:["Selenetica / Free Training*"],
+     testo:"Il nostro corso di conditioning e mobilità pensato DALLE pole dancers PER LE pole dancers, ma anche per chi vuole imparare a muoversi meglio e incrementare forza e resistenza. Il corso si concentra su esercizi di rafforzamento degli schemi motori tipici della pole dance e di bilanciamento delle leve.",
+     testoEN:"Our conditioning and mobility class, designed BY pole dancers FOR pole dancers, but also for anyone who wants to move better and build strength and endurance. It focuses on exercises that strengthen the movement patterns typical of pole dance and on balancing the body's levers.",
+     testoSL:"Naša vadba za kondicijo in mobilnost, ki so jo plesalke pole dancea zasnovale ZA plesalke pole dancea, pa tudi za vse, ki se želijo bolje gibati ter povečati moč in vzdržljivost. Poudarek je na vajah za krepitev gibalnih vzorcev, značilnih za pole dance, in na uravnoteženju vzvodov telesa."},
+    {nome:"Exotic",       foto:"pole-exotic.png",       orario:["Exotic + Choreo"],
+     testo:"Exotic Pole è la variante della Pole Dance che utilizza le basi della Pole tradizionale unendole a elementi acrobatici e coreografici. Si pratica generalmente con ginocchiere e scarpe apposite (Pleasers) che permettono di eseguire coreografie sinuose ed eleganti. Il corso è adatto a chi ha già una base di Pole Dance e vuole esplorare un nuovo modo di esprimersi.",
+     testoEN:"Exotic Pole is the style of pole dance that combines the basics of traditional pole with acrobatic and choreographic elements. It is usually practised with knee pads and special shoes (Pleasers), which allow for sinuous, elegant choreography. The class is for those who already have a pole dance foundation and want to explore a new way of expressing themselves.",
+     testoSL:"Exotic Pole je slog pole dancea, ki osnove klasičnega pole dancea združuje z akrobatskimi in koreografskimi elementi. Običajno se izvaja s ščitniki za kolena in posebnimi čevlji (Pleasers), ki omogočajo mehke, elegantne koreografije. Vadba je primerna za tiste, ki že imajo osnove pole dancea in želijo raziskati nov način izražanja."},
+    {nome:"Mobility",     foto:"pole-mobility.png",     orario:["Mobility"],
+     testo:"Il corso è focalizzato su esercizi e tecniche per la mobilità e stabilità articolare, lavorando all’aumento del range di movimento in maniera efficace e indolore. Il corso è adatto a tutti i livelli.",
+     testoEN:"This class focuses on exercises and techniques for joint mobility and stability, increasing your range of motion effectively and without pain. Suitable for all levels.",
+     testoSL:"Vadba je osredotočena na vaje in tehnike za gibljivost in stabilnost sklepov, s katerimi učinkovito in brez bolečin povečujemo obseg giba. Primerno za vse nivoje."}
+  ],
+
+  // Descrizioni dei corsi (pagine "Più info")
+  descrizioni: {
+    "Pilates":        "Rinforza il corpo, migliora la postura e ritrova equilibrio e benessere.",
+    "Pilates Flow":   "Il giusto mix tra Pilates e Yoga: più stretching, respirazione e rilassamento, con campana tibetana finale.",
+    "SBT":            "Scolpisci, brucia, tonifica: esercizi mirati per ridefinire il corpo, aumentare il consumo calorico e l'energia, per un corpo più forte, elastico e in forma.",
+    "Pole Base":      "Il punto di partenza: prese, rotazioni e prime figure per chi inizia.",
+    "Pole Tecnica":   "Lavoro sulla tecnica: salite, inversioni e pulizia dei movimenti.",
+    "Static Combo":   "Combinazioni di figure sul palo statico, per forza e controllo.",
+    "Spin Combo":     "Sequenze sul palo rotante, con attenzione a fluidità e ritmo.",
+    "Exotic + Choreo":"Stile exotic e coreografia, con lavoro a terra e sul palo.",
+    "Prep Gare":      "Preparazione per chi partecipa alle competizioni di pole dance.",
+    "Mobility":       "Mobilità e flessibilità, per migliorare le figure sul palo.",
+    "Selenetica / Free Training*": "Sessione del sabato, a settimane alterne: allenamento guidato o libero in studio."
+  }
+};
+
+/* ---------- funzioni condivise (non serve modificarle) ---------- */
+/* Lingua: ?lang=it|sl|en nell'indirizzo, altrimenti l'ultima scelta, altrimenti italiano */
+SF.lingue = ['it','sl','en'];
+(function(){
+  let l = null;
+  try { l = new URLSearchParams(location.search).get('lang'); } catch(e) {}
+  if (!SF.lingue.includes(l)) { try { l = localStorage.getItem('sf-lang'); } catch(e) {} }
+  if (!SF.lingue.includes(l)) l = 'it';
+  try { localStorage.setItem('sf-lang', l); } catch(e) {}
+  SF.lang = l;
+})();
+SF.en = SF.lang === 'en';
+SF.sl = SF.lang === 'sl';
+/* SF.t("italiano", "english", "slovenščina") */
+SF.t = (it, en, sl) => SF.en ? (en != null ? en : it) : SF.sl ? (sl != null ? sl : (en != null ? en : it)) : it;
+SF.giorni = SF.t(["","Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato"],
+                 ["","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                 ["","Ponedeljek","Torek","Sreda","Četrtek","Petek","Sobota"]);
+SF.brevi = SF.t(["","Lun","Mar","Mer","Gio","Ven","Sab"], ["","Mon","Tue","Wed","Thu","Fri","Sat"], ["","Pon","Tor","Sre","Čet","Pet","Sob"]);
+SF.e = SF.t(" e ", " and ", " in ");
+/* "Con Gordana e Selena" / "With ..." / "Vodita: ..." */
+SF.con = nomi => nomi.length ? SF.t('Con ', 'With ', nomi.length > 1 ? 'Vodita: ' : 'Vodi: ') + nomi.join(SF.e) : '';
+/* Testi statici: data-en / data-sl (e -alt, -aria, -title) sostituiscono l'italiano */
+SF.applyLang = function(){
+  const d = document, L = SF.lang;
+  d.documentElement.lang = L;
+  if (L !== 'it') {
+    d.querySelectorAll('[data-'+L+']').forEach(el => el.innerHTML = el.dataset[L]);
+    d.querySelectorAll('[data-'+L+'-alt]').forEach(el => el.alt = el.dataset[L+'Alt']);
+    d.querySelectorAll('[data-'+L+'-aria]').forEach(el => el.setAttribute('aria-label', el.dataset[L+'Aria']));
+    if (d.body.dataset[L+'Title']) d.title = d.body.dataset[L+'Title'];
+    d.querySelectorAll('a[href]').forEach(a => {
+      const h = a.getAttribute('href');
+      if (!/^(\.\/|pole-dance\.html)/.test(h)) return;
+      const k = h.indexOf('#'), path = k < 0 ? h : h.slice(0,k), hash = k < 0 ? '' : h.slice(k);
+      a.setAttribute('href', path + (path.includes('?') ? '&' : '?') + 'lang=' + L + hash);
+    });
+  }
+  d.querySelectorAll('.lang a').forEach(a => {
+    a.setAttribute('aria-current', a.dataset.l === SF.lang ? 'true' : 'false');
+    a.addEventListener('click', () => { try { sessionStorage.setItem('sf-scroll', String(window.scrollY)); } catch(e) {} });
+  });
+  let y = null;
+  try { y = sessionStorage.getItem('sf-scroll'); sessionStorage.removeItem('sf-scroll'); } catch(e) {}
+  if (y) window.addEventListener('load', () => setTimeout(() => window.scrollTo({top:+y, behavior:'instant'}), 60));
+};
+/* "Mar e gio · 09:00" — giorni raggruppati per orario */
+SF.quando = function(nome){
+  const byT = {};
+  SF.ordinato().filter(c => c.n === nome).forEach(c => { (byT[c.t] = byT[c.t] || []).push(SF.brevi[c.d]); });
+  return Object.entries(byT).map(([t,ds]) => {
+    if (SF.en) return (ds.length > 1 ? ds.slice(0,-1).join(', ') + ' and ' + ds[ds.length-1] : ds[0]) + ' · ' + t;
+    const g = ds.length > 1 ? ds.slice(0,-1).join(', ') + SF.e + ds[ds.length-1].toLowerCase() : ds[0];
+    return g.charAt(0) + g.slice(1).toLowerCase() + ' · ' + t;
+  });
+};
+SF.chi = nome => [...new Set(SF.orario.filter(c => c.n === nome).map(c => c.who))].join(SF.e);
+SF.oggi = function(){
+  const parts = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Rome',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+  return {
+    wd: {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[parts.find(p=>p.type==='weekday').value],
+    hm: parts.find(p=>p.type==='hour').value.replace('24','00') + ":" + parts.find(p=>p.type==='minute').value
+  };
+};
+SF.tel = v => "tel:" + v.replace(/[^0-9+]/g,"");
+SF.wa = () => "https://wa.me/" + SF.whatsapp + "?text=" + encodeURIComponent(SF.whatsappMessaggio);
+SF.ordinato = () => SF.orario.slice().sort((a,b) => a.d-b.d || a.t.localeCompare(b.t));
+SF.mappe = () => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Sport Fit " + SF.via + " " + SF.citta);
+
+/* Settimana dei corsi: week = contenitore, tabs = contenitore dei giorni (mobile), type = "corsi" | "pole" | null */
+SF.settimana = function(week, tabs, type){
+  const wd = SF.oggi().wd;
+  const O = SF.ordinato().filter(c => !type || c.type === type);
+  let html = '';
+  for (let d = 1; d <= 6; d++) {
+    const items = O.filter(c => c.d === d);
+    html += '<div class="day'+(d===wd?' today':'')+'"><h3>'+SF.giorni[d]+'</h3><ul>' +
+      items.map(c => '<li class="cls cls-'+c.type+'" data-type="'+c.type+'"><span class="t tab">'+c.t+'</span><span class="nm">'+c.n+'</span><span class="who">'+c.who+'</span></li>').join('') +
+      '<li class="empty"'+(items.length?' hidden':'')+'>'+SF.t('Nessun corso','No classes','Ni vadbe')+'</li></ul></div>';
+  }
+  week.innerHTML = html;
+  if (tabs) {
+    const sel = (wd >= 1 && wd <= 6) ? wd : 1;
+    tabs.innerHTML = [1,2,3,4,5,6].map(d => '<button type="button" data-d="'+d+'">'+SF.giorni[d].slice(0,3)+'</button>').join('');
+    const days = week.querySelectorAll('.day');
+    const pick = d => { days.forEach((el,i) => el.classList.toggle('sel', i+1 === d)); tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.d === d)); };
+    tabs.querySelectorAll('button').forEach(b => b.addEventListener('click', () => pick(+b.dataset.d)));
+    pick(sel);
+  }
+};
+
+/* Elenco lezioni con orari: {nome: ["lun 18:30", ...]} */
+SF.lezioni = function(type){
+  const short = SF.brevi.map(x => SF.en ? x : x.toLowerCase());
+  const g = {};
+  SF.ordinato().filter(c => c.type === type).forEach(c => {
+    (g[c.n] = g[c.n] || {who:new Set(), when:[]}).when.push(short[c.d] + ' ' + c.t);
+    g[c.n].who.add(c.who);
+  });
+  return g;
+};
+
+</script>
 <script>
 /* ============================================================
    CONFIG — uredi samo ta del za spremembo vsebine strani.
