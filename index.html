@@ -244,11 +244,25 @@
   .zpic.empty small{font-family:var(--display);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
   .zbody{padding:18px 20px 22px}
   .zbody h3{font-size:1.2rem;margin-bottom:6px}
+  .zdet{margin-top:10px}
+  .zdet summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--display);font-weight:700;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);background:var(--bg-2);border:1px solid var(--line-2);border-left:3px solid var(--red);padding:8px 12px}
+  .zdet summary::-webkit-details-marker{display:none}
+  .zdet summary::after{content:"\25BE";font-size:.9rem;line-height:1;color:var(--red);transition:transform .15s}
+  .zdet[open] summary::after{transform:rotate(180deg)}
+  .zdet summary:hover{background:var(--bg-3);border-color:var(--ink)}
+  .zlist{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:5px 6px;font-size:.78rem;line-height:1.2}
+  .zlist li{border:1px solid var(--line-2);color:#cfccc7;padding:3px 8px;white-space:nowrap}
   .zbody p{color:var(--muted);font-size:.97rem}
 
   .lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:20px}
   .lightbox img{max-width:100%;max-height:100%;object-fit:contain}
-  .lightbox button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:14px;font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;background:#000;color:#fff;border:1px solid var(--line-2);padding:8px 14px;cursor:pointer}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:2rem;line-height:1;background:rgba(0,0,0,.55);color:#fff;border:1px solid var(--line-2);cursor:pointer;padding:0}
+  .lb-nav:hover{background:var(--red);border-color:var(--red)}
+  .lb-prev{left:12px} .lb-next{right:12px}
+  .lb-count{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);left:50%;transform:translateX(-50%);font-family:var(--display);font-weight:700;letter-spacing:.08em;background:rgba(0,0,0,.65);border:1px solid var(--line-2);padding:5px 12px;font-variant-numeric:tabular-nums}
+  @media (max-width:560px){.lb-nav{width:44px;height:44px;font-size:1.6rem}.lb-prev{left:6px}.lb-next{right:6px}}
+  .zcount{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.75);border:1px solid var(--line-2);color:#fff;font-family:var(--display);font-weight:700;font-size:.85rem;letter-spacing:.06em;padding:3px 9px;display:flex;align-items:center;gap:6px}
+  .lightbox > button#lbClose{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:14px;font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;background:#000;color:#fff;border:1px solid var(--line-2);padding:8px 14px;cursor:pointer}
 
   /* activities row */
   .acts3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
@@ -504,7 +518,7 @@
   </section>
 
 </main>
-<div class="lightbox" id="lightbox" hidden><button type="button" id="lbClose" data-en="Close" data-sl="Zapri">Chiudi</button><img id="lbImg" alt=""></div>
+<div class="lightbox" id="lightbox" hidden><button type="button" id="lbClose" data-en="Close" data-sl="Zapri">Chiudi</button><button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Precedente">&#8249;</button><img id="lbImg" alt=""><button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Successiva">&#8250;</button><span class="lb-count" id="lbCount"></span></div>
 
 <footer>
   <div class="wrap">
@@ -753,24 +767,40 @@ const CONFIG = {
     volPilates: "volantino-pilates.jpg",
     volSbt:    "volantino-sbt.jpg"
   },
-  // Zone della sala: foto = file della foto (se manca, appare "Foto in arrivo"); cartelli = zone con cartello; nameEN/textEN = inglese, nameSL/textSL = sloveno
+  // Zone della sala: foto = copertina; galleria = tutte le foto della zona (si aprono cliccando); cartelli = zone con cartello; nameEN/textEN = inglese, nameSL/textSL = sloveno
   zones: [
-    {name:"Zona gambe e glutei",        foto:"foto-gambe.jpg",      cartelli:["zLegz","zGlutei"], big:true,
+    {name:"Zona gambe e glutei",        foto:"foto-gambe-3.jpg",    galleria:["foto-gambe-3.jpg","foto-gambe.jpg","foto-gambe-2.jpg","foto-gambe-4.jpg","foto-gambe-5.jpg"],
+     cartelli:["zLegz","zGlutei"], big:true,
+     attrezzi:["Hip thrust machine","2 × rack combo Smith","Rack Panatta","Pedana stacchi powerlifting","Leg press 45°","Leg press 90° regolabile","Leg curl","Leg extension","Hack squat Gymleco","Leverage squat"],
+     attrezziEN:["Hip thrust machine","2 × Smith combo racks","Panatta rack","Powerlifting deadlift platform","45° leg press","Adjustable 90° leg press","Leg curl","Leg extension","Gymleco hack squat","Leverage squat"],
+     attrezziSL:["Naprava za hip thrust","2 × combo rack Smith","Rack Panatta","Podest za mrtvi dvig","Nožna preša 45°","Nastavljiva nožna preša 90°","Leg curl","Leg extension","Hack squat Gymleco","Leverage počep"],
      text:"Rack per lo squat, pressa e macchine dedicate a gambe e glutei.",
      nameEN:"Legs and glutes area", textEN:"Squat racks, leg press and machines dedicated to legs and glutes.",
      nameSL:"Cona za noge in zadnjico", textSL:"Stojala za počepe, nožna preša in naprave za noge in zadnjico."},
-    {name:"Area cardio",                foto:"foto-cardio.jpg",     cartelli:["zCardio"], big:true,
-     text:"Tapis roulant, ellittiche e cyclette Technogym e Matrix.",
-     nameEN:"Cardio area", textEN:"Treadmills, ellipticals and exercise bikes by Technogym and Matrix.",
-     nameSL:"Kardio cona", textSL:"Tekalne steze, eliptični trenažerji in sobna kolesa Technogym in Matrix."},
-    {name:"Zona panche e manubri",      foto:"foto-panche.jpg",     cartelli:["zPancheManubri"], big:true,
+    {name:"Cardio e addominali",         foto:"foto-cardio-2.jpg",   galleria:["foto-cardio-2.jpg","foto-cardio.jpg"], cartelli:["zCardio"], big:true,
+     text:"Tapis roulant, ellittiche, cyclette e panche per addominali.",
+     nameEN:"Cardio and abs", textEN:"Treadmills, cross trainers, bikes and benches for abs.",
+     nameSL:"Kardio in trebušne mišice", textSL:"Tekalne steze, eliptični trenažerji, sobna kolesa in klopi za trebušne mišice.",
+     attrezzi:["2 × tapis roulant Technogym","2 × tapis roulant Panatta","Scale Panatta","Step","Ellittica","Cyclette orizzontale","2 × cyclette","Vogatore","3 × panche addominali (romana, piana, leg raise)"],
+     attrezziEN:["2 × Technogym treadmills","2 × Panatta treadmills","Panatta stair climber","Step","Cross trainer","Recumbent bike","2 × upright bikes","Rower","3 × ab benches (Roman chair, flat, leg raise)"],
+     attrezziSL:["2 × tekalni stezi Technogym","2 × tekalni stezi Panatta","Stopnice Panatta","Step","Eliptični trenažer","Ležeče sobno kolo","2 × sobno kolo","Veslač","3 × klopi za trebušne (rimski stol, ravna, leg raise)"],
+    },
+    {name:"Zona panche e manubri",      foto:"foto-panche.jpg",     galleria:["foto-panche.jpg","foto-panche-2.jpg","foto-panche-3.jpg","foto-panche-4.jpg"], cartelli:["zPancheManubri"], big:true,
      text:"Manubri, panche piane, inclinate e regolabili, rack e bilancieri per il lavoro con i pesi liberi.",
      nameEN:"Bench and dumbbell area", textEN:"Dumbbells, flat, incline and adjustable benches, racks and barbells for free-weight training.",
-     nameSL:"Cona za klopi in ročke", textSL:"Ročke, ravne, nagibne in nastavljive klopi, stojala in drogovi za vadbo s prostimi utežmi."},
-    {name:"Macchine isotoniche e cavi", foto:"foto-isotoniche.jpg", cartelli:["zIsotoniche"], big:true,
+     nameSL:"Cona za klopi in ročke", textSL:"Ročke, ravne, nagibne in nastavljive klopi, stojala in drogovi za vadbo s prostimi utežmi.",
+     attrezzi:["Panca powerlifting","Panca regolabile (piana, inclinata, military)","Manubri da 1 a 48 kg"],
+     attrezziEN:["Powerlifting bench","Adjustable bench (flat, incline, military)","Dumbbells from 1 to 48 kg"],
+     attrezziSL:["Klop za powerlifting","Nastavljiva klop (ravna, nagibna, military)","Ročke od 1 do 48 kg"],
+    },
+    {name:"Macchine isotoniche e cavi", foto:"foto-isotoniche.jpg", galleria:["foto-isotoniche.jpg","foto-isotoniche-2.jpg","foto-isotoniche-3.jpg","foto-isotoniche-4.jpg","foto-isotoniche-5.jpg","foto-isotoniche-6.jpg"], cartelli:["zIsotoniche"], big:true,
      text:"Macchine Panatta, Hammer Strength e Gymleco, stazioni ai cavi e accessori.",
      nameEN:"Machines and cables", textEN:"Panatta, Hammer Strength and Gymleco machines, cable stations and accessories.",
-     nameSL:"Naprave in kabli", textSL:"Naprave Panatta, Hammer Strength in Gymleco, kabelske postaje in dodatki."}
+     nameSL:"Naprave in kabli", textSL:"Naprave Panatta, Hammer Strength in Gymleco, kabelske postaje in dodatki.",
+     attrezzi:["Row","High row","2 × lat machine","Pulley","Crossover","Pec deck","Chest press Panatta","Incline press Hammer Strength","Convergent pulldown","Panca scott","Macchina alzate laterali","Dip e trazioni assistite","Torre cavi 6 postazioni","Press petto e spalle regolabile","Chest press Gymleco","Shoulder press Matrix","3 × dip station"],
+     attrezziEN:["Row","High row","2 × lat machines","Pulley","Cable crossover","Pec deck","Panatta chest press","Hammer Strength incline press","Convergent pulldown","Preacher curl bench","Lateral raise machine","Assisted dips and pull-ups","6-station cable tower","Adjustable chest and shoulder press","Gymleco chest press","Matrix shoulder press","3 × dip stations"],
+     attrezziSL:["Veslanje","Visoko veslanje","2 × lat naprava","Pulley","Crossover","Pec deck","Chest press Panatta","Incline press Hammer Strength","Konvergenčni pulldown","Scott klop za biceps","Naprava za stranske dvige","Asistirani dipi in zgibi","Kabelski stolp s 6 postajami","Nastavljiv potisk za prsi in ramena","Chest press Gymleco","Shoulder press Matrix","3 × postaje za dipe"],
+    }
   ],
   // Loghi a scorrimento nel piè di pagina (partner/sponsor): {name, src, h}; lista vuota = sezione nascosta
   partners: [
@@ -873,15 +903,45 @@ const CONFIG = {
   CONFIG.zones.forEach(z => { z.name = t(z.name, z.nameEN, z.nameSL); z.text = t(z.text, z.textEN, z.textSL); });
   $('#zonesGrid').innerHTML = CONFIG.zones.map((z,i) =>
     '<article class="zcard'+(z.big?' big':'')+'">' +
-      (z.foto ? '<button type="button" class="zpic" data-src="'+z.foto+'" data-i="'+i+'" aria-label="'+t('Ingrandisci: ','Enlarge: ','Povečaj: ')+z.name+'"><img class="photo" src="'+z.foto+'" alt="'+z.name+'" loading="lazy">' + signs(z.cartelli) + '</button>' : emptyPic(z)) +
-      '<div class="zbody"><h3>'+z.name+'</h3><p>'+z.text+'</p></div></article>').join('');
+      (z.foto ? '<button type="button" class="zpic" data-src="'+z.foto+'" data-i="'+i+'" aria-label="'+t('Ingrandisci: ','Enlarge: ','Povečaj: ')+z.name+'"><img class="photo" src="'+z.foto+'" alt="'+z.name+'" loading="lazy">' + signs(z.cartelli) +
+        ((z.galleria && z.galleria.length > 1) ? '<span class="zcount">'+z.galleria.length+' '+t('foto','photos','fotk')+'</span>' : '') + '</button>' : emptyPic(z)) +
+      '<div class="zbody"><h3>'+z.name+'</h3><p>'+z.text+'</p>' +
+      (() => { const att = t(z.attrezzi, z.attrezziEN, z.attrezziSL) || [];
+        return att.length ? '<details class="zdet"><summary>'+t('Attrezzi di questa zona','Equipment in this area','Naprave v tej coni')+'</summary><ul class="zlist">' + att.map(a => '<li>'+a+'</li>').join('') + '</ul></details>' : ''; })() +
+      '</div></article>').join('');
   $$('#zonesGrid button.zpic').forEach(btn => {
     btn.querySelector('img.photo').addEventListener('error', () => { btn.outerHTML = emptyPic(CONFIG.zones[+btn.dataset.i]); });
   });
-  const lb = $('#lightbox'), lbImg = $('#lbImg');
-  const closeLb = () => { lb.hidden = true; lbImg.src = ''; };
-  $('#zonesGrid').addEventListener('click', e => { const b = e.target.closest('button.zpic'); if (!b) return; lbImg.src = b.dataset.src; lbImg.alt = b.querySelector('img.photo').alt; lb.hidden = false; });
-  lb.addEventListener('click', e => { if (e.target !== lbImg) closeLb(); });
+  const lb = $('#lightbox'), lbImg = $('#lbImg'), lbCount = $('#lbCount');
+  let gal = [], gi = 0, galAlt = '';
+  const show = () => {
+    lbImg.src = gal[gi]; lbImg.alt = galAlt;
+    lbCount.textContent = gal.length > 1 ? (gi + 1) + ' / ' + gal.length : '';
+    $('#lbPrev').hidden = $('#lbNext').hidden = gal.length < 2;
+  };
+  const openGal = (list, alt, start) => { gal = list; galAlt = alt || ''; gi = start || 0; lb.hidden = false; show(); };
+  const step = d => { if (gal.length < 2) return; gi = (gi + d + gal.length) % gal.length; show(); };
+  const closeLb = () => { lb.hidden = true; lbImg.src = ''; gal = []; };
+  $('#lbPrev').addEventListener('click', e => { e.stopPropagation(); step(-1); });
+  $('#lbNext').addEventListener('click', e => { e.stopPropagation(); step(1); });
+  $('#zonesGrid').addEventListener('click', e => {
+    const b = e.target.closest('button.zpic'); if (!b) return;
+    const z = CONFIG.zones[+b.dataset.i];
+    openGal((z.galleria && z.galleria.length ? z.galleria : [z.foto]), z.name, 0);
+  });
+  lb.addEventListener('click', e => { if (e.target === lbImg || e.target.closest('.lb-nav')) return; closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (lb.hidden) return;
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'ArrowLeft') step(-1);
+  });
+  let tx = null;
+  lb.addEventListener('touchstart', e => { tx = e.changedTouches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', e => {
+    if (tx === null) return;
+    const dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 45) step(dx < 0 ? 1 : -1);
+  }, {passive:true});
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
 
   // schedule (shared renderer in sportfit.js)
@@ -907,7 +967,7 @@ const CONFIG = {
   $('#poleDays').textContent = poleDaysSet.length + t(' giorni a settimana · ',' days a week · ',' dni na teden · ') + poleNames.length + t(' tipi di lezione',' class types',' vrst vadbe');
   $('#poleWho').textContent = SF.con([...new Set(SF.orario.filter(c => c.type === 'pole').map(c => c.who))]);
   $$('.prenotaPole').forEach(a => a.href = SF.prenotaPole);
-  $$('.act-pic[data-flyer]').forEach(b => b.addEventListener('click', () => { lbImg.src = CONFIG.images[b.dataset.flyer]; lbImg.alt = b.querySelector('img').alt; lb.hidden = false; }));
+  $$('.act-pic[data-flyer]').forEach(b => b.addEventListener('click', () => openGal([CONFIG.images[b.dataset.flyer]], b.querySelector('img').alt, 0)));
 
   // partners (footer)
   if (CONFIG.partners.length) {
