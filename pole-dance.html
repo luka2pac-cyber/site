@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- sportfit-build 2026-09-18-1909 3ddcb292 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -373,6 +374,21 @@
     .week .day{display:none}
     .week .day.sel{display:block}
     .day.today h3::after{content:""}
+  }
+
+  /* ---------- mobilni pogled: centriranje ---------- */
+  @media (max-width:700px){
+    .zbody{text-align:center}
+    .zdet summary{justify-content:center}
+    .zlist{justify-content:center}
+    .why-row h2{text-align:center}
+    .why-grid{gap:22px 18px}
+    .why-card{border-left:0;padding-left:0;text-align:center}
+    .why-card h3{display:inline-block;border-bottom:2px solid var(--red);padding-bottom:5px;margin-bottom:6px}
+    .act-body p{text-align:center}
+    .act-body .times li{justify-content:center;text-align:center}
+    .act-body .notes,.act-btns{justify-content:center}
+    .grp{justify-content:center;text-align:center}
   }
 
   /* footer */
