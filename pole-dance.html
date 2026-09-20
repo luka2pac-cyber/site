@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-09-18-1909 3ddcb292 -->
+<!-- sportfit-build 2026-09-20-1305 ff9005d5 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -95,6 +95,7 @@
   .grate b{font-weight:700;font-size:1.05rem}
   .gstars{position:relative;display:inline-block;font-size:1.05rem;line-height:1;letter-spacing:1px;color:rgba(255,255,255,.28)}
   .gstars::before,.gfill::before{content:"\2605\2605\2605\2605\2605"}
+  .grate .gico{width:18px;height:18px;display:block;flex:none;margin-left:2px}
   .gfill{position:absolute;top:0;left:0;bottom:0;overflow:hidden;white-space:nowrap;color:#FBBC04}
   .hero-sub .leaf{display:inline-block;width:1.35em;height:1.35em;vertical-align:-.3em;margin-left:.2em;filter:drop-shadow(0 1px 4px rgba(0,0,0,.6))}
   .hero .cta{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:400px;margin-top:22px}
@@ -111,6 +112,7 @@
   .cta[data-v="2"] .hb{--xb:var(--red);--xd:var(--red);--xi:#fff;--hxb:#fff;--hxf:#000;--hxd:#fff;--hxi:var(--red)}
   .cta[data-v="3"] .hb{--xb:#fff;--xf:#111;--xd:#fff;--xi:var(--red)}
   .cta[data-v="5"] .hb{--xb:var(--red);--xd:var(--red);--xf:#000;--xi:#000;--hxb:#000;--hxf:#fff;--hxd:var(--red);--hxi:var(--red)}
+  .cta[data-v="6"] .hb{--xb:rgba(0,0,0,.45);--xd:#fff;--xf:#fff;--xi:var(--red);--hxb:#fff;--hxf:#000;--hxd:#fff;--hxi:var(--red);border-width:1.5px}
   .cta[data-v="4"] .hb-key{--xb:var(--red);--xd:var(--red);--xi:#fff;--hxb:var(--red-deep);--hxd:var(--red-deep)}
   .hero .cta .ic-w{width:2.1em}
   @media (max-width:560px){.hero .cta{max-width:350px;gap:6px}.hero .cta .btn{font-size:1.12rem;padding:4px 6px;gap:6px;min-height:40px}}
@@ -353,18 +355,6 @@
   .pole-meta{color:var(--muted);margin-top:12px}
   .pole-acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
 
-  /* booty builder */
-  #booty{padding-block:44px}
-  .bb-strip{display:flex;align-items:center;gap:18px;text-decoration:none;background:var(--bg-2);border:1px solid var(--line);border-left:3px solid #fc846c;padding:14px 20px;transition:background .15s,border-color .15s}
-  .bb-strip:hover{background:var(--bg-3);border-color:#fc846c}
-  .bb-strip > img{width:46px;height:auto;flex:none;display:block}
-  .bb-txt{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
-  .bb-txt b{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:.05em;text-transform:uppercase;color:#fce4f0;line-height:1.1}
-  .bb-txt small{color:var(--muted);font-size:.92rem}
-  .btn-bb{background:#fc846c;color:#2b0e08;flex:none}
-  .bb-strip:hover .btn-bb{background:#fda591}
-  @media (max-width:560px){.bb-strip{flex-wrap:wrap;justify-content:center;text-align:center;gap:12px}.bb-txt{flex:1 1 100%;align-items:center}}
-
   /* mobile day tabs */
   .daytabs{display:none;gap:6px;margin-bottom:10px;overflow-x:auto}
   .daytabs button{flex:1 1 0;min-width:0;font-family:var(--display);font-weight:700;font-size:1rem;text-transform:uppercase;padding:9px 2px;background:var(--bg-3);color:var(--ink);border:1px solid var(--line);cursor:pointer}
@@ -556,34 +546,30 @@ window.SF = {
   // Pole Dance Studio — schede dei corsi (pagina pole-dance.html)
   // foto = immagine rotonda; orario = nomi delle lezioni nell'orario qui sopra; testoEN / testoSL = testo in inglese / sloveno
   poleCorsi: [
-    {nome:"Pole Intro",   foto:"pole-intro.png",        orario:["Pole Base"],
-     testo:"Il corso ideale per chi vuole cominciare a muovere i primi passi in questa disciplina sportiva. Tra una piroetta e un volteggio, imparerete a padroneggiare le basi della pole dance focalizzandovi su tecnica e pulizia dei movimenti, al ritmo del divertimento.",
-     testoEN:"The ideal class for anyone who wants to take their first steps in this sport. Between spins and swings, you will master the basics of pole dance, focusing on technique and clean movement, and having fun along the way.",
-     testoSL:"Idealna vadba za vse, ki želijo narediti prve korake v tem športu. Med obrati in zamahi boste osvojili osnove pole dancea s poudarkom na tehniki in čistem gibanju, ob tem pa se boste tudi zabavali."},
+    {nome:"Pole Base 0-2", foto:"pole-intro.png",       orario:["Pole Base"],
+     testo:"La lezione ideale per chi non ha mai praticato pole dance o ha un’esperienza di meno di due anni nella disciplina. Tra una piroetta e un volteggio, imparerete a padroneggiare le basi della pole dance focalizzandovi su tecnica e pulizia dei movimenti, al ritmo del divertimento.",
+     testoEN:"The ideal class for anyone who has never tried pole dance, or has less than two years of experience in the discipline. Between spins and swings, you will master the basics of pole dance, focusing on technique and clean movement, and having fun along the way.",
+     testoSL:"Idealna vadba za vse, ki pole dancea še niso poskusili ali imajo manj kot dve leti izkušenj. Med obrati in zamahi boste osvojili osnove pole dancea s poudarkom na tehniki in čistem gibanju, ob tem pa se boste tudi zabavali."},
     {nome:"Spin Combo",   foto:"pole-spin-combo.png",   orario:["Spin Combo"],
-     testo:"Il corso di pole dance incentrato su combinazioni di elementi al palo girevole. Ogni lezione si concentra su diversi movimenti di base su cui viene costruita una combinazione armoniosa. Livello OPEN e livello INTERMEDIO.",
-     testoEN:"A pole dance class focused on combinations on the spinning pole. Each lesson works on different basic moves, which are then built into a smooth combination. OPEN and INTERMEDIATE levels.",
-     testoSL:"Vadba pole dancea, osredotočena na kombinacije elementov na vrtljivem drogu. Vsaka ura je posvečena različnim osnovnim gibom, iz katerih sestavimo tekočo kombinacijo. Nivo OPEN in SREDNJI nivo."},
+     testo:"Il corso di pole dance incentrato su combinazioni di elementi al palo girevole. Ogni lezione si concentra su diversi movimenti di base su cui viene costruita una combinazione armoniosa. Livello base/intermedio e livello intermedio/avanzato.",
+     testoEN:"A pole dance class focused on combinations on the spinning pole. Each lesson works on different basic moves, which are then built into a smooth combination. Beginner/intermediate and intermediate/advanced levels.",
+     testoSL:"Vadba pole dancea, osredotočena na kombinacije elementov na vrtljivem drogu. Vsaka ura je posvečena različnim osnovnim gibom, iz katerih sestavimo tekočo kombinacijo. Začetni/srednji in srednji/napredni nivo."},
     {nome:"Static Combo", foto:"pole-static-combo.png", orario:["Static Combo"],
-     testo:"Il corso di pole dance incentrato su combinazioni di elementi al palo statico. A ogni lezione imparerete nuove figure e nuove transizioni che vi permetteranno di sviluppare forza e resistenza. Livello OPEN e livello INTERMEDIO.",
-     testoEN:"A pole dance class focused on combinations on the static pole. In every lesson you will learn new figures and transitions that build strength and endurance. OPEN and INTERMEDIATE levels.",
-     testoSL:"Vadba pole dancea, osredotočena na kombinacije elementov na statičnem drogu. Na vsaki uri se boste naučili novih figur in prehodov, ki razvijajo moč in vzdržljivost. Nivo OPEN in SREDNJI nivo."},
+     testo:"Il corso di pole dance incentrato su combinazioni di elementi al palo statico. A ogni lezione imparerete nuove figure e nuove transizioni che vi permetteranno di sviluppare forza e resistenza. Livello base/intermedio e livello intermedio/avanzato.",
+     testoEN:"A pole dance class focused on combinations on the static pole. In every lesson you will learn new figures and transitions that build strength and endurance. Beginner/intermediate and intermediate/advanced levels.",
+     testoSL:"Vadba pole dancea, osredotočena na kombinacije elementov na statičnem drogu. Na vsaki uri se boste naučili novih figur in prehodov, ki razvijajo moč in vzdržljivost. Začetni/srednji in srednji/napredni nivo."},
     {nome:"Pole Tecnica", foto:"pole-tecnica.png",      orario:["Pole Tecnica"],
      testo:"Il corso di potenziamento delle figure classiche della Pole Dance, in cui analizziamo la tecnica per eseguire correttamente i trick base, con esercizi propedeutici adatti a tutti i livelli, varianti delle figure e suggerimenti per migliorare.",
      testoEN:"A class to strengthen the classic pole dance figures. We analyse the technique for performing the basic tricks correctly, with preparatory exercises for all levels, variations of the figures and tips to improve.",
      testoSL:"Vadba za utrjevanje klasičnih figur pole dancea. Analiziramo tehniko za pravilno izvedbo osnovnih trikov, s pripravljalnimi vajami za vse nivoje, različicami figur in nasveti za napredek."},
-    {nome:"Spin Tecnica", foto:"pole-spin-tecnica.png", orario:[],
-     testo:"Il corso si concentra sulle tecniche di base necessarie per perfezionare le transizioni al palo spinning: impareremo a lavorare con angoli, leve e distribuzione del corpo per rendere le combinazioni al palo fluide ed eleganti. Adatto a tutti i livelli.",
-     testoEN:"This class focuses on the basic techniques needed to perfect transitions on the spinning pole: you will learn to work with angles, leverage and body position to make your combinations fluid and elegant. Suitable for all levels.",
-     testoSL:"Vadba se osredotoča na osnovne tehnike za izpopolnjevanje prehodov na vrtljivem drogu: naučili se boste delati s koti, vzvodi in razporeditvijo telesa, da bodo kombinacije tekoče in elegantne. Primerno za vse nivoje."},
     {nome:"Selenetica",   foto:"pole-selenetica.png",   orario:["Selenetica / Free Training*"],
      testo:"Il nostro corso di conditioning e mobilità pensato DALLE pole dancers PER LE pole dancers, ma anche per chi vuole imparare a muoversi meglio e incrementare forza e resistenza. Il corso si concentra su esercizi di rafforzamento degli schemi motori tipici della pole dance e di bilanciamento delle leve.",
-     testoEN:"Our conditioning and mobility class, designed BY pole dancers FOR pole dancers, but also for anyone who wants to move better and build strength and endurance. It focuses on exercises that strengthen the movement patterns typical of pole dance and on balancing the body's levers.",
+     testoEN:"Our conditioning and mobility class, designed BY pole dancers FOR pole dancers, but also for anyone who wants to move better and build strength and endurance. It focuses on exercises that strengthen the movement patterns typical of pole dance and on balancing the body’s levers.",
      testoSL:"Naša vadba za kondicijo in mobilnost, ki so jo plesalke pole dancea zasnovale ZA plesalke pole dancea, pa tudi za vse, ki se želijo bolje gibati ter povečati moč in vzdržljivost. Poudarek je na vajah za krepitev gibalnih vzorcev, značilnih za pole dance, in na uravnoteženju vzvodov telesa."},
-    {nome:"Exotic",       foto:"pole-exotic.png",       orario:["Exotic + Choreo"],
-     testo:"Exotic Pole è la variante della Pole Dance che utilizza le basi della Pole tradizionale unendole a elementi acrobatici e coreografici. Si pratica generalmente con ginocchiere e scarpe apposite (Pleasers) che permettono di eseguire coreografie sinuose ed eleganti. Il corso è adatto a chi ha già una base di Pole Dance e vuole esplorare un nuovo modo di esprimersi.",
-     testoEN:"Exotic Pole is the style of pole dance that combines the basics of traditional pole with acrobatic and choreographic elements. It is usually practised with knee pads and special shoes (Pleasers), which allow for sinuous, elegant choreography. The class is for those who already have a pole dance foundation and want to explore a new way of expressing themselves.",
-     testoSL:"Exotic Pole je slog pole dancea, ki osnove klasičnega pole dancea združuje z akrobatskimi in koreografskimi elementi. Običajno se izvaja s ščitniki za kolena in posebnimi čevlji (Pleasers), ki omogočajo mehke, elegantne koreografije. Vadba je primerna za tiste, ki že imajo osnove pole dancea in želijo raziskati nov način izražanja."},
+    {nome:"Exotic + Choreo", foto:"pole-exotic.png",    orario:["Exotic + Choreo"],
+     testo:"Exotic + Choreo è il nostro corso esclusivo che utilizza le basi della Pole tradizionale unendole a elementi coreografici tipici della variante exotic della disciplina, prediligendo transizioni fluide. Si pratica generalmente con ginocchiere e scarpe apposite (Pleasers), oppure con scarpe col tacco, che permettono di eseguire coreografie sinuose ed eleganti. Corso adatto a chiunque voglia mettersi in gioco ed esplorare il lato più elegante della disciplina.",
+     testoEN:"Exotic + Choreo is our exclusive class, taking the foundations of traditional pole and combining them with the choreographic elements typical of the exotic style, favouring fluid transitions. It is usually practised with knee pads and special shoes (Pleasers), or with heels, which allow for sinuous, elegant choreography. The class suits anyone who wants to give it a go and explore the most elegant side of the discipline.",
+     testoSL:"Exotic + Choreo je naša ekskluzivna vadba, ki osnove klasičnega pole dancea združuje s koreografskimi elementi sloga exotic, s poudarkom na tekočih prehodih. Običajno se izvaja s ščitniki za kolena in posebnimi čevlji (Pleasers) ali s čevelji s peto, ki omogočajo mehke in elegantne koreografije. Vadba je primerna za vse, ki se želijo preizkusiti in raziskati bolj elegantno plat te discipline."},
     {nome:"Mobility",     foto:"pole-mobility.png",     orario:["Mobility"],
      testo:"Il corso è focalizzato su esercizi e tecniche per la mobilità e stabilità articolare, lavorando all’aumento del range di movimento in maniera efficace e indolore. Il corso è adatto a tutti i livelli.",
      testoEN:"This class focuses on exercises and techniques for joint mobility and stability, increasing your range of motion effectively and without pain. Suitable for all levels.",
