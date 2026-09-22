@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-09-22-1108 790e7bab -->
+<!-- sportfit-build 2026-09-22-1851 44a4764c -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Ultra&family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   :root{
     --bg:#0b0b0b;
     --bg-2:#141414;
@@ -419,6 +420,15 @@
   .pk{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-weight:400}
   .pk-p{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex:none;background:#1f5fbf;color:#fff;border-radius:3px;font-family:Arial,sans-serif;font-weight:700;font-size:12px;line-height:1}
   .sec-eb{text-align:center;margin-bottom:4px}
+  .sala{margin-top:28px}
+  .sala-grp{justify-content:center;margin-bottom:8px}
+  .sala-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .sala-row button{all:unset;box-sizing:border-box;cursor:zoom-in;display:block;height:140px;overflow:hidden;background:#000;border:1px solid var(--line);transition:border-color .15s}
+  .sala-row button:hover{border-color:var(--red)}
+  .sala-row img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transition:transform .5s}
+  .sala-row button:hover img{transform:scale(1.04)}
+  .sala-row button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+  @media (max-width:640px){.sala{margin-top:20px}.sala-row{gap:6px}.sala-row button{height:84px}}
 </style>
 <style>html,body{margin:0}</style>
 </head>
@@ -564,6 +574,10 @@
             </div>
           </div>
         </article>
+      </div>
+      <div class="sala">
+        <div class="grp sala-grp"><span data-en="The class studio" data-sl="Dvorana za vadbe">La sala corsi</span></div>
+        <div class="sala-row"><button type="button" data-gal="foto-sala-corsi-2.jpg|foto-sala-corsi.jpg|foto-sala-corsi-3.jpg" data-gal-alt="Sala corsi Sport&amp;Fit" data-start="0" aria-label="La sala corsi, foto 1"><img src="foto-sala-corsi-2.jpg" alt="" loading="lazy"></button><button type="button" data-gal="foto-sala-corsi-2.jpg|foto-sala-corsi.jpg|foto-sala-corsi-3.jpg" data-gal-alt="Sala corsi Sport&amp;Fit" data-start="1" aria-label="La sala corsi, foto 2"><img src="foto-sala-corsi.jpg" alt="" loading="lazy"></button><button type="button" data-gal="foto-sala-corsi-2.jpg|foto-sala-corsi.jpg|foto-sala-corsi-3.jpg" data-gal-alt="Sala corsi Sport&amp;Fit" data-start="2" aria-label="La sala corsi, foto 3"><img src="foto-sala-corsi-3.jpg" alt="" loading="lazy"></button></div>
       </div>
     </div>
   </section>
@@ -1052,6 +1066,7 @@ const CONFIG = {
   $('#poleWho').textContent = SF.con([...new Set(SF.orario.filter(c => c.type === 'pole').map(c => c.who))]);
   $$('.prenotaPole').forEach(a => a.href = SF.prenotaPole);
   $$('.act-pic[data-flyer]').forEach(b => b.addEventListener('click', () => openGal([CONFIG.images[b.dataset.flyer]], b.querySelector('img').alt, 0)));
+  $$('[data-gal]').forEach(b => b.addEventListener('click', () => openGal(b.dataset.gal.split('|'), b.dataset.galAlt || '', +(b.dataset.start || 0))));
 
   // partners (footer)
   if (CONFIG.partners.length) {
