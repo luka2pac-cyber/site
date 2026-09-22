@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-09-22-1041 e062224b -->
+<!-- sportfit-build 2026-09-22-1053 1bd9f4ee -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -416,6 +416,9 @@
   #palestra::after,#attivita::after,#corsi::after,#booty::after{content:"";position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:70px;height:5px;background:var(--red)}
   .why-head{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
   .why-ic{width:54px;height:54px;color:var(--red);stroke-width:1.7}
+  .pk{display:inline-flex;align-items:center;gap:7px;color:var(--ink);font-weight:600}
+  .pk-p{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex:none;background:#1f5fbf;color:#fff;border-radius:4px;font-family:Arial,sans-serif;font-weight:700;font-size:15px;line-height:1}
+  .sec-eb{text-align:center;margin-bottom:4px}
 </style>
 <style>html,body{margin:0}</style>
 </head>
@@ -467,7 +470,7 @@
       <div class="ki">
         <h2><svg class="ic"><use href="#i-pin"/></svg><span data-en="Where we are" data-sl="Kje smo">Dove siamo</span></h2>
         <div class="big" data-cfg="street"></div>
-        <div class="sub"><span data-cfg="city"></span><br><span data-en="Free parking" data-sl="Brezplačno parkiranje">Parcheggio gratuito</span></div>
+        <div class="sub"><span data-cfg="city"></span><br><span class="pk"><span class="pk-p" aria-hidden="true">P</span><span data-en="Free parking" data-sl="Brezplačno parkiranje">Parcheggio gratuito</span></span></div>
         <div class="cbtns one"><a class="cbtn cb-soc mapLink" href="#" target="_blank" rel="noopener"><img src="data:image/png;base64,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" alt="" width="22" height="22"><span data-en="Directions" data-sl="Kako do nas">Come arrivare</span></a></div>
       </div>
       <div class="ki">
@@ -506,6 +509,7 @@
 
   <section class="alt" id="palestra">
     <div class="wrap">
+      <span class="eyebrow sec-eb" data-en="The gym" data-sl="Fitnes">La palestra</span>
       <div class="zones-head2" data-t="2">
         <span class="tico" aria-hidden="true"><svg class="ic t-db"><use href="#i-dumbbell"/></svg><span class="t-sil t-man"></span></span>
         <h2 class="title" data-en="Training areas" data-sl="Vadbeni prostori">Aree di allenamento</h2>
@@ -517,6 +521,7 @@
 
   <section id="attivita">
     <div class="wrap">
+      <span class="eyebrow sec-eb" data-en="Our classes" data-sl="Naše vadbe">I nostri corsi</span>
       <div class="zones-head2" data-t="2">
         <span class="tico" aria-hidden="true"><span class="t-sil t-jump"></span></span>
         <h2 class="title" data-en="Pilates, SBT and pole dance" data-sl="Pilates, SBT in pole dance">Pilates, SBT e pole dance</h2>
@@ -566,6 +571,7 @@
   <section class="alt" id="corsi">
     <div class="wrap">
       <div class="sched-top">
+        <span class="eyebrow sec-eb" data-en="Timetable" data-sl="Urnik vadb">Orario corsi</span>
         <div class="zones-head2" data-t="2" style="margin-bottom:0">
           <span class="tico" aria-hidden="true"><svg class="ic t-clock"><use href="#i-clock"/></svg></span>
           <h2 class="title" data-en="Weekly timetable" data-sl="Tedenski urnik">Orario settimanale</h2>
