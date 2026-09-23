@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-09-22-1851 44a4764c -->
+<!-- sportfit-build 2026-09-23-1840 818a8230 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -865,14 +865,6 @@ const CONFIG = {
   },
   // Zone della sala: foto = copertina; galleria = tutte le foto della zona (si aprono cliccando); cartelli = zone con cartello; nameEN/textEN = inglese, nameSL/textSL = sloveno
   zones: [
-    {name:"Zona gambe e glutei",        foto:"foto-gambe-3.jpg",    galleria:["foto-gambe-3.jpg","foto-gambe.jpg","foto-gambe-2.jpg","foto-gambe-4.jpg","foto-gambe-6.jpg"],
-     cartelli:["zLegz","zGlutei"], big:true,
-     attrezzi:["Hip thrust machine","2 × rack combo Smith","Rack Panatta","Pedana stacchi powerlifting","Leg press 45°","Leg press 90° regolabile","Leg curl","Leg extension","Hack squat Gymleco","Leverage squat"],
-     attrezziEN:["Hip thrust machine","2 × Smith combo racks","Panatta rack","Powerlifting deadlift platform","45° leg press","Adjustable 90° leg press","Leg curl","Leg extension","Gymleco hack squat","Leverage squat"],
-     attrezziSL:["Naprava za hip thrust","2 × combo rack Smith","Rack Panatta","Podest za mrtvi dvig","Nožna preša 45°","Nastavljiva nožna preša 90°","Leg curl","Leg extension","Hack squat Gymleco","Leverage počep"],
-     text:"Rack, pressa e macchine per gambe e glutei.",
-     nameEN:"Legs and glutes area", textEN:"Racks, leg press and machines for legs and glutes.",
-     nameSL:"Cona za noge in zadnjico", textSL:"Stojala, nožna preša in naprave za noge in zadnjico."},
     {name:"Cardio e addominali",         foto:"foto-cardio-2.jpg",   galleria:["foto-cardio-2.jpg","foto-cardio.jpg"], cartelli:["zCardio"], big:true,
      text:"Tapis roulant, ellittiche, cyclette e addominali.",
      nameEN:"Cardio and abs", textEN:"Treadmills, cross trainers, bikes and abs benches.",
@@ -881,14 +873,6 @@ const CONFIG = {
      attrezziEN:["2 × Technogym treadmills","2 × Panatta treadmills","Panatta stair climber","Step","Cross trainer","Recumbent bike","2 × upright bikes","Rower","3 × ab benches (Roman chair, flat, leg raise)"],
      attrezziSL:["2 × tekalni stezi Technogym","2 × tekalni stezi Panatta","Stopnice Panatta","Step","Eliptični trenažer","Ležeče sobno kolo","2 × sobno kolo","Veslač","3 × klopi za trebušne (rimski stol, ravna, leg raise)"],
     },
-    {name:"Zona panche e manubri",      foto:"foto-panche.jpg",     galleria:["foto-panche.jpg","foto-panche-2.jpg","foto-panche-4.jpg"], cartelli:["zPancheManubri"], big:true,
-     text:"Manubri, panche, rack e bilancieri per i pesi liberi.",
-     nameEN:"Bench and dumbbell area", textEN:"Dumbbells, benches, racks and barbells for free weights.",
-     nameSL:"Cona za klopi in ročke", textSL:"Ročke, klopi, stojala in drogovi za proste uteži.",
-     attrezzi:["Panca powerlifting","Panca regolabile (piana, inclinata, military)","Manubri da 1 a 48 kg"],
-     attrezziEN:["Powerlifting bench","Adjustable bench (flat, incline, military)","Dumbbells from 1 to 48 kg"],
-     attrezziSL:["Klop za powerlifting","Nastavljiva klop (ravna, nagibna, military)","Ročke od 1 do 48 kg"],
-    },
     {name:"Macchine isotoniche e cavi", foto:"foto-isotoniche.jpg", galleria:["foto-isotoniche.jpg","foto-isotoniche-2.jpg","foto-isotoniche-3.jpg","foto-isotoniche-4.jpg","foto-isotoniche-5.jpg","foto-isotoniche-6.jpg","foto-isotoniche-7.jpg"], cartelli:["zIsotoniche"], big:true,
      text:"Panatta, Hammer Strength, Gymleco e stazioni ai cavi.",
      nameEN:"Machines and cables", textEN:"Panatta, Hammer Strength, Gymleco and cable stations.",
@@ -896,6 +880,22 @@ const CONFIG = {
      attrezzi:["Row","High row","2 × lat machine","Pulley","Crossover","Pec deck","Chest press Panatta","Incline press Hammer Strength","Convergent pulldown","Panca scott","Macchina alzate laterali","Dip e trazioni assistite","Torre cavi 6 postazioni","Press petto e spalle regolabile","Chest press Gymleco","Shoulder press Matrix","3 × dip station"],
      attrezziEN:["Row","High row","2 × lat machines","Pulley","Cable crossover","Pec deck","Panatta chest press","Hammer Strength incline press","Convergent pulldown","Preacher curl bench","Lateral raise machine","Assisted dips and pull-ups","6-station cable tower","Adjustable chest and shoulder press","Gymleco chest press","Matrix shoulder press","3 × dip stations"],
      attrezziSL:["Veslanje","Visoko veslanje","2 × lat naprava","Pulley","Crossover","Pec deck","Chest press Panatta","Incline press Hammer Strength","Konvergenčni pulldown","Scott klop za biceps","Naprava za stranske dvige","Asistirani dipi in zgibi","Kabelski stolp s 6 postajami","Nastavljiv potisk za prsi in ramena","Chest press Gymleco","Shoulder press Matrix","3 × postaje za dipe"],
+    },
+    {name:"Zona gambe e glutei",        foto:"foto-gambe-3.jpg",    galleria:["foto-gambe-3.jpg","foto-gambe.jpg","foto-gambe-2.jpg","foto-gambe-4.jpg","foto-gambe-6.jpg"],
+     cartelli:["zLegz","zGlutei"], big:true,
+     attrezzi:["Hip thrust machine","2 × rack combo Smith","Rack Panatta","Pedana stacchi powerlifting","Leg press 45°","Leg press 90° regolabile","Leg curl","Leg extension","Hack squat Gymleco","Leverage squat"],
+     attrezziEN:["Hip thrust machine","2 × Smith combo racks","Panatta rack","Powerlifting deadlift platform","45° leg press","Adjustable 90° leg press","Leg curl","Leg extension","Gymleco hack squat","Leverage squat"],
+     attrezziSL:["Naprava za hip thrust","2 × combo rack Smith","Rack Panatta","Podest za mrtvi dvig","Nožna preša 45°","Nastavljiva nožna preša 90°","Leg curl","Leg extension","Hack squat Gymleco","Leverage počep"],
+     text:"Rack, pressa e macchine per gambe e glutei.",
+     nameEN:"Legs and glutes area", textEN:"Racks, leg press and machines for legs and glutes.",
+     nameSL:"Cona za noge in zadnjico", textSL:"Stojala, nožna preša in naprave za noge in zadnjico."},
+    {name:"Zona panche e manubri",      foto:"foto-panche.jpg",     galleria:["foto-panche.jpg","foto-panche-2.jpg","foto-panche-4.jpg"], cartelli:["zPancheManubri"], big:true,
+     text:"Manubri, panche, rack e bilancieri per i pesi liberi.",
+     nameEN:"Bench and dumbbell area", textEN:"Dumbbells, benches, racks and barbells for free weights.",
+     nameSL:"Cona za klopi in ročke", textSL:"Ročke, klopi, stojala in drogovi za proste uteži.",
+     attrezzi:["Panca powerlifting","Panca regolabile (piana, inclinata, military)","Manubri da 1 a 48 kg"],
+     attrezziEN:["Powerlifting bench","Adjustable bench (flat, incline, military)","Dumbbells from 1 to 48 kg"],
+     attrezziSL:["Klop za powerlifting","Nastavljiva klop (ravna, nagibna, military)","Ročke od 1 do 48 kg"],
     }
   ],
   // Loghi a scorrimento nel piè di pagina (partner/sponsor): {name, src, h}; lista vuota = sezione nascosta
