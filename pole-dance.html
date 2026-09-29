@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-09-29-1058 7c3379f6 -->
+<!-- sportfit-build 2026-09-29-1852 921a4eda -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -448,6 +448,21 @@
   .pcourse > div{min-width:0}
   .pcourse .when span{overflow-wrap:anywhere}
 </style>
+
+<style>
+  .prep{background:var(--bg-2);border-left:3px solid var(--red);padding:28px;margin-top:40px;scroll-margin-top:90px}
+  .prep h2{font-size:clamp(1.5rem,3vw,2rem)}
+  .prep-txt{max-width:74ch}
+  .prep-txt p{color:#cfccc7;margin-top:12px}
+  .prep-when{display:flex;align-items:center;gap:10px;margin-top:18px;font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:.04em;text-transform:uppercase}
+  .prep-when .ic{color:var(--red)}
+  .prep-pics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+  .prep-pic{display:block;width:100%;padding:0;border:0;background:#000;overflow:hidden;cursor:zoom-in}
+  .prep-pic img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;transition:transform .6s}
+  .prep-pic:hover img{transform:scale(1.03)}
+  @media (max-width:700px){.prep{padding:20px;text-align:center}.prep-when{flex-direction:column;gap:6px}.prep-pics{grid-template-columns:1fr}}
+  @media (max-width:380px){.prep{padding:16px}}
+</style>
 </head>
 <body data-type="pole" data-en-title="Pole Dance Studio · Sport&amp;Fit Gorizia" data-sl-title="Pole Dance Studio · Sport&amp;Fit Gorica">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -489,6 +504,7 @@
     <section style="padding-top:48px">
       <div class="wrap">
         <div class="pcourses" id="poleCourses" style="margin-top:0"></div>
+        <div class="prep" id="preparazione-gare"><h2 class="title" data-en="Competition preparation" data-sl="Priprava na tekmovanja">Preparazione gare</h2><div class="prep-txt"><p data-en="If you are interested in competing in the new competitive season, we offer a dedicated space for specific preparation. We support the athlete in choosing the music and the choreographic elements and in building the competition routine, and we provide guidance on the rules and specific requirements of each competition circuit." data-sl="Za vse, ki želijo tekmovati v novi tekmovalni sezoni, nudimo poseben prostor za specifično pripravo. Tekmovalce podpiramo pri izbiri glasbe, koreografskih elementov in sestavi tekmovalne rutine ter jim nudimo vodenje glede pravil in posebnih zahtev vsake tekmovalne serije.">Per chi è interessato a gareggiare nella nuova stagione competitiva, offriamo uno spazio dedicato per la preparazione specifica. Supportiamo l’atleta nella scelta del brano musicale, degli elementi coreografici, della costruzione della routine di gara, e forniamo una guida sui regolamenti e le richieste specifiche di ogni circuito competitivo.</p><p data-en="Competition preparation classes are suitable for those who have been practising the discipline for more than a year and want to put themselves to the test and take on a new challenge." data-sl="Vadbe za pripravo na tekmovanja so primerne za tiste, ki se s to disciplino ukvarjajo že več kot eno leto in se želijo preizkusiti ter sprejeti nov izziv.">Le lezioni di preparazione gare sono adatte per chi pratica la disciplina da più di un anno e desidera mettersi in gioco e affrontare una nuova sfida.</p></div><div class="prep-when"><svg class="ic"><use href="#i-cal"/></svg><span data-en="From early November, every Friday from 6:30 pm" data-sl="Od začetka novembra vsak petek od 18.30">Da inizio novembre ogni venerdì dalle ore 18.30</span></div><div class="prep-pics"><button type="button" class="prep-pic" data-gal="gare-1.jpg|gare-2.jpg" data-start="0" aria-label="Atlete con le medaglie dopo una gara" data-en-aria="Athletes with medals after a competition" data-sl-aria="Tekmovalke z medaljami po tekmovanju"><img src="gare-1.jpg" alt="Atlete con le medaglie dopo una gara" data-en-alt="Athletes with medals after a competition" data-sl-alt="Tekmovalke z medaljami po tekmovanju" loading="lazy" width="1500" height="1000"></button><button type="button" class="prep-pic" data-gal="gare-1.jpg|gare-2.jpg" data-start="1" aria-label="Premiazione sul podio a una gara di pole dance" data-en-aria="Podium ceremony at a pole dance competition" data-sl-aria="Podelitev na odru na tekmovanju v pole danceu"><img src="gare-2.jpg" alt="Premiazione sul podio a una gara di pole dance" data-en-alt="Podium ceremony at a pole dance competition" data-sl-alt="Podelitev na odru na tekmovanju v pole danceu" loading="lazy" width="1500" height="1000"></button></div></div>
         <div class="cta-band">
           <div><h2 data-en="Book online" data-sl="Spletna rezervacija">Prenota online</h2><p data-en="Choose a day and time in our booking calendar." data-sl="Izberi dan in uro v našem rezervacijskem koledarju.">Scegli giorno e orario sul nostro calendario di prenotazione.</p></div>
           <div class="acts">
@@ -499,6 +515,7 @@
     </section>
 
 </main>
+<div class="lightbox" id="lightbox" hidden><button type="button" id="lbClose" data-en="Close" data-sl="Zapri">Chiudi</button><button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Precedente">&#8249;</button><img id="lbImg" alt=""><button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Successiva">&#8250;</button><span class="lb-count" id="lbCount"></span></div>
 
 <footer>
   <div class="wrap">
@@ -744,6 +761,34 @@ SF.lezioni = function(type){
     '<span class="who">Con '+[...x.who].join(' e ')+'</span>' +
     '<div class="when">'+x.when.map(w => '<span>'+w+'</span>').join('')+'</div></article>').join('');
   const who = $('#teachers'); if (who) who.textContent = [...new Set(Object.values(L).flatMap(x => [...x.who]))].join(' e ');
+})();
+</script>
+
+<script>
+(function(){
+  const lb = document.getElementById('lightbox'); if (!lb) return;
+  const img = document.getElementById('lbImg'), cnt = document.getElementById('lbCount');
+  const prev = document.getElementById('lbPrev'), next = document.getElementById('lbNext');
+  let gal = [], gi = 0, alt = '';
+  const show = () => { img.src = gal[gi]; img.alt = alt; cnt.textContent = gal.length > 1 ? (gi+1)+' / '+gal.length : ''; prev.hidden = next.hidden = gal.length < 2; };
+  const step = d => { if (gal.length < 2) return; gi = (gi + d + gal.length) % gal.length; show(); };
+  const close = () => { lb.hidden = true; img.src = ''; gal = []; };
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-gal]'); if (!b) return;
+    gal = b.dataset.gal.split('|'); alt = (b.querySelector('img') || {}).alt || ''; gi = +(b.dataset.start || 0); lb.hidden = false; show();
+  });
+  prev.addEventListener('click', e => { e.stopPropagation(); step(-1); });
+  next.addEventListener('click', e => { e.stopPropagation(); step(1); });
+  lb.addEventListener('click', e => { if (e.target === img || e.target.closest('.lb-nav')) return; close(); });
+  document.addEventListener('keydown', e => {
+    if (lb.hidden) return;
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'Escape') close();
+  });
+  let tx = null;
+  lb.addEventListener('touchstart', e => { tx = e.changedTouches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(dx) > 45) step(dx < 0 ? 1 : -1); }, {passive:true});
 })();
 </script>
 </body>
