@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-09-25-1330 d23497b4 -->
+<!-- sportfit-build 2026-09-29-1058 ac5c9556 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -571,6 +571,7 @@
             <div class="act-btns">
               <a class="btn btn-red btn-sm prenotaPole" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cal"/></svg><span data-en="Book" data-sl="Rezerviraj">Prenota</span></a>
               <a class="btn btn-line btn-sm" href="pole-dance.html" data-en="More info" data-sl="Več info">Più info</a>
+              <a class="btn btn-line btn-sm" href="istruttrici.html"><span data-en="The instructors" data-sl="Inštruktorici">Le istruttrici</span></a>
             </div>
           </div>
         </article>
@@ -754,7 +755,7 @@ SF.applyLang = function(){
     if (d.body.dataset[L+'Title']) d.title = d.body.dataset[L+'Title'];
     d.querySelectorAll('a[href]').forEach(a => {
       const h = a.getAttribute('href');
-      if (!/^(\.\/|pole-dance\.html)/.test(h)) return;
+      if (!/^(\.\/|pole-dance\.html|istruttrici\.html)/.test(h)) return;
       const k = h.indexOf('#'), path = k < 0 ? h : h.slice(0,k), hash = k < 0 ? '' : h.slice(k);
       a.setAttribute('href', path + (path.includes('?') ? '&' : '?') + 'lang=' + L + hash);
     });

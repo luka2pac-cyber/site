@@ -1,11 +1,11 @@
 <!doctype html>
-<!-- sportfit-build 2026-09-29-1058 7c3379f6 -->
+<!-- sportfit-build 2026-09-29-1058 02c9916a -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pole Dance Studio · Sport&Fit Gorizia</title>
-<meta name="description" content="Pole Dance Studio di Sport&amp;Fit Gorizia: lezioni, orari e prenotazione online.">
+<title>Le istruttrici · Sport&Fit Gorizia</title>
+<meta name="description" content="Le istruttrici del Pole Dance Studio di Sport&amp;Fit Gorizia: percorso, formazione e discipline.">
 <link rel="icon" href="logo-sportfit.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Ultra&family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
@@ -444,12 +444,28 @@
   .cta-band .acts{display:flex;gap:10px;flex-wrap:wrap}
 </style>
 <style>html,body{margin:0}</style>
+
 <style>
-  .pcourse > div{min-width:0}
-  .pcourse .when span{overflow-wrap:anywhere}
+  .istr{display:grid;grid-template-columns:1fr 1.05fr;gap:32px;align-items:center;background:var(--bg-2);border-left:3px solid var(--red);padding:22px;margin-top:22px;scroll-margin-top:90px}
+  .istr-pics{display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0}
+  .istr-pic{display:block;width:100%;padding:0;border:0;background:#000;overflow:hidden;cursor:zoom-in}
+  .istr-pic img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;transition:transform .6s}
+  .istr-pic:hover img{transform:scale(1.03)}
+  .istr-txt{min-width:0}
+  .istr-txt h2{font-size:1.7rem;margin-bottom:4px}
+  .istr-tag{font-family:var(--display);font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;display:block}
+  .istr-txt p{color:#cfccc7;font-size:.95rem;margin-top:10px}
+  .istr-chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;padding:0;list-style:none}
+  .istr-chips li{border:1px solid var(--line-2);padding:3px 9px;font-size:.82rem;color:#cfccc7}
+  .istr-cert{font-family:var(--display);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-size:.88rem;margin-top:12px;display:block}
+  @media (max-width:860px){
+    .istr{grid-template-columns:1fr;gap:18px;text-align:center;padding:18px}
+    .istr-chips{justify-content:center}
+  }
+  @media (max-width:380px){.istr{padding:14px}.istr-pics{gap:6px}}
 </style>
 </head>
-<body data-type="pole" data-en-title="Pole Dance Studio · Sport&amp;Fit Gorizia" data-sl-title="Pole Dance Studio · Sport&amp;Fit Gorica">
+<body data-type="pole" data-en-title="Our instructors · Sport&amp;Fit Gorizia" data-sl-title="Inštruktorici · Sport&amp;Fit Gorica">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
@@ -470,35 +486,35 @@
 </header>
 
 <main>
-    <section class="page-head" style="padding-block:40px 36px">
+    <section class="page-head" style="padding-block:40px 32px">
       <div class="wrap ph-grid">
         <div>
-          <a class="back" href="./" data-en="&larr; Back to home" data-sl="&larr; Nazaj na domačo stran">&larr; Torna alla home</a>
+          <a class="back" href="pole-dance.html" data-en="&larr; Back to the classes" data-sl="&larr; Nazaj na vadbe">&larr; Torna ai corsi</a>
           <span class="eyebrow">Pole Dance Studio</span>
-          <h1 data-en="Our classes" data-sl="Naše vadbe">I nostri corsi</h1>
-          <p class="intro" data-en="The Sport&amp;Fit pole dance studio, inside the gym. Choose the class that suits you and book online." data-sl="Pole dance studio Sport&amp;Fit v sklopu fitnesa. Izberi vadbo, ki ti ustreza, in jo rezerviraj na spletu.">Lo studio di pole dance di Sport&amp;Fit, all&rsquo;interno della palestra. Scegli il corso adatto a te e prenota online.</p>
+          <h1 data-en="Our instructors" data-sl="In&#353;truktorici">Le istruttrici</h1>
+          <p class="intro" data-en="The women who train you: sporting background, qualifications and the disciplines they teach." data-sl="Kdo te vodi v dvorani: &#353;portna pot, izobrazba in discipline, ki jih pou&#269;ujeta.">Chi ti accompagna in sala: percorso sportivo, formazione e discipline che insegnano.</p>
           <div class="acts">
             <a class="btn btn-red prenotaPole" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cal"/></svg><span data-en="Book a class" data-sl="Rezerviraj termin">Prenota una lezione</span></a>
-            <a class="btn btn-line" href="istruttrici.html"><span data-en="The instructors" data-sl="Inštruktorici">Le istruttrici</span></a>
           </div>
         </div>
         <img class="ph-logo" src="logo-poledance.png" alt="Sport &amp; Fit Pole Dance Studio" style="width:170px">
       </div>
     </section>
 
-    <section style="padding-top:48px">
+    <section style="padding-top:36px">
       <div class="wrap">
-        <div class="pcourses" id="poleCourses" style="margin-top:0"></div>
+        <article class="istr" id="gordana"><div class="istr-pics"><button type="button" class="istr-pic" data-gal="istr-gordana-1.jpg|istr-gordana-2.jpg" data-gal-alt="Gordana" data-start="0" aria-label="Gordana, foto 1" data-en-aria="Gordana, photo 1" data-sl-aria="Gordana, fotografija 1"><img src="istr-gordana-1.jpg" alt="Gordana" loading="lazy" width="480" height="640"></button><button type="button" class="istr-pic" data-gal="istr-gordana-1.jpg|istr-gordana-2.jpg" data-gal-alt="Gordana" data-start="1" aria-label="Gordana, foto 2" data-en-aria="Gordana, photo 2" data-sl-aria="Gordana, fotografija 2"><img src="istr-gordana-2.jpg" alt="Gordana" loading="lazy" width="710" height="947"></button></div><div class="istr-txt"><h2>Gordana</h2><span class="istr-tag" data-en="Pole Dance &middot; Exotic &middot; Aerial disciplines" data-sl="Pole dance &middot; exotic &middot; zra&#269;ne discipline">Pole Dance &middot; Exotic &middot; Discipline aeree</span><p data-en="Sport has always been part of my life: I see movement as a way to explore the potential of the body and build self-awareness." data-sl="&#352;port me spremlja od nekdaj: gibanje je zame na&#269;in za raziskovanje potenciala telesa in razvijanje zavedanja sebe.">Da sempre legata allo sport, vivo il movimento come mezzo per esplorare il potenziale del corpo e sviluppare consapevolezza di s&eacute;.</p><p data-en="In 2015 I discovered pole dance: love at first sight that became my profession, supported by continuous training so I can always offer the highest quality." data-sl="Leta 2015 sem odkrila pole dance: ljubezen na prvi pogled, ki je postala moj poklic, podprta s stalnim izobra&#382;evanjem, da lahko vedno ponudim najvi&#353;jo kakovost.">Nel 2015 ho scoperto la pole dance: un amore a prima vista diventato la mia professione, guidato da una formazione continua per offrire sempre la massima qualit&agrave;.</p><p data-en="A gradual teaching path that guarantees steady progress in complete safety and without injuries." data-sl="Postopen pristop k pou&#269;evanju, ki zagotavlja enakomeren napredek v popolni varnosti in brez po&#353;kodb.">Un percorso di insegnamento graduale, che garantisce un progresso costante in totale sicurezza e senza infortuni.</p><ul class="istr-chips"><li>Pole Dance</li><li>Exotic Pole</li><li data-en="Aerial hoop" data-sl="Zra&#269;ni obro&#269;">Cerchio aereo</li><li data-en="Aerial silks" data-sl="Zra&#269;ne svile">Tessuti aerei</li><li>Yoga</li></ul><span class="istr-cert" data-en="Certified instructor, CSEN member" data-sl="Certificirana in&#353;truktorica, &#269;lanica CSEN">Istruttrice certificata e tesserata CSEN</span></div></article><article class="istr" id="selena"><div class="istr-pics"><button type="button" class="istr-pic" data-gal="istr-selena-1.jpg|istr-selena-2.jpg" data-gal-alt="Selena" data-start="0" aria-label="Selena, foto 1" data-en-aria="Selena, photo 1" data-sl-aria="Selena, fotografija 1"><img src="istr-selena-1.jpg" alt="Selena" loading="lazy" width="671" height="895"></button><button type="button" class="istr-pic" data-gal="istr-selena-1.jpg|istr-selena-2.jpg" data-gal-alt="Selena" data-start="1" aria-label="Selena, foto 2" data-en-aria="Selena, photo 2" data-sl-aria="Selena, fotografija 2"><img src="istr-selena-2.jpg" alt="Selena" loading="lazy" width="551" height="735"></button></div><div class="istr-txt"><h2>Selena</h2><span class="istr-tag" data-en="Pole Dance &middot; Acrobatics &middot; Conditioning" data-sl="Pole dance &middot; akrobatika &middot; krepitev mo&#269;i">Pole Dance &middot; Acrobatica &middot; Potenziamento</span><p data-en="My sporting background is quite varied: I started with artistic gymnastics, then jazz dance and baseball. Once past the age for team sports I turned to the weight room and to weightlifting, which I still practise today with great satisfaction." data-sl="Moja &#353;portna pot je precej pestra: za&#269;ela sem s &#353;portno gimnastiko, nato sem plesala jazz balet in igrala baseball. Ko sem prerasla starost za ekipne &#353;porte, sem se posvetila fitnesu in dviganju ute&#382;i, kar z veseljem po&#269;nem &#353;e danes.">Il mio bagaglio sportivo &egrave; alquanto vario: ho cominciato con la ginnastica artistica, per poi praticare danza jazz e baseball. Superata l&rsquo;et&agrave; per gli sport di squadra mi sono avvicinata alla sala pesi e al weightlifting, che ancora oggi pratico con soddisfazione.</p><p data-en="In 2016 I discovered the wonderful world of pole dance, a varied and stimulating discipline that let me shed my shy, introverted shell and gave me a completely new way of expressing myself." data-sl="Leta 2016 sem odkrila &#269;udoviti svet pole dancea, raznoliko in spodbudno disciplino, ki mi je pomagala sle&#269;i srame&#382;ljiv in vase zaprt oklep ter mi dala povsem nov na&#269;in izra&#382;anja.">Nel 2016 ho scoperto il meraviglioso mondo della pole dance, una disciplina variegata e stimolante, che mi ha permesso di scrollarmi di dosso il mio guscio timido e introverso e mi ha regalato un modo tutto nuovo di esprimermi.</p><p data-en="Today I specialise in acrobatic elements on the pole and in specific conditioning, with a personal teaching method drawn from my experience with weights." data-sl="Danes sem specializirana za akrobatske elemente na drogu in za specifi&#269;no krepitev mo&#269;i, po lastni metodi pou&#269;evanja, ki izhaja iz mojih izku&#353;enj z ute&#382;mi.">Oggi sono specializzata in elementi acrobatici al palo e nel potenziamento specifico, con un metodo di insegnamento personale che prende spunto dalla mia esperienza con i pesi.</p><ul class="istr-chips"><li>Pole Dance</li><li data-en="Pole acrobatics" data-sl="Akrobatika na drogu">Acrobatica al palo</li><li data-en="Conditioning" data-sl="Krepitev mo&#269;i">Potenziamento</li><li>Mobility</li></ul><span class="istr-cert" data-en="Certified Pole Dance instructor &middot; CSEN Sports Technician" data-sl="Certificirana in&#353;truktorica pole dancea &middot; &#353;portni tehnik CSEN">Istruttrice di Pole Dance certificata &middot; Tecnico Sportivo CSEN</span></div></article>
         <div class="cta-band">
-          <div><h2 data-en="Book online" data-sl="Spletna rezervacija">Prenota online</h2><p data-en="Choose a day and time in our booking calendar." data-sl="Izberi dan in uro v našem rezervacijskem koledarju.">Scegli giorno e orario sul nostro calendario di prenotazione.</p></div>
+          <div><h2 data-en="Book online" data-sl="Spletna rezervacija">Prenota online</h2><p data-en="Choose a day and time in our booking calendar." data-sl="Izberi dan in uro v na&#353;em rezervacijskem koledarju.">Scegli giorno e orario sul nostro calendario di prenotazione.</p></div>
           <div class="acts">
             <a class="btn btn-red prenotaPole" href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-cal"/></svg><span data-en="Book a class" data-sl="Rezerviraj termin">Prenota una lezione</span></a>
+            <a class="btn btn-line" href="pole-dance.html" data-en="The classes" data-sl="Vadbe">I corsi</a>
           </div>
         </div>
       </div>
     </section>
-
 </main>
+<div class="lightbox" id="lightbox" hidden><button type="button" id="lbClose" data-en="Close" data-sl="Zapri">Chiudi</button><button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Precedente">&#8249;</button><img id="lbImg" alt=""><button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Successiva">&#8250;</button><span class="lb-count" id="lbCount"></span></div>
 
 <footer>
   <div class="wrap">
@@ -744,6 +760,34 @@ SF.lezioni = function(type){
     '<span class="who">Con '+[...x.who].join(' e ')+'</span>' +
     '<div class="when">'+x.when.map(w => '<span>'+w+'</span>').join('')+'</div></article>').join('');
   const who = $('#teachers'); if (who) who.textContent = [...new Set(Object.values(L).flatMap(x => [...x.who]))].join(' e ');
+})();
+</script>
+
+<script>
+(function(){
+  const lb = document.getElementById('lightbox'); if (!lb) return;
+  const img = document.getElementById('lbImg'), cnt = document.getElementById('lbCount');
+  const prev = document.getElementById('lbPrev'), next = document.getElementById('lbNext');
+  let gal = [], gi = 0, alt = '';
+  const show = () => { img.src = gal[gi]; img.alt = alt; cnt.textContent = gal.length > 1 ? (gi+1)+' / '+gal.length : ''; prev.hidden = next.hidden = gal.length < 2; };
+  const step = d => { if (gal.length < 2) return; gi = (gi + d + gal.length) % gal.length; show(); };
+  const close = () => { lb.hidden = true; img.src = ''; gal = []; };
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-gal]'); if (!b) return;
+    gal = b.dataset.gal.split('|'); alt = b.dataset.galAlt || ''; gi = +(b.dataset.start || 0); lb.hidden = false; show();
+  });
+  prev.addEventListener('click', e => { e.stopPropagation(); step(-1); });
+  next.addEventListener('click', e => { e.stopPropagation(); step(1); });
+  lb.addEventListener('click', e => { if (e.target === img || e.target.closest('.lb-nav')) return; close(); });
+  document.addEventListener('keydown', e => {
+    if (lb.hidden) return;
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'Escape') close();
+  });
+  let tx = null;
+  lb.addEventListener('touchstart', e => { tx = e.changedTouches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(dx) > 45) step(dx < 0 ? 1 : -1); }, {passive:true});
 })();
 </script>
 </body>
