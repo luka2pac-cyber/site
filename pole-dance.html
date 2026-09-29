@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-09-29-1922 407b21c4 -->
+<!-- sportfit-build 2026-09-29-1955 4806add6 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -449,26 +449,24 @@
   .pcourse .when span{overflow-wrap:anywhere}
 </style>
 
-<style>
-  #preparazione-gare{scroll-margin-top:90px}
-  .pc-act{max-width:720px;margin:18px auto 0}
-  .pc-split{display:grid;grid-template-columns:1fr 1fr;gap:2px;aspect-ratio:16/10;cursor:default}
-  .pc-pic{display:block;width:100%;height:100%;min-width:0;padding:0;border:0;background:#000;overflow:hidden;cursor:zoom-in}
-  .pc-pic img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s}
-  .pc-pic:hover img{transform:scale(1.03)}
-  .pc-act .act-pic:hover img{transform:none}
-  .pc-act .pc-pic:hover img{transform:scale(1.03)}
-</style>
+
 
 <style>
-  .pc-photos{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px;margin-top:18px}
-  .pc-photo{display:block;width:100%;padding:0;border:1px solid var(--line);background:#000;overflow:hidden;cursor:zoom-in}
+  #poleCourses .pcourse:nth-last-child(2){align-self:start}
+  .pc-slotwrap{display:flex;flex-direction:column;gap:18px;min-width:0;scroll-margin-top:90px}
+  .pc-slot{grid-template-columns:1fr}
+  .pc-slot h3{text-align:center}
+  .pc-slot p + p{margin-top:10px}
+  .pc-photos{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  .pc-photo{display:block;width:100%;min-width:0;padding:0;border:0;background:#000;overflow:hidden;cursor:zoom-in}
   .pc-photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;transition:transform .6s}
   .pc-photo:hover img{transform:scale(1.03)}
-  .pc-slot{grid-template-columns:1fr;scroll-margin-top:90px}
-  .pc-slot p + p{margin-top:10px}
-  @media (max-width:860px){.pc-photos,.pc-slot{display:none}}
-  @media (min-width:861px){.pc-act{display:none}}
+  @media (max-width:700px){
+    .pc-slot p{text-align:center}
+    .pc-slot .when{justify-content:center}
+    .pc-slot .when span{text-align:center}
+    .pc-photo img{aspect-ratio:4/5}
+  }
 </style>
 </head>
 <body data-type="pole" data-en-title="Pole Dance Studio · Sport&amp;Fit Gorizia" data-sl-title="Pole Dance Studio · Sport&amp;Fit Gorica">
@@ -511,8 +509,6 @@
     <section style="padding-top:48px">
       <div class="wrap">
         <div class="pcourses" id="poleCourses" style="margin-top:0"></div>
-        <div class="pc-photos"><button type="button" class="pc-photo" data-gal="gare-1.jpg|gare-2.jpg" data-start="0" aria-label="Atlete con le medaglie dopo una gara" data-en-aria="Athletes with medals after a competition" data-sl-aria="Tekmovalke z medaljami po tekmovanju"><img src="gare-1.jpg" alt="Atlete con le medaglie dopo una gara" data-en-alt="Athletes with medals after a competition" data-sl-alt="Tekmovalke z medaljami po tekmovanju" loading="lazy" width="1500" height="1000" style="object-position:55% 50%"></button><button type="button" class="pc-photo" data-gal="gare-1.jpg|gare-2.jpg" data-start="1" aria-label="Premiazione sul podio a una gara di pole dance" data-en-aria="Podium ceremony at a pole dance competition" data-sl-aria="Podelitev na odru na tekmovanju v pole danceu"><img src="gare-2.jpg" alt="Premiazione sul podio a una gara di pole dance" data-en-alt="Podium ceremony at a pole dance competition" data-sl-alt="Podelitev na odru na tekmovanju v pole danceu" loading="lazy" width="1500" height="1000"></button></div>
-        <article class="act pc-act" id="preparazione-gare"><div class="act-pic pc-split"><button type="button" class="pc-pic" data-gal="gare-1.jpg|gare-2.jpg" data-start="0" aria-label="Atlete con le medaglie dopo una gara" data-en-aria="Athletes with medals after a competition" data-sl-aria="Tekmovalke z medaljami po tekmovanju"><img src="gare-1.jpg" alt="Atlete con le medaglie dopo una gara" data-en-alt="Athletes with medals after a competition" data-sl-alt="Tekmovalke z medaljami po tekmovanju" style="object-position:55% 50%" loading="lazy" width="1500" height="1000"></button><button type="button" class="pc-pic" data-gal="gare-1.jpg|gare-2.jpg" data-start="1" aria-label="Premiazione sul podio a una gara di pole dance" data-en-aria="Podium ceremony at a pole dance competition" data-sl-aria="Podelitev na odru na tekmovanju v pole danceu"><img src="gare-2.jpg" alt="Premiazione sul podio a una gara di pole dance" data-en-alt="Podium ceremony at a pole dance competition" data-sl-alt="Podelitev na odru na tekmovanju v pole danceu" style="object-position:52% 50%" loading="lazy" width="1500" height="1000"></button></div><div class="act-body"><h3 data-en="Competition preparation" data-sl="Priprava na tekmovanja">Preparazione gare</h3><span class="tag" data-en="From early November, every Friday from 6:30 pm" data-sl="Od začetka novembra vsak petek od 18.30">Da inizio novembre ogni venerdì dalle ore 18.30</span><p data-en="If you are interested in competing in the new competitive season, we offer a dedicated space for specific preparation. We support the athlete in choosing the music and the choreographic elements and in building the competition routine, and we provide guidance on the rules and specific requirements of each competition circuit." data-sl="Za vse, ki želijo tekmovati v novi tekmovalni sezoni, nudimo poseben prostor za specifično pripravo. Tekmovalce podpiramo pri izbiri glasbe, koreografskih elementov in sestavi tekmovalne rutine ter jim nudimo vodenje glede pravil in posebnih zahtev vsake tekmovalne serije.">Per chi è interessato a gareggiare nella nuova stagione competitiva, offriamo uno spazio dedicato per la preparazione specifica. Supportiamo l’atleta nella scelta del brano musicale, degli elementi coreografici, della costruzione della routine di gara, e forniamo una guida sui regolamenti e le richieste specifiche di ogni circuito competitivo.</p><p data-en="Competition preparation classes are suitable for those who have been practising the discipline for more than a year and want to put themselves to the test and take on a new challenge." data-sl="Vadbe za pripravo na tekmovanja so primerne za tiste, ki se s to disciplino ukvarjajo že več kot eno leto in se želijo preizkusiti ter sprejeti nov izziv.">Le lezioni di preparazione gare sono adatte per chi pratica la disciplina da più di un anno e desidera mettersi in gioco e affrontare una nuova sfida.</p><div class="notes"><span id="prepWho">Con Selena</span></div></div></article>
         <div class="cta-band">
           <div><h2 data-en="Book online" data-sl="Spletna rezervacija">Prenota online</h2><p data-en="Choose a day and time in our booking calendar." data-sl="Izberi dan in uro v našem rezervacijskem koledarju.">Scegli giorno e orario sul nostro calendario di prenotazione.</p></div>
           <div class="acts">
@@ -763,8 +759,9 @@ SF.lezioni = function(type){
         '</div></article>';
     }).join('');
     { const pw = SF.con([...new Set(SF.orario.filter(o => o.n === 'Prep Gare').map(o => o.who))]);
-      PC.insertAdjacentHTML('beforeend', '<article class="pcourse pc-slot compact" id="preparazione-gare"><div><h3>' + t("Preparazione gare", "Competition preparation", "Priprava na tekmovanja") + '</h3><p>' + t("Per chi è interessato a gareggiare nella nuova stagione competitiva, offriamo uno spazio dedicato per la preparazione specifica. Supportiamo l’atleta nella scelta del brano musicale, degli elementi coreografici, della costruzione della routine di gara, e forniamo una guida sui regolamenti e le richieste specifiche di ogni circuito competitivo.", "If you are interested in competing in the new competitive season, we offer a dedicated space for specific preparation. We support the athlete in choosing the music and the choreographic elements and in building the competition routine, and we provide guidance on the rules and specific requirements of each competition circuit.", "Za vse, ki želijo tekmovati v novi tekmovalni sezoni, nudimo poseben prostor za specifično pripravo. Tekmovalce podpiramo pri izbiri glasbe, koreografskih elementov in sestavi tekmovalne rutine ter jim nudimo vodenje glede pravil in posebnih zahtev vsake tekmovalne serije.") + '</p><p>' + t("Le lezioni di preparazione gare sono adatte per chi pratica la disciplina da più di un anno e desidera mettersi in gioco e affrontare una nuova sfida.", "Competition preparation classes are suitable for those who have been practising the discipline for more than a year and want to put themselves to the test and take on a new challenge.", "Vadbe za pripravo na tekmovanja so primerne za tiste, ki se s to disciplino ukvarjajo že več kot eno leto in se želijo preizkusiti ter sprejeti nov izziv.") + '</p>' +
-        '<div class="when"><span>' + t("Da inizio novembre ogni venerdì dalle ore 18.30", "From early November, every Friday from 6:30 pm", "Od začetka novembra vsak petek od 18.30") + '</span>' + (pw ? '<span class="who-tag">' + pw + '</span>' : '') + '</div></div></article>'); }
+      const ph = (i, pos, it, en, sl) => '<button type="button" class="pc-photo" data-gal="gare-1.jpg|gare-2.jpg" data-start="' + (i - 1) + '" aria-label="' + t(it, en, sl) + '">' + '<img src="gare-' + i + '.jpg" alt="' + t(it, en, sl) + '" loading="lazy" width="1500" height="1000" style="object-position:' + pos + '"></button>';
+      PC.insertAdjacentHTML('beforeend', '<div class="pc-slotwrap" id="preparazione-gare"><article class="pcourse pc-slot compact"><div><h3>' + t("Preparazione gare", "Competition preparation", "Priprava na tekmovanja") + '</h3><p>' + t("Per chi è interessato a gareggiare nella nuova stagione competitiva, offriamo uno spazio dedicato per la preparazione specifica. Supportiamo l’atleta nella scelta del brano musicale, degli elementi coreografici, della costruzione della routine di gara, e forniamo una guida sui regolamenti e le richieste specifiche di ogni circuito competitivo.", "If you are interested in competing in the new competitive season, we offer a dedicated space for specific preparation. We support the athlete in choosing the music and the choreographic elements and in building the competition routine, and we provide guidance on the rules and specific requirements of each competition circuit.", "Za vse, ki želijo tekmovati v novi tekmovalni sezoni, nudimo poseben prostor za specifično pripravo. Tekmovalce podpiramo pri izbiri glasbe, koreografskih elementov in sestavi tekmovalne rutine ter jim nudimo vodenje glede pravil in posebnih zahtev vsake tekmovalne serije.") + '</p><p>' + t("Le lezioni di preparazione gare sono adatte per chi pratica la disciplina da più di un anno e desidera mettersi in gioco e affrontare una nuova sfida.", "Competition preparation classes are suitable for those who have been practising the discipline for more than a year and want to put themselves to the test and take on a new challenge.", "Vadbe za pripravo na tekmovanja so primerne za tiste, ki se s to disciplino ukvarjajo že več kot eno leto in se želijo preizkusiti ter sprejeti nov izziv.") + '</p>' +
+        '<div class="when"><span>' + t("Da inizio novembre ogni venerdì dalle ore 18.30", "From early November, every Friday from 6:30 pm", "Od začetka novembra vsak petek od 18.30") + '</span>' + (pw ? '<span class="who-tag">' + pw + '</span>' : '') + '</div></div></article>' + '<div class="pc-photos">' + ph(1, '55% 50%', 'Atlete con le medaglie dopo una gara', 'Athletes with medals after a competition', 'Tekmovalke z medaljami po tekmovanju') + ph(2, '52% 50%', 'Premiazione sul podio a una gara di pole dance', 'Podium ceremony at a pole dance competition', 'Podelitev na odru na tekmovanju v pole danceu') + '</div></div>'); }
   }
   if ($('#lessons')) $('#lessons').innerHTML = Object.entries(L).map(([n,x]) =>
     '<article class="lesson" id="'+n.toLowerCase().replace(/[^a-z]+/g,'-').replace(/-+$/,'')+'"><h3>'+n.replace('*','')+'</h3>' +
