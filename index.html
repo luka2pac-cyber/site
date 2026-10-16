@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-14-2107 01575a95 -->
+<!-- sportfit-build 2026-10-16-1048 cd00c126 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -212,6 +212,22 @@
   .why-card{border-left:2px solid var(--red);padding-left:12px}
   .why-card h3{font-size:1.15rem;margin-bottom:2px}
   .why-card p{color:#cfccc7;font-size:.88rem;line-height:1.45}
+
+  /* tutto incluso (dentro la sezione perché) */
+  .incl{margin-top:32px}
+  .incl-box{display:grid;grid-template-columns:280px 1fr;gap:40px;background:rgba(20,20,20,.88);border:1px solid var(--line);border-top:4px solid var(--red);padding:30px}
+  .incl-head h3{font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.08}
+  .incl-head h3 em{font-style:normal;color:var(--red)}
+  .incl-head p{color:var(--muted);margin-top:12px}
+  .incl-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px 30px}
+  .incl-list li{display:flex;gap:12px;align-items:flex-start;min-width:0}
+  .incl-list b{display:block;font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.03em;text-transform:uppercase;line-height:1.2}
+  .incl-list span{display:block;margin-top:2px;color:#cfccc7;font-size:.93rem;line-height:1.45}
+  .incl-ok{flex:none;width:26px;height:26px;margin-top:1px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center}
+  .incl-ok .ic{width:17px;height:17px;stroke-width:3}
+  @media (max-width:900px){.incl-box{grid-template-columns:1fr;gap:22px}}
+  @media (max-width:640px){.incl-list{grid-template-columns:1fr}}
+  @media (max-width:700px){.incl-box{padding:24px 18px}.incl-head{text-align:center}}
 
   /* palestra */
   .zones-head2{margin-bottom:28px;text-align:center;display:flex;align-items:center;justify-content:center;gap:18px}
@@ -441,6 +457,7 @@
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
   <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></symbol>
   <symbol id="i-dumbbell" viewBox="0 0 24 24"><rect x="1.8" y="9" width="2.4" height="6" rx=".8"/><rect x="4.6" y="6.5" width="3" height="11" rx=".9"/><path d="M7.6 12h8.8"/><rect x="16.4" y="6.5" width="3" height="11" rx=".9"/><rect x="19.8" y="9" width="2.4" height="6" rx=".8"/></symbol>
   <symbol id="i-pilates" viewBox="0 0 30 24"><circle cx="7.2" cy="4.6" r="2.7" fill="currentColor" stroke="none"/><path d="M8.6 9.2 12.6 18.2 26.4 7.6" stroke-width="3"/><path d="M10.2 12.4 20.6 10.6" stroke-width="2.2"/><path d="M2 21.8h26" stroke-width="1.5"/></symbol>
   <symbol id="i-pilates-sil" viewBox="0 0 200 132"><g fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M30 128 L52 118 L188 118 L166 128 Z"/><path d="M118 74 Q140 70 154 64" stroke-width="16"/><path d="M154 64 Q172 59 186 55" stroke-width="10"/><path d="M186 55 Q193 54 196 57" stroke-width="6" fill="none"/><path d="M117 78 Q112 94 110 106" stroke-width="17"/><path d="M110 108 Q122 114 134 116" stroke-width="12"/><ellipse cx="116" cy="74" rx="13" ry="11"/><path d="M114 73 Q96 67 80 65" stroke-width="23"/><ellipse cx="78" cy="65" rx="10" ry="10"/><path d="M76 68 Q71 88 68 104" stroke-width="10"/><path d="M68 104 Q66 112 64 116" stroke-width="8"/><path d="M76 63 Q56 58 44 56" stroke-width="10"/><path d="M44 56 Q28 53 14 52" stroke-width="7"/><path d="M14 52 Q8 51 5 54" stroke-width="5" fill="none"/><path d="M74 62 Q68 60 63 59" stroke-width="12"/><circle cx="58" cy="57" r="10.5"/><path d="M64 50 Q72 45 79 45 Q86 46 87 52 Q88 57 83 59 Q86 53 81 50 Q74 47 67 54 Z"/></g></symbol>
@@ -514,6 +531,19 @@
         <div class="why-card"><h3 data-en="Equipment" data-sl="Oprema">Attrezzature</h3><p data-en="Premium equipment, chosen for beginners and advanced athletes." data-sl="Vrhunska oprema, izbrana za začetnike in napredne.">Attrezzature premium, scelte per principianti e avanzati.</p></div>
         <div class="why-card"><h3 data-en="Trainers" data-sl="Trenerji">Istruttori</h3><p data-en="Qualified trainers and personalised programmes." data-sl="Usposobljeni trenerji in programi po meri.">Istruttori qualificati e programmi personalizzati.</p></div>
         <div class="why-card"><h3 data-en="Community" data-sl="Skupnost">Comunit&agrave;</h3><p data-en="A strong, close-knit community: we train together, support each other and keep each other motivated." data-sl="Močna in povezana skupnost: skupaj treniramo, se podpiramo in drug drugega motiviramo.">Una community forte e unita: ci si allena insieme, ci si sostiene e ci si motiva a vicenda.</p></div>
+      </div>
+    </div>
+    <div class="wrap incl" id="incluso">
+      <div class="incl-box">
+        <div class="incl-head">
+          <h3 data-en="All included,&lt;br&gt;&lt;em&gt;no surprises&lt;/em&gt;" data-sl="Vse vključeno,&lt;br&gt;&lt;em&gt;brez presenečenj&lt;/em&gt;">Tutto incluso,<br><em>nessuna sorpresa</em></h3>
+        </div>
+        <ul class="incl-list">
+          <li><span class="incl-ok" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span><div><b data-en="Instructor always on the floor" data-sl="Inštruktor vedno v fitnesu">Istruttore sempre in sala</b><span data-en="There is always an instructor on the floor, ready to help and correct you." data-sl="V fitnesu je vedno prisoten inštruktor, ki ti pomaga in te popravi.">C'&egrave; sempre un istruttore in sala, pronto ad aiutarti e correggerti.</span></div></li>
+          <li><span class="incl-ok" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span><div><b data-en="Starting from zero, together" data-sl="Začnemo skupaj, od začetka">Si parte da zero, insieme</b><span data-en="A free training plan: we explain every exercise step by step, and when you are ready, you move on to the next level." data-sl="Brezplačen program: vsako vajo ti razložimo korak za korakom, ko si pripravljen/a, preideš na naslednjo stopnjo.">Scheda gratuita, ti spieghiamo ogni esercizio passo per passo; quando sei pronto/a, si passa al livello successivo.</span></div></li>
+          <li><span class="incl-ok" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span><div><b data-en="Membership suspension" data-sl="Zamrznitev članarine">Sospensione dell&rsquo;abbonamento</b><span data-en="Illness, travel, work? You can put your membership on hold." data-sl="Bolezen, potovanje, služba? Članarino lahko zamrzneš.">Malattia, viaggio, lavoro? Puoi mettere in pausa l&rsquo;abbonamento.</span></div></li>
+          <li><span class="incl-ok" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span><div><b data-en="For every goal" data-sl="Za vsak cilj">Per ogni obiettivo</b><span data-en="Whether you want to feel good, lose weight or compete, we will guide you." data-sl="Želiš biti zdrav, shujšati ali tekmovati? Mi te vodimo.">Che tu voglia stare bene, dimagrire o gareggiare, ti seguiamo noi.</span></div></li>
+        </ul>
       </div>
     </div>
   </section>
