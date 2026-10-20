@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-20-1958 d5eac212 -->
+<!-- sportfit-build 2026-10-20-2007 6e804b54 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -462,30 +462,29 @@
   @media (max-width:380px){.istr{padding:14px}.istr-pics{gap:6px}}
 </style>
 <style>
-  .sbt-info{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start}
-  .sbt-info .lead{font-size:1.12rem;color:var(--ink)}
-  .sbt-info p{color:#cfccc7;margin-top:12px}
-  .sbt-facts{background:var(--bg-2);border-top:3px solid var(--red);padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+  .sbt-head{text-align:center}
+  .sbt-head .back{display:inline-block}
+  .sbt-head .eyebrow{margin-top:4px}
+  .sbt-head h1{font-size:clamp(2.4rem,6vw,3.6rem)}
+  .sbt-head .intro{margin-inline:auto}
+  .sbt-col{max-width:760px;margin-inline:auto;text-align:center}
+  .sbt-col .lead{font-size:1.12rem;color:var(--ink);margin-top:14px}
+  .sbt-col p{color:#cfccc7;margin-top:12px}
+  .sbt-facts{background:var(--bg-2);border-top:3px solid var(--red);padding:20px 22px;display:flex;flex-direction:column;align-items:center;gap:10px;margin:28px auto 0;max-width:520px}
   .sbt-facts h3{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.06em}
-  .sbt-facts .times li{justify-content:flex-start}
+  .sbt-facts .times li{justify-content:center}
+  .sbt-facts .notes{justify-content:center}
   .sbt-facts .notes span{color:var(--ink)}
   .sbt-flyer{display:block;width:100%;padding:0;border:0;background:#000;cursor:zoom-in;margin-top:6px}
   .sbt-flyer img{display:block;width:100%;height:auto}
-  .istr.one{grid-template-columns:minmax(0,340px) 1fr;margin-top:40px}
-  .istr.one .istr-pics{grid-template-columns:1fr}
+  .sec-sub{font-size:clamp(1.4rem,3vw,2rem);margin-top:56px;text-align:center}
+  .istr.one{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;margin:24px auto 0;max-width:760px;padding:26px}
+  .istr.one .istr-pics{display:block;width:100%;max-width:300px}
   .istr.one .istr-pic img{aspect-ratio:4/5}
-  .sec-sub{font-size:clamp(1.4rem,3vw,2rem);margin-top:56px}
-  @media (max-width:860px){
-    .sbt-info{grid-template-columns:1fr;gap:24px}
-    .istr.one{grid-template-columns:1fr}
-    .istr.one .istr-pics{max-width:300px;margin-inline:auto;width:100%}
-  }
-  @media (max-width:700px){
-    .sbt-info .txt,.sec-sub{text-align:center}
-    .sbt-facts{text-align:center}
-    .sbt-facts .times li{justify-content:center}
-    .sbt-facts .notes{justify-content:center}
-  }
+  .istr.one .istr-txt p{max-width:640px;margin-inline:auto}
+  .sbt-cta{max-width:760px;margin-inline:auto;flex-direction:column;justify-content:center;text-align:center}
+  .sbt-cta .acts{justify-content:center}
+  @media (max-width:380px){.istr.one{padding:16px}}
 </style>
 </head>
 <body data-type="corsi" data-en-title="SBT · Sport&amp;Fit Gorizia" data-sl-title="SBT · Sport&amp;Fit Gorica">
@@ -509,30 +508,21 @@
 </header>
 
 <main>
-    <section class="page-head" style="padding-block:40px 32px">
-      <div class="wrap ph-grid">
-        <div>
-          <a class="back" href="./#sbt" data-en="&larr; Back to home" data-sl="&larr; Nazaj na doma&#269;o stran">&larr; Torna alla home</a>
-          <span class="eyebrow" data-en="Group class" data-sl="Skupinska vadba">Corso di gruppo</span>
-          <h1>SBT</h1>
-          <p class="intro" data-en="Sculpt Burn Training &middot; Sculpt, burn, tone" data-sl="Sculpt Burn Training &middot; Oblikuj, kuri, u&#269;vrsti">Sculpt Burn Training &middot; Scolpisci, brucia, tonifica</p>
-          <div class="acts">
-            <a class="btn btn-red callLink" href="#"><svg class="ic"><use href="#i-phone"/></svg><span data-en="Call us" data-sl="Pokli&#269;i">Chiama</span></a>
-            <a class="btn btn-line" href="./#corsi"><svg class="ic"><use href="#i-cal"/></svg><span data-en="Timetable" data-sl="Urnik vadb">Orario corsi</span></a>
-          </div>
-        </div>
-        <img class="ph-logo" src="logo-sportfit.png" alt="Sport&amp;Fit" style="width:190px">
+    <section class="page-head sbt-head" style="padding-block:36px 32px">
+      <div class="wrap">
+        <a class="back" href="./#sbt" data-en="&larr; Back to home" data-sl="&larr; Nazaj na doma&#269;o stran">&larr; Torna alla home</a>
+        <span class="eyebrow" data-en="Group class" data-sl="Skupinska vadba">Corso di gruppo</span>
+        <h1>SBT</h1>
+        <p class="intro" data-en="Sculpt Burn Training &middot; Sculpt, burn, tone" data-sl="Sculpt Burn Training &middot; Oblikuj, kuri, u&#269;vrsti">Sculpt Burn Training &middot; Scolpisci, brucia, tonifica</p>
       </div>
     </section>
 
     <section style="padding-top:44px">
       <div class="wrap">
-        <div class="sbt-info">
-          <div class="txt">
-            <h2 class="title" data-en="What is SBT" data-sl="Kaj je SBT">Cos&rsquo;&egrave; l&rsquo;SBT</h2>
+        <div class="sbt-col">
+            <h2 class="title" data-en="What is SBT?" data-sl="Kaj je SBT?">Cos&rsquo;&egrave; SBT?</h2>
             <p class="lead" data-en="S.B.T. (Sculpt Burn Training) is a workout designed to improve joint mobility, refine your posture, and firm and define your body." data-sl="S.B.T. (Sculpt Burn Training) je vadba, namenjena izbolj&#353;anju gibljivosti sklepov, izpopolnjevanju dr&#382;e ter u&#269;vrstitvi in oblikovanju telesa.">L&rsquo;allenamento S.B.T. (Sculpt Burn Training) &egrave; pensato per migliorare la mobilit&agrave; articolare, perfezionare la postura, rassodare e definire il corpo.</p>
             <p data-en="All of this through targeted exercises built on specific training techniques. Every session also boosts calorie burn and energy: the result is a stronger, more flexible, fitter body." data-sl="Vse to s ciljanimi vajami, ki temeljijo na posebnih tehnikah vadbe. Vsaka ura poleg tega pove&#269;a porabo kalorij in energijo: rezultat je mo&#269;nej&#353;e, bolj pro&#382;no telo v dobri formi.">Il tutto attraverso esercizi mirati, basati su tecniche di allenamento specifiche. Ogni lezione aumenta inoltre il consumo calorico e l&rsquo;energia: il risultato &egrave; un corpo pi&ugrave; forte, elastico e in forma.</p>
-          </div>
           <div class="sbt-facts">
             <h3 data-en="When" data-sl="Kdaj">Quando</h3>
             <ul class="times" id="sbtTimes"></ul>
@@ -544,7 +534,7 @@
         <h2 class="title sec-sub" data-en="Your instructor" data-sl="Tvoja in&#353;truktorica">La tua istruttrice</h2>
         <article class="istr one" id="natasha"><div class="istr-pics"><button type="button" class="istr-pic" data-gal="istr-natasha.jpg" data-gal-alt="Natasha" data-start="0" aria-label="Natasha, foto" data-en-aria="Natasha, photo" data-sl-aria="Natasha, fotografija"><img src="istr-natasha.jpg" alt="Natasha" loading="lazy" width="379" height="476"></button></div><div class="istr-txt"><h2>Natasha</h2><span class="istr-tag" data-en="Fitness trainer &amp;middot; SBT &amp;middot; 20+ years of experience" data-sl="Fitnes trenerka &amp;middot; SBT &amp;middot; ve&#269; kot 20 let izku&#353;enj">Fitness trainer &middot; SBT &middot; Oltre 20 anni di esperienza</span><p data-en="I am a fitness trainer with more than twenty years of work experience in the fitness industry. I come from the world of dance, and ever since I was a little girl I have lived in the dimension of the BODY. Supporting my clients as they take care of their bodies, and seeing their flushed but happy faces, fills me with satisfaction." data-sl="Sem fitnes trenerka z ve&#269; kot dvajsetletnimi delovnimi izku&#353;njami v svetu fitnesa. Prihajam iz sveta plesa in &#382;e od otro&#353;tva &#382;ivim v razse&#382;nosti TELESA. Spremljati stranke, ko skrbijo za svoje telo, in videti njihove razgrete, a sre&#269;ne obraze, me navdaja z zadovoljstvom.">Sono fitness trainer con oltre ventennale esperienza lavorativa nel settore del fitness. Provengo dal mondo della danza e da quando ero bambina vivo nella dimensione CORPO. Accompagnare i miei clienti mentre si prendono cura del loro corpo e vedere i loro visi accaldati ma felici mi riempie di soddisfazione.</p><p data-en="My workouts are based on targeted exercises for joint function, correct posture, and toning and firming the whole body. I love what I do, which is why I try to make every workout fun and functional at the same time&amp;hellip; so the classes fly by!" data-sl="Moji treningi temeljijo na ciljanih vajah za delovanje sklepov, pravilno dr&#382;o ter toniziranje in u&#269;vrstitev celega telesa. Rada imam to, kar po&#269;nem, zato se trudim, da je vsak trening hkrati zabaven in funkcionalen&amp;hellip; Tako ure minejo v trenutku!">I miei allenamenti sono basati su esercizi mirati al funzionamento delle articolazioni, alla postura corretta, alla tonificazione e rassodamento di tutto il corpo. Amo quello che faccio e per questo cerco di rendere ogni allenamento divertente e funzionale allo stesso tempo&hellip; Cos&igrave; le lezioni passano in un attimo!</p></div></article>
 
-        <div class="cta-band">
+        <div class="cta-band sbt-cta">
           <div><h2 data-en="Want to try a class?" data-sl="&#381;eli&#353; preizkusiti uro?">Vuoi provare una lezione?</h2><p data-en="Call us or message us on WhatsApp." data-sl="Pokli&#269;i nas ali nam pi&#353;i na WhatsApp.">Chiamaci o scrivici su WhatsApp.</p></div>
           <div class="acts">
             <a class="btn btn-red callLink" href="#"><svg class="ic"><use href="#i-phone"/></svg><span data-en="Call" data-sl="Pokli&#269;i">Chiama</span></a>
