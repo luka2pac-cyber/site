@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-16-1048 cd00c126 -->
+<!-- sportfit-build 2026-10-20-1958 3e76c502 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -315,7 +315,7 @@
   .grp-book{border-left-color:#8a8a8a}
   .acts3 .grp-free{grid-column:1/3;grid-row:1}
   .grp-free,.grp-book{justify-content:center;text-align:center}
-  #pilates .act-btns{justify-content:center}
+  #pilates .act-btns,#sbt .act-btns{justify-content:center}
   .acts3 .grp-book{grid-column:3/4;grid-row:1}
   .acts3 #pilates{grid-column:1;grid-row:2}
   .acts3 #sbt{grid-column:2;grid-row:2}
@@ -592,6 +592,9 @@
             <p data-en="Targeted exercises to reshape your body and boost calorie burn and energy. A stronger, more flexible, fitter body." data-sl="Ciljane vaje za oblikovanje telesa, večjo porabo kalorij in več energije. Močnejše in bolj prožno telo v dobri formi.">Esercizi mirati per ridefinire il corpo, aumentare il consumo calorico e l&rsquo;energia. Un corpo pi&ugrave; forte, elastico e in forma.</p>
             <ul class="times" data-times="SBT"></ul>
             <div class="notes"><span data-en="All levels" data-sl="Za vse nivoje">Tutti i livelli</span><span data-who="SBT"></span></div>
+            <div class="act-btns">
+              <a class="btn btn-line btn-sm" href="sbt.html" data-en="More info" data-sl="Več info">Più info</a>
+            </div>
           </div>
         </article>
         <article class="act" id="pole-dance">
@@ -787,7 +790,7 @@ SF.applyLang = function(){
     if (d.body.dataset[L+'Title']) d.title = d.body.dataset[L+'Title'];
     d.querySelectorAll('a[href]').forEach(a => {
       const h = a.getAttribute('href');
-      if (!/^(\.\/|pole-dance\.html|istruttrici\.html)/.test(h)) return;
+      if (!/^(\.\/|pole-dance\.html|istruttrici\.html|sbt\.html)/.test(h)) return;
       const k = h.indexOf('#'), path = k < 0 ? h : h.slice(0,k), hash = k < 0 ? '' : h.slice(k);
       a.setAttribute('href', path + (path.includes('?') ? '&' : '?') + 'lang=' + L + hash);
     });
