@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-20-2007 6e804b54 -->
+<!-- sportfit-build 2026-10-20-2027 811483f5 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -523,12 +523,6 @@
             <h2 class="title" data-en="What is SBT?" data-sl="Kaj je SBT?">Cos&rsquo;&egrave; SBT?</h2>
             <p class="lead" data-en="S.B.T. (Sculpt Burn Training) is a workout designed to improve joint mobility, refine your posture, and firm and define your body." data-sl="S.B.T. (Sculpt Burn Training) je vadba, namenjena izbolj&#353;anju gibljivosti sklepov, izpopolnjevanju dr&#382;e ter u&#269;vrstitvi in oblikovanju telesa.">L&rsquo;allenamento S.B.T. (Sculpt Burn Training) &egrave; pensato per migliorare la mobilit&agrave; articolare, perfezionare la postura, rassodare e definire il corpo.</p>
             <p data-en="All of this through targeted exercises built on specific training techniques. Every session also boosts calorie burn and energy: the result is a stronger, more flexible, fitter body." data-sl="Vse to s ciljanimi vajami, ki temeljijo na posebnih tehnikah vadbe. Vsaka ura poleg tega pove&#269;a porabo kalorij in energijo: rezultat je mo&#269;nej&#353;e, bolj pro&#382;no telo v dobri formi.">Il tutto attraverso esercizi mirati, basati su tecniche di allenamento specifiche. Ogni lezione aumenta inoltre il consumo calorico e l&rsquo;energia: il risultato &egrave; un corpo pi&ugrave; forte, elastico e in forma.</p>
-          <div class="sbt-facts">
-            <h3 data-en="When" data-sl="Kdaj">Quando</h3>
-            <ul class="times" id="sbtTimes"></ul>
-            <div class="notes"><span data-en="All levels" data-sl="Za vse nivoje">Tutti i livelli</span><span data-en="Class studio" data-sl="Dvorana za vadbe">Sala corsi</span></div>
-            <button type="button" class="sbt-flyer" data-gal="volantino-sbt.jpg" data-gal-alt="SBT" data-start="0" aria-label="Apri il volantino SBT" data-en-aria="Open the SBT flyer" data-sl-aria="Odpri letak za SBT"><img src="foto-card-sbt.jpg" alt="SBT" loading="lazy"></button>
-          </div>
         </div>
 
         <h2 class="title sec-sub" data-en="Your instructor" data-sl="Tvoja in&#353;truktorica">La tua istruttrice</h2>
@@ -821,11 +815,7 @@ SF.lezioni = function(type){
 })();
 </script>
 <script>
-(function(){
-  document.querySelectorAll('.waLink').forEach(a => a.href = SF.wa());
-  const ul = document.getElementById('sbtTimes');
-  if (ul) ul.innerHTML = SF.quando('SBT').map(q => '<li><svg class="ic"><use href="#i-cal"/></svg>' + q + '</li>').join('');
-})();
+(function(){ document.querySelectorAll('.waLink').forEach(a => a.href = SF.wa()); })();
 </script>
 </body>
 </html>
