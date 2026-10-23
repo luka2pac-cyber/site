@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-22-1846 e04b1cce -->
+<!-- sportfit-build 2026-10-23-1112 c6fbea00 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -522,6 +522,13 @@
   .confirm p{margin-bottom:4px}
   .confirm .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .confirm .btn{margin-top:10px;font-size:1rem;padding:11px 6px}
+  .appl{display:flex;align-items:center;gap:14px;background:var(--bg-2);border:1px solid var(--line);border-left:4px solid var(--red);padding:16px 18px;margin-bottom:16px;color:var(--ink);text-decoration:none;transition:border-color .15s}
+  .appl:hover,.appl:focus-visible{border-color:var(--red)}
+  .appl svg{width:34px;height:34px;stroke:var(--red);fill:none;stroke-width:2;flex:none}
+  .appl div{flex:1;min-width:0}
+  .appl b{display:block;font-family:var(--display);font-weight:700;font-size:1.25rem;line-height:1.1;letter-spacing:.03em;text-transform:uppercase;margin-bottom:3px}
+  .appl span{display:block;color:var(--muted);font-size:.92rem}
+  .appl i{font-style:normal;font-family:var(--display);font-weight:700;color:var(--red);font-size:1.4rem;flex:none}
   .who{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.92rem;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}
   .who button{all:unset;cursor:pointer;color:var(--ink);font-family:var(--display);font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-bottom:2px solid var(--red)}
   .who button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
@@ -878,11 +885,17 @@ SF.lezioni = function(type){
       rows.map(r => '<div class="tr"><span>' + r[0] + '</span><span>' + (typeof r[1] === 'number' ? r[1] : r[1]) + '</span></div>').join('') + foot + '</article>';
   }
 
+  const APP_LINK = 'https://luka2pac-cyber.github.io/sportfit-app/';
+  const appHtml = cards => cards.some(c => c.t === 'fitness' && (c.stato === 'attiva' || c.stato === 'sospesa')) ?
+    '<a class="appl" href="' + APP_LINK + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg><div><b>' +
+    t('App di allenamento','Training app','Trening aplikacija') + '</b><span>' +
+    t('Programmi, timer e calcolatori','Programs, timer and calculators','Programi, štoparica in kalkulatorji') + '</span></div><i aria-hidden="true">&rarr;</i></a>' : '';
+
   function showCards(me){
     const cards = me.cards || [];
     app.innerHTML = '<h1>' + (me.nome ? t('Ciao ','Hi ','Živijo ') + esc(me.nome) : t('Le tue tessere','Your memberships','Tvoje karte')) + '</h1>' +
       (flash ? msg(flash.kind, flash.title, flash.text) : '') +
-      (cards.length ? cards.map(cardHtml).join('') :
+      (cards.length ? cards.map(cardHtml).join('') + appHtml(cards) :
         msg('info', t('Nessuna tessera trovata','No membership found','Ni najdenih kart'), t('Se hai appena rinnovato, la tessera comparirà a breve. Altrimenti chiedi in reception.','If you just renewed, it will appear shortly. Otherwise please ask at reception.','Če si karto pravkar podaljšal, se bo kmalu pokazala. Sicer vprašaj na recepciji.'))) +
       footer(me.email);
     flash = null;
