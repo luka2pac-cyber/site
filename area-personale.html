@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-23-1112 c6fbea00 -->
+<!-- sportfit-build 2026-10-23-1125 f806b698 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -532,10 +532,13 @@
   .who{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.92rem;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}
   .who button{all:unset;cursor:pointer;color:var(--ink);font-family:var(--display);font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-bottom:2px solid var(--red)}
   .who button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+  #app{position:relative}
+  .apbar{position:absolute;left:0;right:0;top:-10px;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);background-size:40% 100%;background-repeat:no-repeat;animation:apbar 1.1s linear infinite}
+  @keyframes apbar{from{background-position:-40% 0}to{background-position:140% 0}}
   .spin{display:flex;justify-content:center;padding:40px 0}
   .spin i{width:34px;height:34px;border:3px solid var(--line-2);border-top-color:var(--red);border-radius:50%;animation:apspin .8s linear infinite}
   @keyframes apspin{to{transform:rotate(360deg)}}
-  @media (prefers-reduced-motion:reduce){.spin i{animation-duration:2.5s}}
+  @media (prefers-reduced-motion:reduce){.spin i{animation-duration:2.5s}.apbar{animation-duration:3s}}
   @media (max-width:700px){.ap{text-align:left}}
 </style>
 
@@ -792,7 +795,14 @@ SF.lezioni = function(type){
   const app = document.getElementById('app');
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const getS = () => { try { return localStorage.getItem(KEY) || ''; } catch(e) { return ''; } };
-  const setS = v => { try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch(e) {} };
+  const setS = v => { try { v ? localStorage.setItem(KEY, v) : (localStorage.removeItem(KEY), localStorage.removeItem(KEY + '-c')); } catch(e) {} };
+  // zadnje karte v telefonu: prikažemo jih takoj, sveže pridejo v ozadju
+  const getC = s => { try { const c = JSON.parse(localStorage.getItem(KEY + '-c') || 'null'); return c && c.s === s && c.me && c.me.stato === 'ok' ? c.me : null; } catch(e) { return null; } };
+  const setC = (s, me) => { try { me && me.stato === 'ok' ? localStorage.setItem(KEY + '-c', JSON.stringify({s, me})) : localStorage.removeItem(KEY + '-c'); } catch(e) {} };
+  const fresh = me => { const d0 = new Date(); d0.setHours(0,0,0,0);
+    (me.cards || []).forEach(c => { if (c.stato === 'attiva' && c.scad) { const p = c.scad.split('.'); const d = new Date(+p[2], +p[1] - 1, +p[0]);
+      if (!isNaN(d)) { c.giorni = Math.round((d - d0) / 86400000); if (c.giorni < 0) { c.stato = 'scaduta'; c.can = false; } else if (c.giorni < 1 && c.can) { c.can = false; c.reason = 'scaduta'; } } } });
+    return me; };
   let flash = null;
 
   async function api(body){
@@ -891,9 +901,9 @@ SF.lezioni = function(type){
     t('App di allenamento','Training app','Trening aplikacija') + '</b><span>' +
     t('Programmi, timer e calcolatori','Programs, timer and calculators','Programi, štoparica in kalkulatorji') + '</span></div><i aria-hidden="true">&rarr;</i></a>' : '';
 
-  function showCards(me){
+  function showCards(me, loading){
     const cards = me.cards || [];
-    app.innerHTML = '<h1>' + (me.nome ? t('Ciao ','Hi ','Živijo ') + esc(me.nome) : t('Le tue tessere','Your memberships','Tvoje karte')) + '</h1>' +
+    app.innerHTML = (loading ? '<div class="apbar" role="progressbar" aria-label="' + t('Aggiornamento','Updating','Posodabljanje') + '"></div>' : '') + '<h1>' + (me.nome ? t('Ciao ','Hi ','Živijo ') + esc(me.nome) : t('Le tue tessere','Your memberships','Tvoje karte')) + '</h1>' +
       (flash ? msg(flash.kind, flash.title, flash.text) : '') +
       (cards.length ? cards.map(cardHtml).join('') + appHtml(cards) :
         msg('info', t('Nessuna tessera trovata','No membership found','Ni najdenih kart'), t('Se hai appena rinnovato, la tessera comparirà a breve. Altrimenti chiedi in reception.','If you just renewed, it will appear shortly. Otherwise please ask at reception.','Če si karto pravkar podaljšal, se bo kmalu pokazala. Sicer vprašaj na recepciji.'))) +
@@ -910,7 +920,7 @@ SF.lezioni = function(type){
         if (r.err === 'session') return relogin();
         flash = r.ok ? {kind:'ok', title:t('Tessera sospesa','Membership suspended','Karta blokirana'), text:t(label + ' sospesa da oggi. Hai ' + r.days + ' giorni salvati: si riattivano in reception quando torni.', label + ' suspended from today. You have ' + r.days + ' days saved; they restart at reception when you return.', label + ' je blokirana od danes. Shranjenih imaš ' + r.days + ' dni; ponovno začnejo teči, ko se oglasiš na recepciji.')}
                      : {kind:'err', title:'', text:errText(r.err)};
-        if (r.ok && r.cards) { me.cards = r.cards; showCards(me); } else load();
+        if (r.ok && r.cards) { me.cards = r.cards; setC(getS(), me); showCards(me); } else load();
       } catch(err) { flash = {kind:'err', title:'', text:errText('')}; load(); }
     });
   }
@@ -920,15 +930,24 @@ SF.lezioni = function(type){
   async function load(){
     const s = getS();
     if (!s) return showLogin();
-    busy();
+    const cached = getC(s);
+    if (cached) showCards(fresh(cached), true); else busy();
     try {
       const me = await api({a:'me', s});
       if (!me.ok) return relogin();
+      setC(s, me);
+      if (cached && me.stato === 'ok') {
+        const open = app.querySelector('.confirm:not([hidden])');
+        if (JSON.stringify(me.cards) === JSON.stringify(cached.cards) && !flash) { const bar = app.querySelector('.apbar'); if (bar) bar.remove(); return; }
+        if (open) { const bar = app.querySelector('.apbar'); if (bar) bar.remove(); return; }
+        return showCards(me);
+      }
       if (me.stato === 'nuovo') return showRegister(me);
       if (me.stato === 'attesa') { app.innerHTML = '<h1>' + t('Quasi fatto','Almost done','Skoraj končano') + '</h1>' + msg('info', t('In attesa di conferma','Waiting for confirmation','Čaka na potrditev'), t('La reception conferma il tuo account a breve e ti arriva un\'e-mail. Poi qui vedrai le tue tessere.','Reception will confirm your account soon and you\'ll get an e-mail. Then your memberships will appear here.','Recepcija bo kmalu potrdila tvoj profil in dobil boš e-pošto. Nato boš tu videl svoje karte.')) + footer(me.email); bindOut(); return; }
       if (me.stato === 'rifiutato') { app.innerHTML = '<h1>' + t('Account non attivo','Account not active','Profil ni aktiven') + '</h1>' + msg('info', '', t('Non siamo riusciti a confermare il tuo account. Contatta la reception.','We couldn\'t confirm your account. Please contact reception.','Tvojega profila nismo mogli potrditi. Obrni se na recepcijo.')) + footer(me.email); bindOut(); return; }
       showCards(me);
     } catch(err) {
+      if (cached) { const bar = app.querySelector('.apbar'); if (bar) bar.outerHTML = msg('info', '', t('Dati dell\'ultimo accesso: aggiornamento non riuscito.','Showing data from your last visit: update failed.','Prikazani so podatki z zadnjega obiska: posodobitev ni uspela.')); return; }
       app.innerHTML = msg('err', '', errText('')) + '<button class="btn btn-ghost" type="button" id="apRetry">' + t('Riprova','Try again','Poskusi znova') + '</button>';
       document.getElementById('apRetry').onclick = load;
     }
