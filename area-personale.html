@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-23-1125 f806b698 -->
+<!-- sportfit-build 2026-10-23-1143 83075f20 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -507,6 +507,16 @@
   .ap .msg.ok{background:#0f2414;border-color:#2f6b3c}.ap .msg.ok b{color:#6fdc8c}
   .ap .msg.err{background:#2a0d0e;border-color:#7a2226}.ap .msg.err b{color:#ff8a8f}
   .ap .msg.info{background:var(--bg-2);border-color:var(--line-2)}
+  .big{display:flex;align-items:flex-end;gap:12px;margin:12px 0 16px}
+  .big b{font-family:var(--display);font-weight:700;font-size:4rem;line-height:.82;color:var(--ink);font-variant-numeric:tabular-nums}
+  .big span{color:var(--muted);line-height:1.3;font-size:.95rem}
+  .big span strong{display:block;color:var(--ink);font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.04em;text-transform:uppercase}
+  .big.warn b,.big.warn span strong{color:var(--red)}
+  .tcard.off .big b{color:#f7c600}
+  .tsub{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:.95rem}
+  .tsub em{font-style:normal;color:var(--ink);font-weight:600;margin-left:8px}
+  .ap .btn-out{background:transparent;border:2px solid var(--red);color:var(--ink);font-size:1.05rem;padding:11px;margin-top:14px}
+  .ap .btn-out:hover{background:var(--red)}
   .tcard{background:var(--bg-2);border:1px solid var(--line);border-top:4px solid var(--red);padding:18px 20px 20px;margin-bottom:16px}
   .tcard.off{border-top-color:#5a5a5a}
   .tc-h{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
@@ -539,16 +549,17 @@
   .spin i{width:34px;height:34px;border:3px solid var(--line-2);border-top-color:var(--red);border-radius:50%;animation:apspin .8s linear infinite}
   @keyframes apspin{to{transform:rotate(360deg)}}
   @media (prefers-reduced-motion:reduce){.spin i{animation-duration:2.5s}.apbar{animation-duration:3s}}
-  @media (max-width:700px){.ap{text-align:left}}
+  @media (max-width:700px){.ap{text-align:left;padding-block:18px 48px}.ap .back{font-size:.85rem;margin-bottom:8px}.ap h1{margin-bottom:14px}}
 </style>
 
 <style>
   .nav-r{display:flex;align-items:center;gap:12px}
-  .acc-ico{display:inline-flex;align-items:center;gap:7px;border:2px solid var(--red);color:#fff;text-decoration:none;font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;line-height:1;transition:background .15s}
-  .acc-ico svg{width:18px;height:18px;stroke:var(--red);fill:none;stroke-width:2;flex:none;transition:stroke .15s}
-  .acc-ico:hover,.acc-ico[aria-current="page"]{background:var(--red)}
-  .acc-ico:hover svg,.acc-ico[aria-current="page"] svg{stroke:#fff}
-  @media (max-width:700px){.acc-ico span{display:none}.acc-ico{padding:6px 7px}.nav-r{gap:6px}}
+  .acc-ico{display:inline-flex;align-items:center;gap:7px;background:var(--red);border:2px solid var(--red);color:#fff;text-decoration:none;font-family:var(--display);font-weight:700;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;line-height:1;transition:background .15s,border-color .15s}
+  .acc-ico svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;flex:none}
+  .acc-ico .s{display:none}
+  .acc-ico:hover,.acc-ico:focus-visible{background:#c4161d;border-color:#c4161d}
+  .acc-ico:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  @media (max-width:700px){.acc-ico{flex-direction:column;gap:3px;padding:5px 7px 4px;min-width:46px}.acc-ico .l{display:none}.acc-ico .s{display:block;font-size:.66rem;letter-spacing:.07em}.acc-ico svg{width:20px;height:20px}.nav-r{gap:6px}}
   @media (max-width:340px){.lang a{padding:6px 4px;gap:3px}.lang .flag{width:15px;height:10px}}
 </style>
 </head>
@@ -568,7 +579,7 @@
 <header class="nav">
   <div class="wrap nav-row">
     <a class="logo" href="./"><img src="logo-base-header.png" alt="Sport&amp;Fit — your personal gym"></a>
-    <div class="nav-r"><div class="lang" role="group" aria-label="Lingua / Language"><a href="?lang=it" data-l="it" lang="it" hreflang="it"><svg class="flag" viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#CE2B37" d="M2 0h1v2H2z"/></svg>IT</a><a href="?lang=sl" data-l="sl" lang="sl" hreflang="sl"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path fill="#fff" d="M0 0h60v10H0z"/><path fill="#0000FF" d="M0 10h60v10H0z"/><path fill="#FF0000" d="M0 20h60v10H0z"/><path d="M12 4.2h9.6v6.4c0 3.4-2.2 5.3-4.8 6.4-2.6-1.1-4.8-3-4.8-6.4z" fill="#005DA4" stroke="#ED1C24" stroke-width=".8"/><path d="M12.9 12.6l2.2-3.1 1 1.3 1.1-2.8 1.1 2.8 1-1.3 2.2 3.1c-.8 1.6-2.3 2.6-3.7 3.3-1.4-.7-2.9-1.7-3.7-3.3z" fill="#fff"/><g fill="#FFDD00"><circle cx="15" cy="5.9" r=".6"/><circle cx="16.8" cy="6.9" r=".6"/><circle cx="18.6" cy="5.9" r=".6"/></g></svg>SL</a><a href="?lang=en" data-l="en" lang="en" hreflang="en"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><clipPath id="ukS"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="ukT"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#ukS)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#ukT)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg>EN</a></div><a class="acc-ico" href="https://luka2pac-cyber.github.io/site/area-personale.html" target="_top" aria-current="page" aria-label="Area personale" data-en-aria="Personal area" data-sl-aria="Moj profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4.5-6.5 8-6.5s7 2 8 6.5"/></svg><span data-en="Personal area" data-sl="Moj profil">Area personale</span></a></div>
+    <div class="nav-r"><div class="lang" role="group" aria-label="Lingua / Language"><a href="?lang=it" data-l="it" lang="it" hreflang="it"><svg class="flag" viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><path fill="#009246" d="M0 0h1v2H0z"/><path fill="#fff" d="M1 0h1v2H1z"/><path fill="#CE2B37" d="M2 0h1v2H2z"/></svg>IT</a><a href="?lang=sl" data-l="sl" lang="sl" hreflang="sl"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path fill="#fff" d="M0 0h60v10H0z"/><path fill="#0000FF" d="M0 10h60v10H0z"/><path fill="#FF0000" d="M0 20h60v10H0z"/><path d="M12 4.2h9.6v6.4c0 3.4-2.2 5.3-4.8 6.4-2.6-1.1-4.8-3-4.8-6.4z" fill="#005DA4" stroke="#ED1C24" stroke-width=".8"/><path d="M12.9 12.6l2.2-3.1 1 1.3 1.1-2.8 1.1 2.8 1-1.3 2.2 3.1c-.8 1.6-2.3 2.6-3.7 3.3-1.4-.7-2.9-1.7-3.7-3.3z" fill="#fff"/><g fill="#FFDD00"><circle cx="15" cy="5.9" r=".6"/><circle cx="16.8" cy="6.9" r=".6"/><circle cx="18.6" cy="5.9" r=".6"/></g></svg>SL</a><a href="?lang=en" data-l="en" lang="en" hreflang="en"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><clipPath id="ukS"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="ukT"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#ukS)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#ukT)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg>EN</a></div><a class="acc-ico" href="https://luka2pac-cyber.github.io/site/area-personale.html" target="_top" aria-current="page" aria-label="Area personale" data-en-aria="Personal area" data-sl-aria="Moj profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4.5-6.5 8-6.5s7 2 8 6.5"/></svg><span class="l" data-en="Personal area" data-sl="Moj profil">Area personale</span><span class="s" data-en="Area" data-sl="Profil">Area</span></a></div>
   </div>
 </header>
 
@@ -870,29 +881,24 @@ SF.lezioni = function(type){
   }
 
   function cardHtml(c){
-    const rows = [];
-    if (c.stato === 'sospesa') rows.push([t('Giorni salvati','Days saved','Shranjeni dnevi'), c.giorni]);
-    else if (c.scad) {
-      rows.push([t('Scadenza','Expires','Poteče'), c.scad]);
-      if (c.stato === 'attiva') rows.push([t('Giorni rimasti','Days left','Preostali dnevi'), c.giorni]);
-    }
-    if (c.max) rows.push([t('Sospensioni','Suspensions','Blokade'), '<span class="boxes" aria-label="' + c.used + '/' + c.max + '">' + Array.from({length:c.max}, (_,i) => '<i class="' + (i < c.used ? 'u' : '') + '"></i>').join('') + '</span>']);
     const pill = {attiva:t('Attiva','Active','Aktivna'), sospesa:t('Sospesa','Suspended','Blokirana'), scaduta:t('Scaduta','Expired','Potekla'), nessuna:t('Non attiva','Not active','Ni aktivna'), abb:t('A ingressi','Pay per entry','Na obiske')}[c.stato];
+    let big = '';
+    if (c.stato === 'sospesa') big = '<div class="big"><b>' + c.giorni + '</b><span><strong>' + t('giorni salvati','days saved','shranjenih dni') + '</strong>' + t('Riattiva in reception','Reactivate at reception','Aktiviraj na recepciji') + '</span></div>';
+    else if (c.stato === 'attiva' && c.giorni !== null) big = '<div class="big' + (c.giorni <= 7 ? ' warn' : '') + '"><b>' + c.giorni + '</b><span><strong>' + (c.giorni === 1 ? t('giorno','day','dan') : t('giorni','days','dni')) + '</strong>' + t('scade il ','expires ','poteče ') + esc(c.scad) + '</span></div>';
+    else if (c.scad) big = '<div class="tsub" style="border:0;padding:8px 0 4px"><span>' + t('Scaduta il','Expired on','Potekla') + '</span><em>' + esc(c.scad) + '</em></div>';
+    let sub = '';
+    if (c.max) sub = '<div class="tsub"><span>' + t('Sospensioni usate','Suspensions used','Porabljene blokade') + '<em>' + c.used + ' / ' + c.max + '</em></span><span class="boxes" aria-hidden="true">' + Array.from({length:c.max}, (_,i) => '<i class="' + (i < c.used ? 'u' : '') + '"></i>').join('') + '</span></div>';
     let foot = '';
+    if (c.stato === 'attiva' && c.giorni !== null && c.giorni <= 7) foot += '<p class="note">' + t('Rinnova in reception per non perdere giorni.','Renew at reception so you don\'t lose any days.','Podaljšaj na recepciji, da ne izgubiš dni.') + '</p>';
     if (c.can) {
-      const left = c.max ? c.max - c.used : null;
-      foot = (left !== null ? '<p class="note">' + (left === 1 ? t('Hai ancora <b>1 sospensione</b> per questa tessera.','You have <b>1 suspension</b> left for this membership.','Za to karto imaš še <b>1 blokado</b>.') : t('Hai ancora <b>' + left + ' sospensioni</b> per questa tessera.','You have <b>' + left + ' suspensions</b> left for this membership.','Za to karto imaš še <b>' + left + ' blokadi</b>.')) + '</p>' : '') +
-        '<button class="btn btn-red" type="button" data-sosp="' + c.t + '">' + t('Sospendi','Suspend','Blokiraj') + ' ' + esc(c.label) + '</button>' +
+      foot += '<button class="btn btn-out" type="button" data-sosp="' + c.t + '">' + t('Sospendi','Suspend','Blokiraj') + ' ' + esc(c.label) + '</button>' +
         '<div class="confirm" data-conf="' + c.t + '" hidden><p><b>' + t('Sospendere da oggi?','Suspend from today?','Blokiram od danes?') + '</b></p>' +
         '<p class="note" style="margin-top:0">' + t('I ' + c.giorni + ' giorni rimasti restano tuoi. La tessera si riattiva in reception quando torni.','Your ' + c.giorni + ' remaining days are kept. The membership is reactivated at reception when you return.','Preostalih ' + c.giorni + ' dni ostane tvojih. Karto ponovno aktiviraš na recepciji, ko se vrneš.') + '</p>' +
         '<div class="row2"><button class="btn btn-ghost" type="button" data-no="' + c.t + '">' + t('Annulla','Cancel','Prekliči') + '</button><button class="btn btn-red" type="button" data-yes="' + c.t + '">' + t('Conferma','Confirm','Potrdi') + '</button></div></div>';
-    } else if (c.stato === 'sospesa') {
-      foot = '<p class="note">' + t('Per riattivarla passa in reception: i giorni salvati ripartono da quel giorno.','To reactivate it, stop by reception: your saved days restart from that day.','Za ponovno aktivacijo se oglasi na recepciji: shranjeni dnevi začnejo teči od tistega dne.') + '</p>';
     } else if (c.reason && c.stato === 'attiva') {
-      foot = '<p class="note">' + esc(errText(c.reason)) + (c.reason === 'usata' && c.max === 1 ? ' ' + t('Con l\'abbonamento annuale le sospensioni sono 2.','Annual memberships include 2 suspensions.','Letna karta ima 2 blokadi.') : '') + '</p>';
+      foot += '<p class="note">' + esc(errText(c.reason)) + (c.reason === 'usata' && c.max === 1 ? ' ' + t('Con l\'abbonamento annuale le sospensioni sono 2.','Annual memberships include 2 suspensions.','Letna karta ima 2 blokadi.') : '') + '</p>';
     }
-    return '<article class="tcard' + (c.stato === 'attiva' ? '' : ' off') + '"><div class="tc-h"><h2>' + esc(c.label) + '</h2><span class="pill ' + c.stato + '">' + pill + '</span></div>' +
-      rows.map(r => '<div class="tr"><span>' + r[0] + '</span><span>' + (typeof r[1] === 'number' ? r[1] : r[1]) + '</span></div>').join('') + foot + '</article>';
+    return '<article class="tcard' + (c.stato === 'attiva' ? '' : ' off') + '"><div class="tc-h"><h2>' + esc(c.label) + '</h2><span class="pill ' + c.stato + '">' + pill + '</span></div>' + big + sub + foot + '</article>';
   }
 
   const APP_LINK = 'https://luka2pac-cyber.github.io/sportfit-app/';
@@ -905,7 +911,7 @@ SF.lezioni = function(type){
     const cards = me.cards || [];
     app.innerHTML = (loading ? '<div class="apbar" role="progressbar" aria-label="' + t('Aggiornamento','Updating','Posodabljanje') + '"></div>' : '') + '<h1>' + (me.nome ? t('Ciao ','Hi ','Živijo ') + esc(me.nome) : t('Le tue tessere','Your memberships','Tvoje karte')) + '</h1>' +
       (flash ? msg(flash.kind, flash.title, flash.text) : '') +
-      (cards.length ? cards.map(cardHtml).join('') + appHtml(cards) :
+      (cards.length ? cards.map(c => cardHtml(c) + (c.t === 'fitness' ? appHtml(cards) : '')).join('') :
         msg('info', t('Nessuna tessera trovata','No membership found','Ni najdenih kart'), t('Se hai appena rinnovato, la tessera comparirà a breve. Altrimenti chiedi in reception.','If you just renewed, it will appear shortly. Otherwise please ask at reception.','Če si karto pravkar podaljšal, se bo kmalu pokazala. Sicer vprašaj na recepciji.'))) +
       footer(me.email);
     flash = null;
