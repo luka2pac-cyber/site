@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-23-1143 83075f20 -->
+<!-- sportfit-build 2026-10-23-1217 c4fe46fb -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -914,7 +914,7 @@ SF.lezioni = function(type){
       (cards.length ? cards.map(c => cardHtml(c) + (c.t === 'fitness' ? appHtml(cards) : '')).join('') :
         msg('info', t('Nessuna tessera trovata','No membership found','Ni najdenih kart'), t('Se hai appena rinnovato, la tessera comparirà a breve. Altrimenti chiedi in reception.','If you just renewed, it will appear shortly. Otherwise please ask at reception.','Če si karto pravkar podaljšal, se bo kmalu pokazala. Sicer vprašaj na recepciji.'))) +
       footer(me.email);
-    flash = null;
+    if (!loading) flash = null;
     bindOut();
     app.querySelectorAll('[data-sosp]').forEach(b => b.onclick = () => { b.hidden = true; const c = app.querySelector('[data-conf="' + b.dataset.sosp + '"]'); c.hidden = false; c.querySelector('[data-yes]').focus(); });
     app.querySelectorAll('[data-no]').forEach(b => b.onclick = () => { app.querySelector('[data-conf="' + b.dataset.no + '"]').hidden = true; app.querySelector('[data-sosp="' + b.dataset.no + '"]').hidden = false; });
@@ -953,7 +953,7 @@ SF.lezioni = function(type){
       if (me.stato === 'rifiutato') { app.innerHTML = '<h1>' + t('Account non attivo','Account not active','Profil ni aktiven') + '</h1>' + msg('info', '', t('Non siamo riusciti a confermare il tuo account. Contatta la reception.','We couldn\'t confirm your account. Please contact reception.','Tvojega profila nismo mogli potrditi. Obrni se na recepcijo.')) + footer(me.email); bindOut(); return; }
       showCards(me);
     } catch(err) {
-      if (cached) { const bar = app.querySelector('.apbar'); if (bar) bar.outerHTML = msg('info', '', t('Dati dell\'ultimo accesso: aggiornamento non riuscito.','Showing data from your last visit: update failed.','Prikazani so podatki z zadnjega obiska: posodobitev ni uspela.')); return; }
+      if (cached) { const bar = app.querySelector('.apbar'); flash = null; if (bar) bar.outerHTML = msg('info', '', t('Dati dell\'ultimo accesso: aggiornamento non riuscito.','Showing data from your last visit: update failed.','Prikazani so podatki z zadnjega obiska: posodobitev ni uspela.')); return; }
       app.innerHTML = msg('err', '', errText('')) + '<button class="btn btn-ghost" type="button" id="apRetry">' + t('Riprova','Try again','Poskusi znova') + '</button>';
       document.getElementById('apRetry').onclick = load;
     }
