@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-27-1124 6ccd5910 -->
+<!-- sportfit-build 2026-10-27-1151 10135919 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -557,6 +557,9 @@
   .ap .first p b{color:var(--ink)}
   .ap .two{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
   .ap input.code{font-family:var(--display);font-weight:700;font-size:1.9rem;letter-spacing:.4em;text-align:center;padding:10px 6px 10px calc(6px + .4em)}
+  .ap .linkbtn{background:none;border:0;padding:4px 0;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer}
+  .ap .linkbtn:hover,.ap .linkbtn:focus-visible{color:var(--ink)}
+  .ap #fCode[hidden]{display:none}
   .inst{position:relative;background:var(--bg-2);border:1px solid var(--line);padding:16px 46px 16px 18px;margin:0 0 16px}
   .inst > b{display:block;font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.15;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
   .inst span{display:block;color:var(--muted);font-size:.92rem}
@@ -898,12 +901,18 @@ SF.lezioni = function(type){
   }
 
   function showCode(email, error){
+    const app_mode = standalone();
     app.innerHTML = '<h1>' + t('Controlla la posta','Check your e-mail','Preveri pošto') + '</h1>' +
-      (error ? msg('err', '', error) : msg('ok', t('E-mail inviata','E-mail sent','Sporočilo poslano'), t('Abbiamo inviato link e codice a ','We sent a link and a code to ','Povezavo in kodo smo poslali na ') + email + '.')) +
-      '<p class="lead">' + t('Apri l\'e-mail e tocca «Accedi», oppure scrivi qui il codice di 6 cifre. Non la trovi? Guarda nello spam.','Open the e-mail and tap “Sign in”, or type the 6-digit code here. Can\'t find it? Check spam.','Odpri e-pošto in klikni »Vstopi« ali pa tukaj vpiši 6-mestno kodo. Je ne najdeš? Poglej med vsiljeno pošto.') + '</p>' +
-      '<form id="fCode" novalidate><label for="apCode">' + t('Codice','Code','Koda') + '</label><input id="apCode" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="000000">' +
+      (error ? msg('err', '', error) : msg('ok', t('E-mail inviata','E-mail sent','Sporočilo poslano'), (app_mode ? t('Abbiamo inviato il codice a ','We sent the code to ','Kodo smo poslali na ') : t('Abbiamo inviato il link a ','We sent the link to ','Povezavo smo poslali na ')) + email + '.')) +
+      '<p class="lead">' + (app_mode
+        ? t('Scrivi qui il codice di 6 cifre che trovi nell\'e-mail. Non la trovi? Guarda nello spam.','Type the 6-digit code from the e-mail here. Can\'t find it? Check spam.','Tukaj vpiši 6-mestno kodo iz e-pošte. Je ne najdeš? Poglej med vsiljeno pošto.')
+        : t('Apri l\'e-mail e tocca «Accedi». Non la trovi? Guarda nello spam.','Open the e-mail and tap “Sign in”. Can\'t find it? Check spam.','Odpri e-pošto in klikni »Vstopi«. Je ne najdeš? Poglej med vsiljeno pošto.')) + '</p>' +
+      '<form id="fCode" novalidate' + (app_mode || error ? '' : ' hidden') + '><label for="apCode">' + t('Codice','Code','Koda') + '</label><input id="apCode" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="000000">' +
       '<button class="btn btn-red" type="submit">' + t('Entra','Sign in','Vstopi') + '</button></form>' +
-      '<button class="btn btn-ghost" type="button" id="apAgain">' + t('Usa un\'altra e-mail','Use another e-mail','Uporabi drug e-naslov') + '</button>';
+      '<button class="btn btn-ghost" type="button" id="apAgain">' + t('Usa un\'altra e-mail','Use another e-mail','Uporabi drug e-naslov') + '</button>' +
+      (app_mode || error ? '' : '<p class="note"><button type="button" class="linkbtn" id="apHasCode">' + t('Hai un codice? Scrivilo qui','Have a code? Enter it here','Imaš kodo? Vpiši jo tukaj') + '</button></p>');
+    const hc = document.getElementById('apHasCode');
+    if (hc) hc.onclick = () => { document.getElementById('fCode').hidden = false; hc.parentNode.remove(); document.getElementById('apCode').focus(); };
     document.getElementById('apAgain').onclick = () => { setP(''); showLogin('', {email}); };
     document.getElementById('fCode').onsubmit = async e => {
       e.preventDefault();
