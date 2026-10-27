@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-23-1217 c4fe46fb -->
+<!-- sportfit-build 2026-10-27-1124 6ccd5910 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -488,6 +488,13 @@
   @media (max-width:380px){.istr.one{padding:16px}}
 </style>
 
+<link rel="manifest" href="area-personale.webmanifest">
+<link rel="apple-touch-icon" href="ap-icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sport&amp;Fit">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#0b0b0b">
 <style>
   .ap{max-width:560px;margin-inline:auto;padding-block:36px 64px;min-height:62vh}
   .ap .back{display:inline-block;margin-bottom:14px;color:var(--muted);text-decoration:none;font-family:var(--display);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
@@ -543,6 +550,22 @@
   .who button{all:unset;cursor:pointer;color:var(--ink);font-family:var(--display);font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-bottom:2px solid var(--red)}
   .who button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
   #app{position:relative}
+  .busy-t{text-align:center;color:var(--muted);margin:-16px auto 0;max-width:360px;line-height:1.45}
+  .busy-s{margin-top:10px}
+  .ap .first{border:1px dashed var(--line-2);padding:2px 14px 14px;margin-top:20px}
+  .ap .first p{color:var(--muted);font-size:.92rem;margin:12px 0 0}
+  .ap .first p b{color:var(--ink)}
+  .ap .two{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+  .ap input.code{font-family:var(--display);font-weight:700;font-size:1.9rem;letter-spacing:.4em;text-align:center;padding:10px 6px 10px calc(6px + .4em)}
+  .inst{position:relative;background:var(--bg-2);border:1px solid var(--line);padding:16px 46px 16px 18px;margin:0 0 16px}
+  .inst > b{display:block;font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.15;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .inst span{display:block;color:var(--muted);font-size:.92rem}
+  .inst p{margin-top:8px;font-size:.95rem;line-height:1.45}
+  .inst p small{display:block;color:var(--muted);margin-top:4px}
+  .inst svg{width:18px;height:18px;vertical-align:-3px;stroke:var(--ink);fill:none;stroke-width:2}
+  .inst .x{position:absolute;top:6px;right:6px;width:36px;height:36px;background:none;border:0;color:var(--muted);font-size:1.6rem;line-height:1;cursor:pointer}
+  .inst .x:hover,.inst .x:focus-visible{color:var(--ink)}
+  .ap .inst .btn{margin-top:10px;width:auto;padding:10px 22px;font-size:1rem}
   .apbar{position:absolute;left:0;right:0;top:-10px;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);background-size:40% 100%;background-repeat:no-repeat;animation:apbar 1.1s linear infinite}
   @keyframes apbar{from{background-position:-40% 0}to{background-position:140% 0}}
   .spin{display:flex;justify-content:center;padding:40px 0}
@@ -815,6 +838,8 @@ SF.lezioni = function(type){
       if (!isNaN(d)) { c.giorni = Math.round((d - d0) / 86400000); if (c.giorni < 0) { c.stato = 'scaduta'; c.can = false; } else if (c.giorni < 1 && c.can) { c.can = false; c.reason = 'scaduta'; } } } });
     return me; };
   let flash = null;
+  const getP = () => { try { const p = JSON.parse(localStorage.getItem(KEY + '-p') || 'null'); return p && Date.now() - p.at < 30 * 60000 ? p.e : ''; } catch(e) { return ''; } };
+  const setP = e => { try { e ? localStorage.setItem(KEY + '-p', JSON.stringify({e, at: Date.now()})) : localStorage.removeItem(KEY + '-p'); } catch(err) {} };
 
   async function api(body){
     const r = await fetch(AP_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(body)});
@@ -831,34 +856,66 @@ SF.lezioni = function(type){
     scaduta: t('La tessera non è attiva.','This membership is not active.','Karta ni aktivna.'),
     sospesa: t('La tessera è già sospesa.','This membership is already suspended.','Karta je že blokirana.'),
     abb: t('Le tessere a ingressi non si sospendono.','Pay-per-entry passes cannot be suspended.','Karte z obiski se ne blokirajo.'),
+    code: t('Codice non corretto. Controlla l\'e-mail e riprova.','Wrong code. Check the e-mail and try again.','Napačna koda. Preveri e-pošto in poskusi znova.'),
+    code_exp: t('Il codice è scaduto o è già stato usato. Chiedi un nuovo link.','The code has expired or was already used. Ask for a new link.','Koda je potekla ali je bila že uporabljena. Zahtevaj novo povezavo.'),
     notfound: t('Tessera non trovata. Rivolgiti alla reception.','Membership not found. Please ask at reception.','Karta ni najdena. Obrni se na recepcijo.')
   }[code] || t('Qualcosa non ha funzionato. Riprova o contatta la reception.','Something went wrong. Try again or contact reception.','Nekaj ni delovalo. Poskusi znova ali se obrni na recepcijo.'));
   const msg = (kind, title, text) => '<div class="msg ' + kind + '" role="' + (kind === 'err' ? 'alert' : 'status') + '">' + (title ? '<b>' + esc(title) + '</b>' : '') + esc(text || '') + '</div>';
-  const busy = () => { app.innerHTML = '<div class="spin"><i></i></div>'; };
+  let busyN = 0;
+  const busy = text => { const n = ++busyN;
+    app.innerHTML = '<div class="spin"><i></i></div>' + (text ? '<p class="busy-t">' + text + '</p>' : '') +
+      '<p class="busy-t busy-s" id="busyS" hidden>' + t('Ancora qualche secondo…','Just a few more seconds…','Še nekaj sekund …') + '</p>';
+    setTimeout(() => { const el = document.getElementById('busyS'); if (el && n === busyN) el.hidden = false; }, 6000); };
+  const firstWait = () => t('Al primo accesso cerchiamo anche la tua tessera: può richiedere qualche secondo.','On your first visit we also look up your membership: this can take a few seconds.','Ob prvi prijavi poiščemo tudi tvojo karto: to lahko traja nekaj sekund.');
   const footer = email => '<div class="who"><span>' + esc(email || '') + '</span><button type="button" id="apOut">' + t('Esci','Sign out','Odjava') + '</button></div>';
   const bindOut = () => { const b = document.getElementById('apOut'); if (b) b.onclick = async () => { const s = getS(); setS(''); try { await api({a:'out', s}); } catch(e) {} showLogin(); }; };
 
-  function showLogin(error){
+  function showLogin(error, keep){
+    keep = keep || {};
     app.innerHTML = '<h1>' + t('Accedi','Sign in','Prijava') + '</h1>' +
-      '<p class="lead">' + t('Inserisci la tua e-mail: ti mandiamo un link per entrare. Niente password.','Enter your e-mail: we\'ll send you a sign-in link. No password needed.','Vpiši e-pošto: poslali ti bomo povezavo za vstop. Gesla ne potrebuješ.') + '</p>' +
+      '<p class="lead">' + t('Scrivi la tua e-mail: ti mandiamo un link e un codice per entrare. Niente password.','Enter your e-mail: we\'ll send you a sign-in link and code. No password needed.','Vpiši e-pošto: poslali ti bomo povezavo in kodo za vstop. Gesla ne potrebuješ.') + '</p>' +
       (error ? msg('err', '', error) : '') +
-      '<form id="fLink" novalidate><label for="apEmail">E-mail</label><input id="apEmail" type="email" autocomplete="email" inputmode="email" required>' +
+      '<form id="fLink" novalidate><label for="apEmail">E-mail</label><input id="apEmail" type="email" autocomplete="email" inputmode="email" required value="' + esc(keep.email || '') + '">' +
+      '<div class="first"><p><b>' + t('Prima volta qui?','First time here?','Prvič tukaj?') + '</b> ' + t('Scrivi anche nome e cognome come nel tuo tesseramento in palestra.','Also enter your first and last name as registered at the gym.','Vpiši še ime in priimek, kot sta vpisana v fitnesu.') + '</p>' +
+      '<div class="two"><div><label for="apNome">' + t('Nome','First name','Ime') + '</label><input id="apNome" autocomplete="given-name" maxlength="40" value="' + esc(keep.nome || '') + '"></div>' +
+      '<div><label for="apCognome">' + t('Cognome','Last name','Priimek') + '</label><input id="apCognome" autocomplete="family-name" maxlength="40" value="' + esc(keep.cognome || '') + '"></div></div></div>' +
       '<button class="btn btn-red" type="submit">' + t('Inviami il link','Send me the link','Pošlji povezavo') + '</button></form>' +
-      '<p class="note">' + t('La prima volta ti chiederemo nome e cognome; la reception conferma il tuo account una sola volta.','The first time we\'ll ask for your name; reception confirms your account once.','Prvič te bomo vprašali za ime in priimek; recepcija tvoj profil potrdi samo enkrat.') + '</p>';
+      '<p class="note">' + t('Hai già un account? Basta l\'e-mail.','Already have an account? Just your e-mail.','Že imaš profil? Dovolj je e-pošta.') + '</p>';
     document.getElementById('fLink').onsubmit = async e => {
       e.preventDefault();
       const email = document.getElementById('apEmail').value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { showLogin(errText('email')); document.getElementById('apEmail').value = email; return; }
-      const btn = e.target.querySelector('button'); btn.disabled = true;
+      const nome = document.getElementById('apNome').value.trim(), cognome = document.getElementById('apCognome').value.trim();
+      const k = {email, nome, cognome};
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return showLogin(errText('email'), k);
+      if ((nome || cognome) && (nome.length < 2 || cognome.length < 2)) return showLogin(errText('name'), k);
+      const btn = e.target.querySelector('button'); btn.disabled = true; btn.textContent = t('Invio in corso…','Sending…','Pošiljam …');
       try {
-        const r = await api({a:'link', email, lang: SF.lang});
-        if (!r.ok) { showLogin(errText(r.err)); return; }
-        app.innerHTML = '<h1>' + t('Controlla la posta','Check your e-mail','Preveri pošto') + '</h1>' +
-          msg('ok', t('Link inviato','Link sent','Povezava poslana'), t('Abbiamo inviato il link a ','We sent the link to ','Povezavo smo poslali na ') + email + '.') +
-          '<p class="lead">' + t('Apri l\'e-mail su questo telefono e tocca «Accedi». Il link vale 30 minuti. Non la trovi? Guarda nello spam.','Open the e-mail on this phone and tap “Sign in”. The link is valid for 30 minutes. Can\'t find it? Check spam.','Odpri e-pošto na tem telefonu in klikni »Vstopi«. Povezava velja 30 minut. Je ne najdeš? Poglej med vsiljeno pošto.') + '</p>' +
-          '<button class="btn btn-ghost" type="button" id="apAgain">' + t('Usa un\'altra e-mail','Use another e-mail','Uporabi drug e-naslov') + '</button>';
-        document.getElementById('apAgain').onclick = () => showLogin();
-      } catch(err) { showLogin(errText('')); }
+        const r = await api({a:'link', email, lang: SF.lang, nome, cognome});
+        if (!r.ok) return showLogin(errText(r.err), k);
+        setP(email); showCode(email);
+      } catch(err) { showLogin(errText(''), k); }
+    };
+  }
+
+  function showCode(email, error){
+    app.innerHTML = '<h1>' + t('Controlla la posta','Check your e-mail','Preveri pošto') + '</h1>' +
+      (error ? msg('err', '', error) : msg('ok', t('E-mail inviata','E-mail sent','Sporočilo poslano'), t('Abbiamo inviato link e codice a ','We sent a link and a code to ','Povezavo in kodo smo poslali na ') + email + '.')) +
+      '<p class="lead">' + t('Apri l\'e-mail e tocca «Accedi», oppure scrivi qui il codice di 6 cifre. Non la trovi? Guarda nello spam.','Open the e-mail and tap “Sign in”, or type the 6-digit code here. Can\'t find it? Check spam.','Odpri e-pošto in klikni »Vstopi« ali pa tukaj vpiši 6-mestno kodo. Je ne najdeš? Poglej med vsiljeno pošto.') + '</p>' +
+      '<form id="fCode" novalidate><label for="apCode">' + t('Codice','Code','Koda') + '</label><input id="apCode" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="000000">' +
+      '<button class="btn btn-red" type="submit">' + t('Entra','Sign in','Vstopi') + '</button></form>' +
+      '<button class="btn btn-ghost" type="button" id="apAgain">' + t('Usa un\'altra e-mail','Use another e-mail','Uporabi drug e-naslov') + '</button>';
+    document.getElementById('apAgain').onclick = () => { setP(''); showLogin('', {email}); };
+    document.getElementById('fCode').onsubmit = async e => {
+      e.preventDefault();
+      const code = document.getElementById('apCode').value.replace(/\D/g, '');
+      if (code.length !== 6) return showCode(email, t('Il codice ha 6 cifre.','The code has 6 digits.','Koda ima 6 številk.'));
+      busy(t('Accesso in corso…','Signing in…','Prijava …') + '<br>' + firstWait());
+      try {
+        const r = await api({a:'login', email, code});
+        if (r.ok) { setP(''); setS(r.s); return load(); }
+        if (r.err === 'code') return showCode(email, errText('code'));
+        setP(''); showLogin(errText(r.err || 'code_exp'), {email});
+      } catch(err) { showCode(email, errText('')); }
     };
   }
 
@@ -874,7 +931,7 @@ SF.lezioni = function(type){
       e.preventDefault();
       const nome = document.getElementById('apNome').value.trim(), cognome = document.getElementById('apCognome').value.trim();
       if (nome.length < 2 || cognome.length < 2) { showRegister(me, errText('name')); return; }
-      e.target.querySelector('button').disabled = true;
+      busy(t('Cerchiamo la tua tessera…','Looking up your membership…','Iščemo tvojo karto …') + '<br>' + t('Può richiedere qualche secondo.','This can take a few seconds.','To lahko traja nekaj sekund.'));
       try { const r = await api({a:'reg', s:getS(), nome, cognome}); if (!r.ok) { if (r.err === 'session') return relogin(); showRegister(me, errText(r.err)); return; } load(); }
       catch(err) { showRegister(me, errText('')); }
     };
@@ -913,9 +970,9 @@ SF.lezioni = function(type){
       (flash ? msg(flash.kind, flash.title, flash.text) : '') +
       (cards.length ? cards.map(c => cardHtml(c) + (c.t === 'fitness' ? appHtml(cards) : '')).join('') :
         msg('info', t('Nessuna tessera trovata','No membership found','Ni najdenih kart'), t('Se hai appena rinnovato, la tessera comparirà a breve. Altrimenti chiedi in reception.','If you just renewed, it will appear shortly. Otherwise please ask at reception.','Če si karto pravkar podaljšal, se bo kmalu pokazala. Sicer vprašaj na recepciji.'))) +
-      footer(me.email);
+      instHtml() + footer(me.email);
     if (!loading) flash = null;
-    bindOut();
+    bindOut(); bindInst();
     app.querySelectorAll('[data-sosp]').forEach(b => b.onclick = () => { b.hidden = true; const c = app.querySelector('[data-conf="' + b.dataset.sosp + '"]'); c.hidden = false; c.querySelector('[data-yes]').focus(); });
     app.querySelectorAll('[data-no]').forEach(b => b.onclick = () => { app.querySelector('[data-conf="' + b.dataset.no + '"]').hidden = true; app.querySelector('[data-sosp="' + b.dataset.no + '"]').hidden = false; });
     app.querySelectorAll('[data-yes]').forEach(b => b.onclick = async () => {
@@ -931,13 +988,40 @@ SF.lezioni = function(type){
     });
   }
 
+  // "Dodaj na zaslon telefona"
+  let installEvt = null;
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; const b = document.getElementById('apInstBtn'); if (b) b.hidden = false; });
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isMobile = isIOS || /Android/i.test(navigator.userAgent);
+  const standalone = () => { try { return matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; } catch(e) { return false; } };
+  const instOff = () => { try { return localStorage.getItem(KEY + '-inst') === 'no'; } catch(e) { return false; } };
+  const SHARE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M6 11H5v10h14V11h-1"/></svg>';
+  function instHtml(){
+    if (!isMobile || standalone() || instOff()) return '';
+    const steps = isIOS
+      ? t('Tocca ' + SHARE + ' <b>Condividi</b> e poi <b>«Aggiungi alla schermata Home»</b>.','Tap ' + SHARE + ' <b>Share</b>, then <b>“Add to Home Screen”</b>.','Tapni ' + SHARE + ' <b>Deli</b> in nato <b>»Dodaj na začetni zaslon«</b>.') +
+        '<small>' + t('Se non vedi l\'opzione, apri questa pagina in Safari.','If you don\'t see it, open this page in Safari.','Če možnosti ne vidiš, odpri stran v Safariju.') + '</small>'
+      : t('Apri il menu <b>⋮</b> del browser e scegli <b>«Aggiungi a schermata Home»</b> o <b>«Installa app»</b>.','Open the browser menu <b>⋮</b> and choose <b>“Add to Home screen”</b> or <b>“Install app”</b>.','Odpri meni brskalnika <b>⋮</b> in izberi <b>»Dodaj na začetni zaslon«</b> ali <b>»Namesti aplikacijo«</b>.');
+    return '<div class="inst" id="apInst"><button type="button" class="x" id="apInstX" aria-label="' + t('Chiudi','Close','Zapri') + '">&times;</button>' +
+      '<b>' + t('Mettila sul telefono','Add it to your phone','Dodaj na telefon') + '</b>' +
+      '<span>' + t('Apri l\'Area personale con un tocco, come un\'app.','Open your personal area with one tap, like an app.','Odpri svoj profil z enim dotikom, kot aplikacijo.') + '</span>' +
+      '<p>' + steps + '</p>' +
+      (isIOS ? '' : '<button type="button" class="btn btn-red" id="apInstBtn"' + (installEvt ? '' : ' hidden') + '>' + t('Installa','Install','Namesti') + '</button>') + '</div>';
+  }
+  function bindInst(){
+    const x = document.getElementById('apInstX');
+    if (x) x.onclick = () => { try { localStorage.setItem(KEY + '-inst', 'no'); } catch(e) {} const c = document.getElementById('apInst'); if (c) c.remove(); };
+    const b = document.getElementById('apInstBtn');
+    if (b) b.onclick = async () => { if (!installEvt) return; installEvt.prompt(); try { const r = await installEvt.userChoice; if (r && r.outcome === 'accepted') { const c = document.getElementById('apInst'); if (c) c.remove(); } } catch(e) {} installEvt = null; };
+  }
+
   function relogin(){ setS(''); showLogin(t('Sessione scaduta: accedi di nuovo.','Session expired: please sign in again.','Seja je potekla: prijavi se znova.')); }
 
   async function load(){
     const s = getS();
-    if (!s) return showLogin();
+    if (!s) { const p = getP(); return p ? showCode(p) : showLogin(); }
     const cached = getC(s);
-    if (cached) showCards(fresh(cached), true); else busy();
+    if (cached) showCards(fresh(cached), true); else busy(t('Carico le tue tessere…','Loading your memberships…','Nalagam tvoje karte …'));
     try {
       const me = await api({a:'me', s});
       if (!me.ok) return relogin();
@@ -963,8 +1047,8 @@ SF.lezioni = function(type){
   const m = location.hash.match(/[#&]t=([a-f0-9]{40,80})/);
   if (m) {
     history.replaceState(null, '', location.pathname + location.search);
-    busy();
-    api({a:'login', t:m[1]}).then(r => { if (r.ok) { setS(r.s); load(); } else showLogin(errText(r.err)); })
+    busy(t('Accesso in corso…','Signing in…','Prijava …') + '<br>' + firstWait());
+    api({a:'login', t:m[1]}).then(r => { if (r.ok) { setP(''); setS(r.s); load(); } else showLogin(errText(r.err)); })
       .catch(() => showLogin(errText('')));
   } else load();
 })();
