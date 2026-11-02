@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-10-27-1151 10135919 -->
+<!-- sportfit-build 2026-11-02-1831 315bb73f -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -509,7 +509,7 @@
   .ap .btn-ghost{background:transparent;border-color:var(--line-2);color:var(--ink)}
   .ap .btn-ghost:hover{border-color:var(--ink)}
   .ap .note{color:var(--muted);font-size:.92rem;margin-top:12px}
-  .ap .msg{padding:14px 16px;margin-bottom:16px;border:1px solid}
+  .ap .msg{padding:14px 16px;margin-bottom:16px;border:1px solid;overflow-wrap:anywhere}
   .ap .msg b{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:1.15rem;margin-bottom:3px}
   .ap .msg.ok{background:#0f2414;border-color:#2f6b3c}.ap .msg.ok b{color:#6fdc8c}
   .ap .msg.err{background:#2a0d0e;border-color:#7a2226}.ap .msg.err b{color:#ff8a8f}
@@ -557,6 +557,7 @@
   .ap .first p b{color:var(--ink)}
   .ap .two{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
   .ap input.code{font-family:var(--display);font-weight:700;font-size:1.9rem;letter-spacing:.4em;text-align:center;padding:10px 6px 10px calc(6px + .4em)}
+  .ap .fixmail{display:block;font-family:var(--display);font-weight:700;font-size:1.35rem;letter-spacing:.02em;color:var(--ink);word-break:break-all;margin-top:2px}
   .ap .linkbtn{background:none;border:0;padding:4px 0;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer}
   .ap .linkbtn:hover,.ap .linkbtn:focus-visible{color:var(--ink)}
   .ap #fCode[hidden]{display:none}
@@ -831,6 +832,28 @@ SF.lezioni = function(type){
   const y = document.getElementById('yearNow'); if (y) y.textContent = new Date().getFullYear();
   const app = document.getElementById('app');
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  // tipkarske napake v e-mailu (npr. icloud.con, gmial.com, libero.ir) → predlog popravka
+  const MAILDOM = ['gmail.com','hotmail.com','hotmail.it','libero.it','yahoo.com','yahoo.it','icloud.com','me.com','outlook.com','outlook.it','live.com','live.it','msn.com','virgilio.it','alice.it','tiscali.it','tim.it','fastwebnet.it','email.it','gmx.com','gmx.net','aol.com','siol.net','t-2.net','amis.net','telemach.net','tin.it','inwind.it','iol.it','poste.it','teletu.it','katamail.com','ymail.com','rocketmail.com','googlemail.com','protonmail.com','proton.me','mail.com','yahoo.fr','yahoo.de','hotmail.fr','hotmail.de','live.fr','gmx.de','web.de','t-online.de','arnes.si','guest.arnes.si'];
+  const lev = (a, b) => { const d = Array.from({length: a.length + 1}, (_, i) => [i]); for (let j = 1; j <= b.length; j++) d[0][j] = j;
+    for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i-1][j] + 1, d[i][j-1] + 1, d[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1),
+      i > 1 && j > 1 && a[i-1] === b[j-2] && a[i-2] === b[j-1] ? d[i-2][j-2] + 1 : 99);
+    return d[a.length][b.length]; };
+  const mailFix = email => {
+    const at = email.lastIndexOf('@'); if (at < 1) return '';
+    const user = email.slice(0, at), dom = email.slice(at + 1).toLowerCase();
+    if (MAILDOM.includes(dom)) return '';
+    const known = {'gmail.it':'gmail.com','gmail.si':'gmail.com','gmail.co':'gmail.com','icloud.it':'icloud.com','hotmail.si':'hotmail.com','outlook.si':'outlook.com'}[dom];
+    if (known) return user + '@' + known;
+    let best = '', bd = 3;
+    MAILDOM.forEach(k => { const v = lev(dom, k); if (v < bd) { bd = v; best = k; } });
+    if (best && bd <= 2) return user + '@' + best;
+    const m = dom.match(/^(.+)\.([a-z]+)$/);
+    if (m) {
+      const fixT = {con:'com',cpm:'com',cim:'com',comm:'com',coom:'com',vom:'com',xom:'com',ocm:'com',cmo:'com',om:'com',ir:'it',iy:'it',itt:'it',ti:'it',ut:'it'}[m[2]];
+      if (fixT) return user + '@' + m[1] + '.' + fixT;
+    }
+    return '';
+  };
   const getS = () => { try { return localStorage.getItem(KEY) || ''; } catch(e) { return ''; } };
   const setS = v => { try { v ? localStorage.setItem(KEY, v) : (localStorage.removeItem(KEY), localStorage.removeItem(KEY + '-c')); } catch(e) {} };
   // zadnje karte v telefonu: prikažemo jih takoj, sveže pridejo v ozadju
@@ -891,6 +914,8 @@ SF.lezioni = function(type){
       const k = {email, nome, cognome};
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return showLogin(errText('email'), k);
       if ((nome || cognome) && (nome.length < 2 || cognome.length < 2)) return showLogin(errText('name'), k);
+      const fix = keep.checked === email ? '' : mailFix(email);
+      if (fix) return askFix(k, fix);
       const btn = e.target.querySelector('button'); btn.disabled = true; btn.textContent = t('Invio in corso…','Sending…','Pošiljam …');
       try {
         const r = await api({a:'link', email, lang: SF.lang, nome, cognome});
@@ -898,6 +923,16 @@ SF.lezioni = function(type){
         setP(email); showCode(email);
       } catch(err) { showLogin(errText(''), k); }
     };
+  }
+
+  function askFix(k, fix){
+    app.innerHTML = '<h1>' + t('Controlla l\'e-mail','Check your e-mail','Preveri e-pošto') + '</h1>' +
+      '<div class="msg info" role="alert"><b>' + t('Forse intendevi:','Did you mean:','Si mislil:') + '</b><span class="fixmail">' + esc(fix) + '</span>' +
+      '<span class="note" style="display:block;margin-top:6px">' + t('Hai scritto: ','You typed: ','Vpisal si: ') + esc(k.email) + '</span></div>' +
+      '<button class="btn btn-red" type="button" id="apFixYes">' + t('Sì, usa questo indirizzo','Yes, use this address','Da, uporabi ta naslov') + '</button>' +
+      '<button class="btn btn-ghost" type="button" id="apFixNo">' + t('No, il mio è giusto','No, mine is correct','Ne, moj je pravilen') + '</button>';
+    document.getElementById('apFixYes').onclick = () => { showLogin('', Object.assign({}, k, {email: fix})); document.querySelector('#fLink button').click(); };
+    document.getElementById('apFixNo').onclick = () => { showLogin('', Object.assign({}, k, {checked: k.email})); document.querySelector('#fLink button').click(); };
   }
 
   function showCode(email, error){
