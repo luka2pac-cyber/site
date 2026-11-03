@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-11-02-1831 315bb73f -->
+<!-- sportfit-build 2026-11-03-1201 2b42e8e8 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -1078,7 +1078,7 @@ SF.lezioni = function(type){
       }
       if (me.stato === 'nuovo') return showRegister(me);
       if (me.stato === 'attesa') { app.innerHTML = '<h1>' + t('Quasi fatto','Almost done','Skoraj končano') + '</h1>' + msg('info', t('In attesa di conferma','Waiting for confirmation','Čaka na potrditev'), t('La reception conferma il tuo account a breve e ti arriva un\'e-mail. Poi qui vedrai le tue tessere.','Reception will confirm your account soon and you\'ll get an e-mail. Then your memberships will appear here.','Recepcija bo kmalu potrdila tvoj profil in dobil boš e-pošto. Nato boš tu videl svoje karte.')) + footer(me.email); bindOut(); return; }
-      if (me.stato === 'rifiutato') { app.innerHTML = '<h1>' + t('Account non attivo','Account not active','Profil ni aktiven') + '</h1>' + msg('info', '', t('Non siamo riusciti a confermare il tuo account. Contatta la reception.','We couldn\'t confirm your account. Please contact reception.','Tvojega profila nismo mogli potrditi. Obrni se na recepcijo.')) + footer(me.email); bindOut(); return; }
+      if (me.stato === 'rifiutato') { app.innerHTML = '<h1>' + t('Account non attivo','Account not active','Profil ni aktiven') + '</h1>' + msg('info', '', t('Non abbiamo trovato una tessera Sport&Fit a tuo nome. Se sei già nostro socio, passa in reception: sistemiamo tutto in un attimo.','We could not find a Sport&Fit membership under your name. If you are already a member, please stop by reception and we will sort it out.','V naši evidenci nismo našli karte na tvoje ime. Če si že naš član, se oglasi na recepciji in bomo hitro uredili.')) + footer(me.email); bindOut(); return; }
       showCards(me);
     } catch(err) {
       if (cached) { const bar = app.querySelector('.apbar'); flash = null; if (bar) bar.outerHTML = msg('info', '', t('Dati dell\'ultimo accesso: aggiornamento non riuscito.','Showing data from your last visit: update failed.','Prikazani so podatki z zadnjega obiska: posodobitev ni uspela.')); return; }
