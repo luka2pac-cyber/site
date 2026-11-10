@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-11-02-1223 77fd9992 -->
+<!-- sportfit-build 2026-11-10-1114 c2cb1711 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -232,6 +232,26 @@
   /* poravnava: Perché in Tutto incluso imata enak levi stolpec in enake desne stolpce */
   @media (min-width:901px){.why-row{grid-template-columns:220px 1fr;gap:40px;padding-inline:51px}.why-grid{gap:40px}.why-row .why-head{align-items:flex-start;text-align:left}.incl-box{grid-template-columns:220px 1fr;gap:40px}.incl-list{gap:22px 40px}.incl-head{align-self:center}}
   @media (min-width:701px) and (max-width:900px){.why-grid{gap:16px 30px;padding-inline:31px}.incl-head{text-align:center}}
+  /* Perché + Tutto incluso: enaka okvirja, enaki naslovi, 4 poravnani stolpci (2026-11-10) */
+  .why .why-row{width:calc(100% - 40px);max-width:1140px;margin-inline:auto;background:rgba(20,20,20,.88);border:1px solid var(--line);border-top:4px solid var(--red);padding:30px}
+  .incl{margin-top:24px}
+  @media (max-width:700px){.why .why-row{padding:24px 18px}}
+  @media (min-width:701px) and (max-width:900px){.why-grid{padding-inline:0}}
+  @media (min-width:901px){
+    .why .why-row{grid-template-columns:220px 1fr;gap:40px;padding:30px}
+    .why-row h2,.incl-head h3{font-size:clamp(1.3rem,2vw,1.55rem);line-height:1.08}
+    .why-row .why-ic{display:none}
+    .why-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 40px;grid-template-rows:auto auto}
+    .why-card{display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:4px}
+    .incl-list{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto auto;gap:22px 40px}
+    .incl-list li{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:6px;border-left:2px solid var(--red);padding-left:12px}
+    .incl-list li>div{display:contents}
+    .incl-ok{width:26px;height:26px}.incl-ok .ic{width:26px;height:26px}
+    .incl-list b{font-size:1.15rem}
+    .incl-list span{font-size:.88rem}
+  }
+  @media (min-width:901px) and (max-width:1119px){.incl-list{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,auto auto auto)}}
+  @media (min-width:901px) and (max-width:999px){.why-grid,.incl-list{column-gap:24px}}
 
   /* palestra */
   .zones-head2{margin-bottom:28px;text-align:center;display:flex;align-items:center;justify-content:center;gap:18px}
