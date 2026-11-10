@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-11-10-1751 ae1df85a -->
+<!-- sportfit-build 2026-11-10-2306 f14b9e05 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -149,7 +149,7 @@
   .ki{min-width:0;text-align:center}
   #hoursRows{width:100%;max-width:300px;margin-inline:auto;text-align:left}
   .ki .lines > div{justify-content:center}
-  .cbtns.one{grid-template-columns:minmax(0,1fr);width:calc(50% - 4px);margin-inline:auto}
+  .cbtns.one{display:flex;justify-content:center}.cbtns.one .cbtn{min-width:calc(50% - 4px);padding-inline:16px}
   @media (max-width:360px){.ki{padding:20px 16px}.hrow span{white-space:normal}.zones-head2 h2.title{font-size:5.3vw}}
   @media (max-width:340px){.zones-head2 h2.title{font-size:4.8vw}}
   @media (max-width:400px){.hrow{font-size:.9rem;gap:8px}}
@@ -159,6 +159,7 @@
   .ki .sub{color:var(--muted);margin-top:2px}
   .ki .lines{display:flex;flex-direction:column;gap:2px}
   .ki .lines a{text-decoration:none}
+  .ptag{font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.08em;line-height:1;color:var(--muted);border:1px solid var(--line-2);padding:3px 5px 2px}
   .ki .lines a:hover{color:var(--red)}
   .ki .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:16px;align-items:center}
   .cbtns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px}
@@ -260,7 +261,7 @@
   .kb-list span{white-space:nowrap}
   .kb-list span+span::before{content:"\00B7";margin:0 8px;color:var(--muted)}
   .kb-list span:first-child{color:#fff;font-weight:700}
-  @media (max-width:700px){.kb-list{gap:2px 14px}.kb-list span+span::before{content:none}}
+  @media (max-width:700px){.kb-list{gap:6px;font-size:.92rem}.kb-list span{border:1px solid var(--line-2);padding:1px 9px}.kb-list span+span::before{content:none}}
   .kb-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:.98rem;text-decoration:none;white-space:nowrap;padding:6px 16px;background:var(--red);color:#fff;transition:background .15s}
   .kb-btn:hover{background:var(--red-deep)}
   .kb-btn .ic{width:1.1em;height:1.1em;stroke-width:2.2}
@@ -584,7 +585,7 @@
         <h2><svg class="ic"><use href="#i-phone"/></svg><span data-en="Contact" data-sl="Kontakt">Contatti</span></h2>
         <div class="lines">
           <div class="big"><a class="tab" id="kPhone1" href="#"></a></div>
-          <div><svg class="ic"><use href="#i-phone"/></svg><a class="tab" id="kPhone2" href="#"></a></div>
+          <div><svg class="ic"><use href="#i-phone"/></svg><a class="tab" id="kPhone2" href="#"></a><span class="ptag">SLO</span></div>
           <div><svg class="ic"><use href="#i-mail"/></svg><a id="kEmail" href="#"></a></div>
         </div>
         <div class="cbtns">
@@ -595,7 +596,7 @@
         </div>
       </div>
     </div>
-      <div class="kibar"><svg class="ic kb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.6"/></svg><div class="kb-list"><span data-sl="Posamezni vstopi" data-en="Single entries">Ingressi singoli</span><span data-sl="tedenske" data-en="weekly">settimanali</span><span data-sl="mesečne" data-en="monthly">mensili</span><span data-sl="10 obiskov" data-en="10 entries">10 ingressi</span><span data-sl="letne karte" data-en="annual">annuali</span></div><a class="kb-btn" href="#abbonamenti"><span data-sl="Poglej karte" data-en="See memberships">Vedi abbonamenti</span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="kibar"><svg class="ic kb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.6"/></svg><div class="kb-list"><span data-sl="Posamezni vstopi" data-en="Single entries">Ingressi singoli</span><span data-sl="10 obiskov" data-en="10 entries">10 ingressi</span><span data-sl="tedenske" data-en="weekly">settimanali</span><span data-sl="mesečne" data-en="monthly">mensili</span><span data-sl="letne karte" data-en="annual">annuali</span></div><a class="kb-btn" href="#abbonamenti"><span data-sl="Poglej karte" data-en="See memberships">Vedi abbonamenti</span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 
   <div class="brands">
