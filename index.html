@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-11-10-1312 763ab2ca -->
+<!-- sportfit-build 2026-11-10-1751 ae1df85a -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -253,7 +253,9 @@
   @media (min-width:901px) and (max-width:1119px){.incl-list{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,auto auto auto)}}
   @media (min-width:901px) and (max-width:999px){.why-grid,.incl-list{column-gap:24px}}
   /* cenik + vrstica s kartami (2026-11-10) */
-  .kibar{background:#000;border:1px solid var(--line);border-top:0;padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;align-items:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  .kibar{background:var(--bg-2);border:1px solid var(--line);border-top:0;padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;align-items:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  .kb-ic{width:28px;height:28px;color:var(--red);stroke-width:1.8}
+  @media (max-width:700px){.kb-ic{display:none}}
   .kb-list{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 0;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:.98rem;line-height:1.4}
   .kb-list span{white-space:nowrap}
   .kb-list span+span::before{content:"\00B7";margin:0 8px;color:var(--muted)}
@@ -593,7 +595,7 @@
         </div>
       </div>
     </div>
-      <div class="kibar"><div class="kb-list"><span data-sl="Posamezni vstopi" data-en="Single entries">Ingressi singoli</span><span data-sl="tedenske" data-en="weekly">settimanali</span><span data-sl="mesečne" data-en="monthly">mensili</span><span data-sl="10 obiskov" data-en="10 entries">10 ingressi</span><span data-sl="letne karte" data-en="annual">annuali</span></div><a class="kb-btn" href="#abbonamenti"><span data-sl="Poglej karte" data-en="See memberships">Vedi abbonamenti</span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="kibar"><svg class="ic kb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.6"/></svg><div class="kb-list"><span data-sl="Posamezni vstopi" data-en="Single entries">Ingressi singoli</span><span data-sl="tedenske" data-en="weekly">settimanali</span><span data-sl="mesečne" data-en="monthly">mensili</span><span data-sl="10 obiskov" data-en="10 entries">10 ingressi</span><span data-sl="letne karte" data-en="annual">annuali</span></div><a class="kb-btn" href="#abbonamenti"><span data-sl="Poglej karte" data-en="See memberships">Vedi abbonamenti</span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 
   <div class="brands">
