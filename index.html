@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-11-10-1207 6490cb16 -->
+<!-- sportfit-build 2026-11-10-1238 3e56e2e3 -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -252,6 +252,35 @@
   }
   @media (min-width:901px) and (max-width:1119px){.incl-list{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,auto auto auto)}}
   @media (min-width:901px) and (max-width:999px){.why-grid,.incl-list{column-gap:24px}}
+  /* cenik + vrstica s kartami (2026-11-10) */
+  .kibar{background:#000;border:1px solid var(--line);border-top:0;padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;align-items:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  .kb-list{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 0;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:.98rem;line-height:1.4}
+  .kb-list span{white-space:nowrap}
+  .kb-list span+span::before{content:"\00B7";margin:0 8px;color:var(--muted)}
+  .kb-list span:first-child{color:#fff;font-weight:700}
+  @media (max-width:700px){.kb-list{gap:2px 14px}.kb-list span+span::before{content:none}}
+  .kb-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:.98rem;text-decoration:none;white-space:nowrap;padding:6px 16px;background:var(--red);color:#fff;transition:background .15s}
+  .kb-btn:hover{background:var(--red-deep)}
+  .kb-btn .ic{width:1.1em;height:1.1em;stroke-width:2.2}
+  #abbonamenti{scroll-margin-top:70px}
+  .cz-title{text-align:center}
+  .cz-sub{text-align:center;color:var(--muted);margin:10px auto 22px;max-width:60ch}
+  .cz-tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+  .cz-tabs button{font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 16px;background:transparent;color:var(--ink);border:1px solid var(--line-2);cursor:pointer}
+  .cz-tabs button[aria-selected="true"]{background:var(--ink);color:#000;border-color:var(--ink)}
+  .cz-one{max-width:560px;margin-inline:auto}
+  .cz-card{background:var(--bg-3);border-top:4px solid var(--c);padding:16px 20px 14px}
+  .cz-cap{color:var(--muted);font-size:.9rem;margin-bottom:4px}
+  .cz-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:8px 0;border-top:1px solid var(--line);font-size:.97rem;line-height:1.35}
+  .cz-card > .cz-row:first-child,.cz-cap + .cz-row{border-top:0}
+  .cz-row b{font-family:var(--display);font-weight:700;font-size:1.15rem;white-space:nowrap;text-align:right}
+  .cz-row small{color:var(--muted);font-size:.75rem;display:block}
+  .cz-pm{grid-column:1/-1;display:flex;align-items:center;gap:8px;color:#cfccc7;font-size:.85rem}
+  .cz-save{background:var(--red);color:#fff;font-family:var(--display);font-weight:700;font-size:.8rem;padding:1px 7px;letter-spacing:.03em}
+  .cz-pay{margin-top:10px;padding-top:12px;border-top:1px solid var(--line-2);color:#fff;font-family:var(--display);font-weight:700;font-size:1.02rem;letter-spacing:.03em;text-transform:uppercase;text-align:center}
+  .cz-calc{color:var(--muted);font-size:.8rem;text-align:center;margin-top:4px}
+  .cz-note{text-align:center;color:var(--muted);font-size:.85rem;margin-top:16px}
+  @media (max-width:420px){.cz-tabs button{padding:7px 10px;font-size:.92rem}.cz-card{padding:14px 14px 12px}}
   /* ikone v Perché Sport&Fit (2026-11-10) */
   .why-ico{display:flex;color:var(--red);margin-bottom:8px}
   .why-ico .ic{width:30px;height:30px;stroke-width:1.8}
@@ -558,6 +587,7 @@
         </div>
       </div>
     </div>
+      <div class="kibar"><div class="kb-list"><span data-sl="Posamezni vstopi" data-en="Single entries">Ingressi singoli</span><span data-sl="tedenske" data-en="weekly">settimanali</span><span data-sl="mesečne" data-en="monthly">mensili</span><span data-sl="10 obiskov" data-en="10 entries">10 ingressi</span><span data-sl="letne karte" data-en="annual">annuali</span></div><a class="kb-btn" href="#abbonamenti"><span data-sl="Poglej karte" data-en="See memberships">Vedi abbonamenti</span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 
   <div class="brands">
@@ -659,6 +689,16 @@
         <div class="grp sala-grp"><span data-en="The class studio" data-sl="Dvorana za vadbe">La sala corsi</span></div>
         <div class="sala-row"><button type="button" data-gal="foto-sala-corsi-4.jpg|foto-sala-corsi-5.jpg|foto-sala-corsi-6.jpg" data-gal-alt="Sala corsi Sport&amp;Fit" data-start="0" aria-label="La sala corsi, foto 1"><img src="foto-sala-corsi-4.jpg" alt="" loading="lazy"></button><button type="button" data-gal="foto-sala-corsi-4.jpg|foto-sala-corsi-5.jpg|foto-sala-corsi-6.jpg" data-gal-alt="Sala corsi Sport&amp;Fit" data-start="1" aria-label="La sala corsi, foto 2"><img src="foto-sala-corsi-5.jpg" alt="" loading="lazy"></button><button type="button" data-gal="foto-sala-corsi-4.jpg|foto-sala-corsi-5.jpg|foto-sala-corsi-6.jpg" data-gal-alt="Sala corsi Sport&amp;Fit" data-start="2" aria-label="La sala corsi, foto 3"><img src="foto-sala-corsi-6.jpg" alt="" loading="lazy"></button></div>
       </div>
+    </div>
+  </section>
+
+  <section class="alt" id="abbonamenti">
+    <div class="wrap">
+      <h2 class="title cz-title" data-sl="Karte in cene" data-en="Memberships and prices">Abbonamenti e prezzi</h2>
+      <p class="cz-sub" data-sl="Dnevni vstop, tedenske, mesečne, 10 obiskov in letne karte." data-en="Day pass, weekly, monthly, 10-entry and annual memberships.">Ingresso giornaliero, tessere settimanali, mensili, a 10 ingressi e annuali.</p>
+      <div class="cz-tabs" role="tablist"><button type="button" role="tab" data-cz="fit" aria-selected="true" data-sl="Fitnes" data-en="Gym">Fitness</button><button type="button" role="tab" data-cz="pil" aria-selected="false" data-sl="Pilates &amp;amp; SBT" data-en="Pilates &amp;amp; SBT">Pilates &amp; SBT</button><button type="button" role="tab" data-cz="cf" aria-selected="false" data-sl="Vadbe + fitnes" data-en="Classes + gym">Corsi + fitness</button><button type="button" role="tab" data-cz="pole" aria-selected="false" data-sl="Pole dance" data-en="Pole dance">Pole dance</button></div>
+      <div class="cz-one"><div class="cz-card" id="cz-fit" style="--c:var(--red)"><div class="cz-row"><span data-sl="Dnevni vstop" data-en="Day pass">Ingresso giornaliero</span><b>10 €</b></div><div class="cz-row"><span data-sl="Tedenska karta" data-en="1-week pass">Tessera 1 settimana</span><b>20 €</b></div><div class="cz-row"><span data-sl="Karta za 2 tedna" data-en="2-week pass">Tessera 2 settimane</span><b>30 €</b></div><div class="cz-row"><span data-sl="Mesečna karta" data-en="Monthly pass">Tessera mensile</span><b>50 €</b></div><div class="cz-row"><span data-sl="Karta za 10 obiskov &lt;small&gt;velja 4 mesece&lt;/small&gt;" data-en="10-entry pass &lt;small&gt;valid 4 months&lt;/small&gt;">Tessera 10 ingressi <small>validità 4 mesi</small></span><b>60 €</b></div><div class="cz-row"><span data-sl="3-mesečna karta" data-en="3-month pass">Tessera 3 mesi</span><b>130 €</b><span class="cz-pm"><span data-sl="43,33 € na mesec" data-en="43.33 € per month">43,33 € al mese</span><span class="cz-save">−13%</span></span></div><div class="cz-row"><span data-sl="6-mesečna karta" data-en="6-month pass">Tessera 6 mesi</span><b>240 €</b><span class="cz-pm"><span data-sl="40,00 € na mesec" data-en="40.00 € per month">40,00 € al mese</span><span class="cz-save">−20%</span></span></div><div class="cz-row"><span data-sl="12-mesečna karta" data-en="12-month pass">Tessera 12 mesi</span><b>390 €</b><span class="cz-pm"><span data-sl="32,50 € na mesec" data-en="32.50 € per month">32,50 € al mese</span><span class="cz-save">−35%</span></span></div><p class="cz-pay" data-sl="Plačilo enkrat ob nakupu · brez mesečnih bremenitev" data-en="One-time payment at purchase · no monthly direct debit">Pagamento unico all&rsquo;acquisto · nessun addebito mensile</p><p class="cz-calc" data-sl="Prihranek glede na mesečno karto." data-en="Savings compared with the monthly pass.">Risparmio rispetto alla tessera mensile.</p></div><div class="cz-card" id="cz-pil" style="--c:#29a8e0" hidden><div class="cz-row"><span data-sl="Posamezna vadba" data-en="Single class">Ingresso singolo</span><b>12 €</b></div><div class="cz-row"><span data-sl="Mesečna karta &lt;small&gt;2× na teden&lt;/small&gt;" data-en="Monthly pass &lt;small&gt;2× a week&lt;/small&gt;">Tessera mensile <small>2× a settimana</small></span><b>50 €</b></div><div class="cz-row"><span data-sl="Mesečna karta open" data-en="Monthly pass, open">Tessera mensile open</span><b>70 €</b></div><div class="cz-row"><span data-sl="Karta za 10 obiskov &lt;small&gt;velja 4 mesece&lt;/small&gt;" data-en="10-class pass &lt;small&gt;valid 4 months&lt;/small&gt;">Tessera 10 ingressi <small>validità 4 mesi</small></span><b>70 €</b></div><div class="cz-row"><span data-sl="3-mesečna karta &lt;small&gt;2× na teden&lt;/small&gt;" data-en="3-month pass &lt;small&gt;2× a week&lt;/small&gt;">Tessera 3 mesi <small>2× a settimana</small></span><b>130 €</b></div><div class="cz-row"><span data-sl="3-mesečna karta open" data-en="3-month pass, open">Tessera 3 mesi open</span><b>180 €</b></div></div><div class="cz-card" id="cz-cf" style="--c:#ffffff" hidden><p class="cz-cap" data-sl="Pilates, SBT in fitnes" data-en="Pilates, SBT and gym">Pilates, SBT e sala pesi</p><div class="cz-row"><span data-sl="Mesečna karta" data-en="Monthly pass">Tessera mensile</span><b>85 €</b></div><div class="cz-row"><span data-sl="3-mesečna karta all inclusive" data-en="3-month pass, all inclusive">Tessera 3 mesi all inclusive</span><b>220 €</b></div></div><div class="cz-card" id="cz-pole" style="--c:#e5007e" hidden><div class="cz-row"><span data-sl="Posamezna vadba" data-en="Single class">Ingresso singolo</span><b>15 €</b></div><div class="cz-row"><span data-sl="Mesečna karta · 1× na teden" data-en="Monthly pass · 1× a week">Tessera mensile · 1× a settimana</span><b>60 €</b></div><div class="cz-row"><span data-sl="Mesečna karta · 2× na teden" data-en="Monthly pass · 2× a week">Tessera mensile · 2× a settimana</span><b>75 €</b></div><div class="cz-row"><span data-sl="Mesečna karta · open" data-en="Monthly pass · open">Tessera mensile · open</span><b>90 €</b></div><div class="cz-row"><span data-sl="3 mesece · 1× / 2× / open" data-en="3 months · 1× / 2× / open">3 mesi · 1× / 2× / open</span><b>160 / 200 / 240 €</b></div><div class="cz-row"><span data-sl="6 mesecev · 1× / 2× / open" data-en="6 months · 1× / 2× / open">6 mesi · 1× / 2× / open</span><b>300 / 380 / 460 €</b></div><div class="cz-row"><span data-sl="Doplačilo za fitnes &lt;small&gt;na mesec, ob kateri koli karti&lt;/small&gt;" data-en="Gym add-on &lt;small&gt;per month, with any pass&lt;/small&gt;">Supplemento sala pesi <small>al mese, con qualsiasi tessera</small></span><b>+ 30 €</b></div></div></div>
+      <p class="cz-note" data-sl="Cene veljajo za člane ASD. Letna vpisnina z zavarovanjem: 15 € (dec–apr), 10 € (maj–avg), 5 € (sep–nov)." data-en="Prices for ASD members only. Annual registration incl. insurance: 15 € (Dec–Apr), 10 € (May–Aug), 5 € (Sep–Nov).">Prezzi riservati ai soci dell&rsquo;ASD. Iscrizione annuale con assicurazione: 15 € (dic–apr), 10 € (mag–ago), 5 € (set–nov).</p>
     </div>
   </section>
 
@@ -1161,5 +1201,9 @@ const CONFIG = {
 })();
 </script>
 
+<script>
+/* cenik: zavihki */
+(function(){var t=document.querySelectorAll('.cz-tabs button');t.forEach(function(b){b.addEventListener('click',function(){t.forEach(function(x){var on=x===b;x.setAttribute('aria-selected',on);document.getElementById('cz-'+x.dataset.cz).hidden=!on;});});});})();
+</script>
 </body>
 </html>
