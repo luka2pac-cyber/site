@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- sportfit-build 2026-11-11-1028 eacba9ba -->
+<!-- sportfit-build 2026-11-11-1037 3888048d -->
 <html lang="it">
 <head>
 <meta charset="utf-8">
@@ -324,7 +324,26 @@
   button.zpic{cursor:zoom-in}
   .zpic > img.photo{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s}
   button.zpic:hover > img.photo{transform:scale(1.03)}
-  .zsigns{position:absolute;bottom:10px;left:10px;display:flex;gap:6px}
+  /* galerija cone: premikanje v kartici, tap = cel zaslon */
+  .zgal{background:#000}
+  .zview{position:relative}
+  .ztrack{display:flex;aspect-ratio:4/3;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .ztrack::-webkit-scrollbar{display:none}
+  .zslide{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;display:block;padding:0;border:0;background:#000;overflow:hidden;cursor:zoom-in}
+  .zslide img.photo{display:block;width:100%;height:100%;object-fit:cover}
+  .zslide:focus-visible{outline-offset:-3px}
+  .znav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;display:flex;align-items:center;justify-content:center;padding:0 0 4px;font-size:1.7rem;line-height:1;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.6);cursor:pointer;transition:background .15s,border-color .15s}
+  .znav:hover{background:var(--red);border-color:var(--red)}
+  .zprev{left:8px}.znext{right:8px}
+  .zfull{position:absolute;top:8px;right:8px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);border:1px solid var(--line-2);pointer-events:none}
+  .zfull svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .zdots{display:flex;justify-content:center;align-items:center;gap:7px;height:24px;background:var(--bg-3)}
+  .zdots i{display:block;width:6px;height:6px;border-radius:3px;background:rgba(242,241,238,.3);transition:width .2s,background .2s}
+  .zdots i.on{width:20px;background:var(--red)}
+  .zgal + .zbody{padding-top:10px}
+  @media (max-width:560px){.znav{width:34px;height:34px;font-size:1.45rem}.zprev{left:6px}.znext{right:6px}}
+  @media (prefers-reduced-motion:reduce){.zdots i{transition:none}}
+  .zsigns{position:absolute;bottom:10px;left:10px;display:flex;gap:6px;pointer-events:none}
   .zsigns img{width:72px;height:72px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
   .zpic.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:repeating-linear-gradient(135deg,#141414 0 12px,#101010 12px 24px)}
   .zpic.empty .zsigns{position:static}
@@ -1127,19 +1146,35 @@ const CONFIG = {
   const signs = keys => keys.length ? '<span class="zsigns">' + keys.map(k => '<img src="'+CONFIG.images[k]+'" alt="">').join('') + '</span>' : '';
   const emptyPic = z => '<div class="zpic empty">' + signs(z.cartelli) + '<small>'+t('Foto in arrivo','Photo coming soon','Fotografija kmalu')+'</small></div>';
   CONFIG.zones.forEach(z => { z.name = t(z.name, z.nameEN, z.nameSL); z.text = t(z.text, z.textEN, z.textSL); });
+  const galOf = z => (z.galleria && z.galleria.length ? z.galleria : [z.foto]);
   $('#zonesGrid').innerHTML = CONFIG.zones.map((z,i) =>
     '<article class="zcard'+(z.big?' big':'')+'">' +
-      (z.foto ? '<button type="button" class="zpic" data-src="'+z.foto+'" data-i="'+i+'" aria-label="'+t('Ingrandisci: ','Enlarge: ','Povečaj: ')+z.name+'"><img class="photo" src="'+z.foto+'" alt="'+z.name+'" loading="lazy">' + signs(z.cartelli) +
-        ((z.galleria && z.galleria.length > 1) ? '<span class="zcount">'+z.galleria.length+' '+t('foto','photos','fotk')+'</span>' : '') + '</button>' : emptyPic(z)) +
+      (z.foto ? (() => { const g = galOf(z), n = g.length;
+        return '<div class="zgal" data-i="'+i+'"><div class="zview"><div class="ztrack">' +
+          g.map((src,k) => '<button type="button" class="zslide" data-k="'+k+'" aria-label="'+t('Ingrandisci: ','Enlarge: ','Povečaj: ')+z.name+(n>1?' ('+(k+1)+'/'+n+')':'')+'"><img class="photo" '+(k?'data-src':'src')+'="'+src+'" alt="'+(k?'':z.name)+'"'+(k?'':' loading="lazy"')+'></button>').join('') + '</div>' +
+          signs(z.cartelli) + '<span class="zfull" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></span>' +
+          (n>1 ? '<button type="button" class="znav zprev" aria-label="'+t('Foto precedente','Previous photo','Prejšnja fotografija')+'" hidden>&#8249;</button><button type="button" class="znav znext" aria-label="'+t('Foto successiva','Next photo','Naslednja fotografija')+'">&#8250;</button>' : '') + '</div>' +
+          (n>1 ? '<div class="zdots" aria-hidden="true">'+g.map((_,k) => '<i'+(k?'':' class="on"')+'></i>').join('')+'</div>' : '') + '</div>'; })() : emptyPic(z)) +
       '<div class="zbody"><h3>'+z.name+'</h3><p>'+z.text+'</p>' +
       (() => { const att = t(z.attrezzi, z.attrezziEN, z.attrezziSL) || [];
         return att.length ? '<details class="zdet"><summary>'+t('Attrezzi di questa zona','Equipment in this area','Naprave v tej coni')+'</summary><ul class="zlist">' + att.map(a => '<li>'+a+'</li>').join('') + '</ul></details>' : ''; })() +
       '</div></article>').join('');
-  $$('#zonesGrid button.zpic').forEach(btn => {
-    btn.querySelector('img.photo').addEventListener('error', () => { btn.outerHTML = emptyPic(CONFIG.zones[+btn.dataset.i]); });
+  const calm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  $$('#zonesGrid .zgal').forEach(g => {
+    const z = CONFIG.zones[+g.dataset.i], tr = g.querySelector('.ztrack'), sl = [...tr.children];
+    const dots = [...g.querySelectorAll('.zdots i')], pv = g.querySelector('.zprev'), nx = g.querySelector('.znext');
+    const load = k => { const im = sl[k] && sl[k].querySelector('img'); if (im && im.dataset.src) { im.src = im.dataset.src; im.removeAttribute('data-src'); } };
+    const cur = () => Math.max(0, Math.min(sl.length - 1, Math.round(tr.scrollLeft / (tr.clientWidth || 1))));
+    const sync = () => { const k = cur(); dots.forEach((d,j) => d.classList.toggle('on', j === k)); if (pv) { pv.hidden = k === 0; nx.hidden = k === sl.length - 1; } load(k); load(k + 1); };
+    g.zgo = (k, jump) => { load(k); tr.scrollTo({left: k * tr.clientWidth, behavior: (jump || calm) ? 'auto' : 'smooth'}); };
+    let raf = 0;
+    tr.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; sync(); }); }, {passive:true});
+    if (pv) { pv.addEventListener('click', () => g.zgo(cur() - 1)); nx.addEventListener('click', () => g.zgo(cur() + 1)); }
+    sl[0].querySelector('img').addEventListener('error', () => { g.outerHTML = emptyPic(z); });
+    if ('IntersectionObserver' in window) new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { load(1); o.disconnect(); } }, {rootMargin:'300px'}).observe(g); else load(1);
   });
   const lb = $('#lightbox'), lbImg = $('#lbImg'), lbCount = $('#lbCount');
-  let gal = [], gi = 0, galAlt = '';
+  let gal = [], gi = 0, galAlt = '', galEl = null;
   const show = () => {
     lbImg.src = gal[gi]; lbImg.alt = galAlt;
     lbCount.textContent = gal.length > 1 ? (gi + 1) + ' / ' + gal.length : '';
@@ -1147,13 +1182,13 @@ const CONFIG = {
   };
   const openGal = (list, alt, start) => { gal = list; galAlt = alt || ''; gi = start || 0; lb.hidden = false; show(); };
   const step = d => { if (gal.length < 2) return; gi = (gi + d + gal.length) % gal.length; show(); };
-  const closeLb = () => { lb.hidden = true; lbImg.src = ''; gal = []; };
+  const closeLb = () => { if (galEl && galEl.isConnected) galEl.zgo(gi, true); galEl = null; lb.hidden = true; lbImg.src = ''; gal = []; };
   $('#lbPrev').addEventListener('click', e => { e.stopPropagation(); step(-1); });
   $('#lbNext').addEventListener('click', e => { e.stopPropagation(); step(1); });
   $('#zonesGrid').addEventListener('click', e => {
-    const b = e.target.closest('button.zpic'); if (!b) return;
-    const z = CONFIG.zones[+b.dataset.i];
-    openGal((z.galleria && z.galleria.length ? z.galleria : [z.foto]), z.name, 0);
+    const b = e.target.closest('.zslide'); if (!b) return;
+    const g = b.closest('.zgal'), z = CONFIG.zones[+g.dataset.i];
+    openGal(galOf(z), z.name, +b.dataset.k); galEl = g;
   });
   lb.addEventListener('click', e => { if (e.target === lbImg || e.target.closest('.lb-nav')) return; closeLb(); });
   document.addEventListener('keydown', e => {
